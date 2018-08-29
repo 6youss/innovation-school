@@ -1,0 +1,41 @@
+
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    padding-left:2%;
+}
+
+.navbar .navbar-right {
+    float: left;
+    margin: 0px 0px 0px 30px;
+}
+.navbar .branding {
+    float: left;
+}
+.navbar a {
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 0px 16px 10px 0px;
+    text-decoration: none;
+}
+
+.navbar h3 {
+    float: left;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.Footer{
+    background-color: #333;
+    padding-left:2%;
+}
+
+.Footer h3 {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 3px 10%;
+    text-decoration: none;
+}
