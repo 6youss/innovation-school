@@ -12,6 +12,8 @@ main{
     position: relative;
     float:left;
 }
+
+
 .StudentPicture {
     position: absolute;
     left: -1000%;
@@ -63,5 +65,18 @@ main{
 .left{
     text-align: center;
     width:20%;
+}
+
+.Input{
+    margin-left: auto;
+    padding: 10px;
+    width: 30%;
+}
+
+.StudentsHeader{
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 

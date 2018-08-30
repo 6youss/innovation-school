@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom'
 import './Student.css'
+import ListHeader from './ListHeader';
 
 
 class Student extends Component {
@@ -17,6 +18,42 @@ class Student extends Component {
                 student : json.student[0]
             });
         });
+    }
+
+    Groupe = ({groupeId,moduleName})=>{
+        return (
+            <NavLink to={`/groupe/${groupeId}`}>
+            <li className="big">
+                <div className="img"><p></p></div>
+                <div className="center"><p></p></div>
+                <div className="left"><p></p></div>
+            </li>
+            </NavLink>
+        )
+    }
+
+    Session =  ({sessionId,groupeId,roomId,date,sessionDone})=>{
+        return (
+            <NavLink to={`/session/${sessionId}`}>
+            <li className="big">
+                <div className="img"><p></p></div>
+                <div className="center"><p></p></div>
+                <div className="left"><p></p></div>
+            </li>
+            </NavLink>
+        )   
+    }
+
+    Payment = ({paymentId,price,date,done})=>{
+        return (
+            <NavLink to={`/payment/${paymentId}`}>
+            <li className="big">
+                <div className="img"><p></p></div>
+                <div className="center"><p></p></div>
+                <div className="left"><p></p></div>
+            </li>
+            </NavLink>
+        )   
     }
 
     render(){
@@ -39,23 +76,18 @@ class Student extends Component {
                 </aside>
 
                 <div className="StudentInfo">
-                    <h1>Name: {firstName} {lastName}</h1>
+                    <h1>{firstName} {lastName}</h1>
                     <p>Inscription date: 01/01/19</p>
                     <p>Birthday: 01/01/19</p>
-                    <p>Age: 01/01/19</p>
                     <p>Phone Number: </p>
                     <p>Parent Number: </p>
-                    <p>groups: </p>
                 </div>
 
             </div>
             <div className="StudentDetails">
-                <div className="StudentInfo">
-                    <h3>Payment Info</h3>
-                </div>
-                <div className="StudentInfo">
-                    <h3>Sessions</h3>
-                </div>
+                <ListHeader title="Groups" />
+                <ListHeader title="Sessions" />
+                <ListHeader title="Payments" icons="Add" />
             </div>
             </div>
         )

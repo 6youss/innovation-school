@@ -2,21 +2,27 @@ import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom'
 import './Student.css'
 
+import AddStudent from './AddStudent'
+
+
 
 class StudentsList extends Component {
 
-    state = {students : []}
-
+    state = {students : [],
+        searchInput:"",
+        newStudent:true
+    }
+    initialStudents;
+    
     componentDidMount(){
-        console.log("component did mount");
+
         fetch("http://localhost:3001/student")
         .then( res => res.json())
         .then(json=>{
-          console.log(json.students);
           this.setState({
             students : json.students
           });
-          
+          this.initialStudents=json.students;
         });
     }
 
@@ -33,18 +39,40 @@ class StudentsList extends Component {
         )   
     }
     
-
+    onChangeHandler(e){
+        this.setState({
+            searchInput: e.target.value,
+        });
+    }
+    
+    addStudent = ()=>{
+        this.setState({
+            newStudent: !this.state.newStudent    
+        });
+    }
     
     render(){
 
+        const list = this.state.students
+        .filter(student => this.state.searchInput === '' || (student.firstName.indexOf(this.state.searchInput) !== -1) || 
+             (student.lastName.indexOf(this.state.searchInput) !== -1) )
+        .map(student => 
+            <this.Student key={student.studentId} studentId={student.studentId} firstName={student.firstName} lastName={student.lastName} picture={student.picture}/>);
+
         return (
+            <div>
+            { this.state.newStudent && <AddStudent/>}
             <ul className="studentList">
-                <h1>Students</h1>
-                {this.state.students.map( student => 
-                       <this.Student key={student.studentId} studentId={student.studentId} firstName={student.firstName} lastName={student.lastName} picture={student.picture}/>
-                    )
+                <div className="StudentsHeader">
+                    <h1>Students</h1>
+                    <p onClick={this.addStudent} > Add Student </p>
+                    <input type="text" placeholder="Search.." className="Input" onChange={this.onChangeHandler.bind(this)}/>
+                </div>
+                {
+                    (list.length>0)? list : "No student with this name was found..."
                 }
             </ul>
+            </div>
         )
 
     }
