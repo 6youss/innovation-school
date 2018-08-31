@@ -54,8 +54,8 @@ class StudentsList extends Component {
     render(){
 
         const list = this.state.students
-        .filter(student => this.state.searchInput === '' || (student.firstName.indexOf(this.state.searchInput) !== -1) || 
-             (student.lastName.indexOf(this.state.searchInput) !== -1) )
+        .filter(student => this.state.searchInput === '' 
+                || ( (student.firstName+" "+student.lastName).indexOf(this.state.searchInput) !== -1) )
         .map(student => 
             <this.Student key={student.studentId} studentId={student.studentId} firstName={student.firstName} lastName={student.lastName} picture={student.picture}/>);
 

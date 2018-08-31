@@ -50,8 +50,8 @@ main{
     display: block;
     margin: 0 auto;
     border-radius: 50%;
-    width:30%;
-    height:auto;
+    width:64px;
+    height:64px;
 }
 .img{
 

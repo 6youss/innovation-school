@@ -1,0 +1,80 @@
+.AddStudent{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.formData{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 30px;
+    border: 1px solid black;
+    background-color: #eee;
+}
+.InputContainerStyle{
+    display:flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    padding: 0 0 0 0;
+    margin: 0 0 0 20px;
+}
+
+.InputContainerStyle div{
+    flex: 0 calc(46% - 5px);
+    margin: 0 0 1% 0;
+    padding: 0 2% 0 0;
+}
+
+.PersoInput{
+    
+}
+
+.PersoInput p{
+    font-size:13px;
+    padding:0px;
+    margin: 0 0 3px 0;
+}
+
+.PersoInput input{
+    width:100%;
+    padding: 5px 0 5px 5px;
+}
+
+.InputContainerStyle input[type="submit"]{
+    width:60px;
+    padding:7px;
+    margin-right: 6%;
+    margin-left:auto;
+}
+
+.StudentNewPicParent{
+    position: relative;
+}
+
+.StudentNewPic{
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid white;
+
+}
+
+.StudentNewPic img{
+    width: 110px;
+    height: 110px;
+    position: absolute;
+    left: -1000%;
+    right: -1000%;
+    top: -1000%;
+    bottom: -1000%;
+    margin: auto;
+}
+
+.StudentNewPicParent p{
+    position: absolute;
+    left: 80px;
+    top:-15px;
+}
+
