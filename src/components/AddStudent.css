@@ -19,7 +19,7 @@
     margin: 0 0 0 20px;
 }
 
-.InputContainerStyle div{
+.InputContainerStyle>div{
     flex: 0 calc(46% - 5px);
     margin: 0 0 1% 0;
     padding: 0 2% 0 0;
@@ -29,18 +29,18 @@
     
 }
 
-.PersoInput p{
+.PersoInput>p{
     font-size:13px;
     padding:0px;
     margin: 0 0 3px 0;
 }
 
-.PersoInput input{
+.PersoInput>input{
     width:100%;
     padding: 5px 0 5px 5px;
 }
 
-.InputContainerStyle input[type="submit"]{
+.InputContainerStyle>input[type="submit"]{
     width:60px;
     padding:7px;
     margin-right: 6%;
@@ -52,29 +52,52 @@
 }
 
 .StudentNewPic{
-    width: 100px;
-    height: 100px;
     position: relative;
-    overflow: hidden;
-    border-radius: 50%;
-    border: 2px solid white;
-
-}
-
-.StudentNewPic img{
     width: 110px;
     height: 110px;
-    position: absolute;
-    left: -1000%;
-    right: -1000%;
-    top: -1000%;
-    bottom: -1000%;
-    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: white;
+
 }
 
-.StudentNewPicParent p{
-    position: absolute;
-    left: 80px;
-    top:-15px;
+.StudentNewPic>img{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    
 }
+
+.StudentNewPicParent>p{
+    position: absolute;
+    left: 85px;
+    top:-10px;
+}
+
+.hoverStyle{
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+}
+.hoverStyle>p{
+    color: white;
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.StudentNewPic:hover .hoverStyle{
+    visibility: visible;
+}
+
+
+
 

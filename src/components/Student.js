@@ -58,7 +58,7 @@ class Student extends Component {
 
     render(){
 
-        const {firstName,lastName,picture,studentId} = this.state.student;
+        const {firstName,lastName,picture} = this.state.student;
         
         return (
             <div>

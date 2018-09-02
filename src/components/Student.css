@@ -8,20 +8,21 @@ main{
     width: 250px;
     height: 250px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
     margin: 10px;
-    position: relative;
+
     float:left;
 }
 
 
 .StudentPicture {
-    position: absolute;
-    left: -1000%;
-    right: -1000%;
-    top: -1000%;
-    bottom: -1000%;
-    margin: auto;
-    max-width: 250px;
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    
 }
 
 .StudentInfo{

@@ -7,15 +7,19 @@ import AddStudent from './AddStudent'
 
 
 class StudentsList extends Component {
-
+    
+    initialStudents;
     state = {students : [],
         searchInput:"",
         newStudent:true
     }
-    initialStudents;
+    
     
     componentDidMount(){
+        this.getStudents();
+    }
 
+    getStudents(){
         fetch("http://localhost:3001/student")
         .then( res => res.json())
         .then(json=>{
@@ -26,6 +30,19 @@ class StudentsList extends Component {
         });
     }
 
+
+    
+    onChangeHandler(e){
+        this.setState({
+            searchInput: e.target.value,
+        });
+    }
+    
+    addStudent = ()=>{
+        this.setState({
+            newStudent: !this.state.newStudent    
+        });
+    }
 
     Student = ({studentId,firstName,lastName,picture})=>{
         return (
@@ -39,18 +56,6 @@ class StudentsList extends Component {
         )   
     }
     
-    onChangeHandler(e){
-        this.setState({
-            searchInput: e.target.value,
-        });
-    }
-    
-    addStudent = ()=>{
-        this.setState({
-            newStudent: !this.state.newStudent    
-        });
-    }
-    
     render(){
 
         const list = this.state.students
@@ -61,7 +66,7 @@ class StudentsList extends Component {
 
         return (
             <div>
-            { this.state.newStudent && <AddStudent/>}
+            { this.state.newStudent && <AddStudent updateStudents = {this.getStudents.bind(this)} />}
             <ul className="studentList">
                 <div className="StudentsHeader">
                     <h1>Students</h1>
@@ -69,7 +74,7 @@ class StudentsList extends Component {
                     <input type="text" placeholder="Search.." className="Input" onChange={this.onChangeHandler.bind(this)}/>
                 </div>
                 {
-                    (list.length>0)? list : "No student with this name was found..."
+                    (list.length>0)? list : "Can't find any student..."
                 }
             </ul>
             </div>
