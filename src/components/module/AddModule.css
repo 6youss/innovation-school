@@ -1,0 +1,103 @@
+.AddModule{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.formData{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 30px;
+    border: 1px solid black;
+    background-color: #eee;
+}
+.InputContainerStyle{
+    display:flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    padding: 0 0 0 0;
+    margin: 0 0 0 20px;
+}
+
+.InputContainerStyle>div{
+    flex: 0 calc(46% - 5px);
+    margin: 0 0 1% 0;
+    padding: 0 2% 0 0;
+}
+
+.PersoInput{
+    
+}
+
+.PersoInput>p{
+    font-size:13px;
+    padding:0px;
+    margin: 0 0 3px 0;
+}
+
+.PersoInput>input{
+    width:100%;
+    padding: 5px 0 5px 5px;
+}
+
+.InputContainerStyle>input[type="submit"]{
+    width:60px;
+    padding:7px;
+    margin-right: 6%;
+    margin-left:auto;
+}
+
+.ModuleNewPicParent{
+    position: relative;
+}
+
+.ModuleNewPic{
+    position: relative;
+    width: 110px;
+    height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: white;
+
+}
+
+.ModuleNewPic>img{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    
+}
+
+.ModuleNewPicParent>p{
+    position: absolute;
+    left: 85px;
+    top:-10px;
+}
+
+.hoverStyle{
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+}
+.hoverStyle>p{
+    color: white;
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.ModuleNewPic:hover .hoverStyle{
+    visibility: visible;
+}
+
+
+
+

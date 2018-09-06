@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './Student.css'
 import './AddStudent.css'
 
-import Input from "./Input"
+import Input from "../Input"
 
 class AddStudent extends Component{
 
@@ -113,7 +113,6 @@ class AddStudent extends Component{
         
         return (
             <div className="AddStudent">
-                <h1>Add Student</h1>
                 <div className="formData">
                     <div className="StudentNewPicParent">
                         <div className="StudentNewPic">

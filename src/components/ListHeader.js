@@ -1,5 +1,5 @@
 import React from 'react';
-import './Student.css'
+import './student/Student.css'
 
 
 const ListHeader = ({title,icons})=>{

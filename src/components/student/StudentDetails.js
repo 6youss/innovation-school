@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom'
 import './Student.css'
-import ListHeader from './ListHeader';
+import ListHeader from '../ListHeader';
 
 
-class Student extends Component {
+class StudentDetails extends Component {
 
     state = {student : []}
 
@@ -95,4 +95,4 @@ class Student extends Component {
 
 }
 
-export default Student;
+export default StudentDetails;

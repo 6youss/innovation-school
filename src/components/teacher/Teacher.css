@@ -1,0 +1,83 @@
+main{
+    padding:3%;
+}
+.TeacherDetails {
+    overflow:auto; 
+}
+.PictureContainer {
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin: 10px;
+
+    float:left;
+}
+
+
+.TeacherPicture {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    
+}
+
+.TeacherInfo{
+    float: left;
+    margin:10px;
+    padding: 0 0 0 15px;
+}
+.TeacherInfo h1{
+    padding: 0;
+    margin: 0;
+}
+.TeacherList{
+    padding:0px;
+}
+.big{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:98%;
+    height: 30%;
+    padding: 1%;
+    border-bottom: 2px solid gray;
+}
+
+.TeacherAvatar{
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    width:64px;
+    height:64px;
+}
+.img{
+
+    width:20%;
+}
+.center{
+    text-align: center;
+    width:60%;
+}
+
+.left{
+    text-align: center;
+    width:20%;
+}
+
+.Input{
+    margin-left: auto;
+    padding: 10px;
+    width: 30%;
+}
+
+.TeachersHeader{
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+

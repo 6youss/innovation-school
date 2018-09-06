@@ -1,5 +1,5 @@
 import React from 'react';
-import './AddStudent.css'
+import './student/AddStudent.css'
 
 const Input = ({name,label,type,placeholder,handlechange,error})=>{
         

@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import {NavLink} from 'react-router-dom'
 import './Student.css'
 
 import AddStudent from './AddStudent'
+import StudentsList from './StudentsList';
 
-
-
-class StudentsList extends Component {
+class Student extends Component {
     
     initialStudents;
     state = {students : [],
@@ -30,8 +28,6 @@ class StudentsList extends Component {
         });
     }
 
-
-    
     onChangeHandler(e){
         this.setState({
             searchInput: e.target.value,
@@ -44,38 +40,22 @@ class StudentsList extends Component {
         });
     }
 
-    Student = ({studentId,firstName,lastName,picture})=>{
-        return (
-            <NavLink to={`/student/${studentId}`}>
-            <li className="big">
-                <div className="img"><img className ="StudentAvatar" src={`http://localhost:3001/uploads/${picture}`} alt={"Student Avatar"}></img></div>
-                <div className="center"><p>{firstName} {lastName}</p></div>
-                <div className="left"><p>Details</p></div>
-            </li>
-            </NavLink>
-        )   
-    }
-    
     render(){
 
         const list = this.state.students
         .filter(student => this.state.searchInput === '' 
-                || ( (student.firstName+" "+student.lastName).indexOf(this.state.searchInput) !== -1) )
-        .map(student => 
-            <this.Student key={student.studentId} studentId={student.studentId} firstName={student.firstName} lastName={student.lastName} picture={student.picture}/>);
-
+                || ( (student.firstName+" "+student.lastName).indexOf(this.state.searchInput) !== -1) );
+        
         return (
             <div>
+            <h1 onClick={this.addStudent} > Add Student </h1>
             { this.state.newStudent && <AddStudent updateStudents = {this.getStudents.bind(this)} />}
             <ul className="studentList">
                 <div className="StudentsHeader">
-                    <h1>Students</h1>
-                    <p onClick={this.addStudent} > Add Student </p>
+                    <h1>Students</h1>                    
                     <input type="text" placeholder="Search.." className="Input" onChange={this.onChangeHandler.bind(this)}/>
                 </div>
-                {
-                    (list.length>0)? list : "Can't find any student..."
-                }
+                <StudentsList students={list}/>
             </ul>
             </div>
         )
@@ -84,4 +64,4 @@ class StudentsList extends Component {
 
 }
 
-export default StudentsList;
+export default Student;
