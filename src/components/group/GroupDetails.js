@@ -3,6 +3,7 @@ import {NavLink} from 'react-router-dom'
 import './Group.css'
 import StudentsList from '../student/StudentsList';
 
+import AddGroupStudents from './AddGroupStudents'
 
 class GroupDetails extends Component {
 
@@ -32,13 +33,15 @@ class GroupDetails extends Component {
                 sessions: sessionsRes.sessions
             });
         });
-        
+    }
+
+    updateStudents(){
+
     }
 
     render(){
 
-        const  {groupId,level,teacherId,firstName,lastName,teacherPicture,moduleId,moduleName,modulePicture} = this.state.group;
-        console.log(this.state.group);
+        const  {groupId,level,teacherId,firstName,lastName,moduleId,moduleName} = this.state.group;
         return (
             <div>
                 <h1>Group: {groupId} </h1>
@@ -51,6 +54,11 @@ class GroupDetails extends Component {
                 </NavLink>
                 <h2>Students</h2>
                 <StudentsList students={this.state.students}/>
+                <h2>Add Students</h2>
+                <AddGroupStudents
+                    currentStudents = {this.state.students}
+                    updateStudents = {this.updateStudents.bind(this)}
+                />
                 <h2>Sessions</h2>
                 <h2>Exams</h2>
 

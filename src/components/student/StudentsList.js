@@ -2,7 +2,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom'
 import './Student.css'
 
-const StudentsList = ({students}) => {
+const StudentsList = ({students,handleSelect}) => {
     
     const StudentItem = ({studentId,firstName,lastName,picture})=>{
         return (
@@ -15,10 +15,39 @@ const StudentsList = ({students}) => {
             </NavLink>
         )   
     }
+    const StudentItemSelect = ({studentId,firstName,lastName,picture,select})=>{
+        return (
+            <li className="big" onClick={select.bind(this,studentId)}>
+                <div className="img"><img className ="StudentAvatar" src={`http://localhost:3001/uploads/${picture}`} alt={"Student Avatar"}></img></div>
+                <div className="center"><p>{firstName} {lastName}</p></div>
+                <div className="left"><p>Details</p></div>
+            </li>
+        )   
+    }
 
     const list = students
-        .map(student => 
-            <StudentItem key={student.studentId} studentId={student.studentId} firstName={student.firstName} lastName={student.lastName} picture={student.picture}/>);
+                .map(student => {
+                    if(handleSelect){
+                        return <StudentItemSelect 
+                            key={student.studentId} 
+                            studentId={student.studentId} 
+                            firstName={student.firstName} 
+                            lastName={student.lastName} 
+                            picture={student.picture} 
+                            select={handleSelect}
+                        />
+
+                    }else{
+                        return <StudentItem 
+                            key={student.studentId} 
+                            studentId={student.studentId}
+                            firstName={student.firstName} 
+                            lastName={student.lastName} 
+                            picture={student.picture} 
+                        />
+                    }
+                });
+                
 
     return (
         (list.length>0)? list : <p>"Can't find any student..."</p>
