@@ -2,7 +2,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom'
 import './Student.css'
 
-const StudentsList = ({students,handleSelect}) => {
+const StudentsList = ({students,handleSelect,selectedStudents}) => {
     
     const StudentItem = ({studentId,firstName,lastName,picture})=>{
         return (
@@ -15,9 +15,9 @@ const StudentsList = ({students,handleSelect}) => {
             </NavLink>
         )   
     }
-    const StudentItemSelect = ({studentId,firstName,lastName,picture,select})=>{
+    const StudentItemSelect = ({studentId,firstName,lastName,picture,select,selected})=>{
         return (
-            <li className="big" onClick={select.bind(this,studentId)}>
+            <li className={(selected)?"bigSelected":"big"} onClick={select.bind(this,studentId)}>
                 <div className="img"><img className ="StudentAvatar" src={`http://localhost:3001/uploads/${picture}`} alt={"Student Avatar"}></img></div>
                 <div className="center"><p>{firstName} {lastName}</p></div>
                 <div className="left"><p>Details</p></div>
@@ -35,6 +35,7 @@ const StudentsList = ({students,handleSelect}) => {
                             lastName={student.lastName} 
                             picture={student.picture} 
                             select={handleSelect}
+                            selected={(selectedStudents.indexOf(student.studentId)!==-1)}
                         />
 
                     }else{

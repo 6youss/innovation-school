@@ -49,44 +49,57 @@ class AddStudent extends Component{
 
     submit = ()=>{
         if(this.validateForm()){
-
-            var formData = new FormData();
-            Object.keys(this.state.fields).forEach(fieldName=>{
-                formData.append(fieldName,this.state.fields[fieldName]);
-            });
+            this.state.selectedStudents.forEach(
+                studentId=>{
+                    const student = JSON.stringify(
+                                        this.state.students
+                                        .find( student => student.studentId === studentId )
+                                    );
+        
+                    const url = `http://localhost:3001/group/${this.props.group.groupId}/${studentId}`;
             
-            const url = "http://localhost:3001/student/";
-    
-            return  fetch(url, {
-                        method: "POST",
-                        body: formData
-                    })
-                    .then(response => response.json())
-                    .then(json=>{
-                        console.log("added student");
-                    });
+                    fetch(url, 
+                        {
+                            method: "POST",        
+                            headers:{
+                                'Content-Type': 'application/json'
+                            },
+                            body: student
+                        })
+                        .then(response => response.json())
+                        .then(json=>{
+                            this.props.updateStudents();
+                            this.setState({
+                                selectedStudents:[]
+                            });
+                        });
+
+                }
+            )
+            
         }
 
     }
 
     validateForm(){
         
-        let fields = this.state.fields;
+        // let fields = this.state.fields;
         
-        const fieldNames = ["firstName","lastName","birthday","adress","phone","parentPhone"];
-        const errors={};
+        // const fieldNames = ["firstName","lastName","birthday","adress","phone","parentPhone"];
+        // const errors={};
         
-        fieldNames.forEach(fieldName=>{
-            if( !fields[fieldName] ){
-                errors[fieldName]= fieldName+" is required";
-            }
-        });
+        // fieldNames.forEach(fieldName=>{
+        //     if( !fields[fieldName] ){
+        //         errors[fieldName]= fieldName+" is required";
+        //     }
+        // });
 
-        this.setState({
-            errors:{...errors,...this.state.errors}
-        });
+        // this.setState({
+        //     errors:{...errors,...this.state.errors}
+        // });
         
-        return Object.keys(this.state.errors).length === 0;
+        // return Object.keys(this.state.errors).length === 0;
+        return true;
     }
 
     handleChange(event) {
@@ -131,7 +144,6 @@ class AddStudent extends Component{
         console.log(selectedStudents);
         
         this.setState({selectedStudents});
-        
     }
 
     render(){
@@ -159,6 +171,7 @@ class AddStudent extends Component{
                         />
                         <StudentsList 
                             students={this.state.students}
+                            selectedStudents={this.state.selectedStudents}
                             handleSelect = {this.handleSelect.bind(this)}
                         />
                         <input id="Add-button" type="submit" value="Add" onClick={this.submit}/>

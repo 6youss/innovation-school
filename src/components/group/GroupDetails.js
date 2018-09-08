@@ -36,6 +36,11 @@ class GroupDetails extends Component {
     }
 
     updateStudents(){
+        fetch("http://localhost:3001/group/"+this.groupId+"/students")
+        .then( res => res.json())
+        .then(students=>{
+            this.setState({students:students.students});
+        });
 
     }
 
@@ -56,6 +61,7 @@ class GroupDetails extends Component {
                 <StudentsList students={this.state.students}/>
                 <h2>Add Students</h2>
                 <AddGroupStudents
+                    group={this.state.group}
                     currentStudents = {this.state.students}
                     updateStudents = {this.updateStudents.bind(this)}
                 />
