@@ -1,17 +1,17 @@
 import React from 'react';
 
-const Select = ({name,options,handleChange,error})=>{
+const Select = ({label,name,options,handleChange,error})=>{
     
     return (
      <div>
-        <p>{name}</p>
-        <select name={name.toLowerCase()} defaultValue={name} onChange={handleChange}>
-            <option value={name} disabled>{`Select the ${name}...`}</option>
+        <p>{label}</p>
+        <select name={name} defaultValue={name} onChange={handleChange}>
+            <option value={name} disabled>{label?label:name}</option>
             {
                 options.map( option =>
                     <option 
-                        key={option.key} 
-                        value={option.key}
+                        key={option.key}
+                        value={option.value}
                     >
                         {option.value}
                     </option>

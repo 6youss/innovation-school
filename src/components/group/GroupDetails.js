@@ -4,7 +4,7 @@ import './Group.css'
 import StudentsList from '../student/StudentsList';
 
 import AddGroupStudents from './AddGroupStudents'
-
+import AddGroupSessions from './AddGroupSessions'
 class GroupDetails extends Component {
 
     state = {
@@ -44,11 +44,25 @@ class GroupDetails extends Component {
 
     }
 
+    updateSessions(){
+        fetch("http://localhost:3001/group/"+this.groupId+"/sessions")
+        .then( res => res.json())
+        .then(sessions=>{
+            this.setState({sessions:sessions.sessions});
+        });
+    }
+
     render(){
 
         const  {groupId,level,teacherId,firstName,lastName,moduleId,moduleName} = this.state.group;
         return (
             <div>
+                <h2>Sessions</h2>
+                <AddGroupSessions
+                    group={this.state.group}
+                    currentSessions = {this.state.sessions}
+                    updateSessions = {this.updateSessions.bind(this)}
+                />
                 <h1>Group: {groupId} </h1>
                 <NavLink to={`/module/${moduleId}`}>
                     <h2>Module: {moduleName} {level}</h2>
@@ -65,7 +79,7 @@ class GroupDetails extends Component {
                     currentStudents = {this.state.students}
                     updateStudents = {this.updateStudents.bind(this)}
                 />
-                <h2>Sessions</h2>
+
                 <h2>Exams</h2>
 
             </div>

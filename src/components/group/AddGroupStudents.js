@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import Input from "../Input"
 import StudentsList from '../student/StudentsList';
 
-class AddStudent extends Component{
+class AddGroupStudents extends Component{
 
     state = {
         students:[],
@@ -19,8 +19,10 @@ class AddStudent extends Component{
 
     componentDidUpdate(prevProps){
         if(this.state.students.length === 0 ||
-            this.props.currentStudents.length !==  prevProps.currentStudents.length)
-            this.getOtherStudents();
+            this.props.currentStudents.length !==  prevProps.currentStudents.length){
+                this.getOtherStudents();
+        }
+            
     }
 
     getOtherStudents(){
@@ -49,16 +51,16 @@ class AddStudent extends Component{
 
     submit = ()=>{
         if(this.validateForm()){
+            const groupId = this.props.group.groupId;
             this.state.selectedStudents.forEach(
                 studentId=>{
                     const student = JSON.stringify(
                                         this.state.students
                                         .find( student => student.studentId === studentId )
                                     );
-        
-                    const url = `http://localhost:3001/group/${this.props.group.groupId}/${studentId}`;
-            
-                    fetch(url, 
+                    
+                    //add the student to this group
+                    fetch(`http://localhost:3001/group/${groupId}/${studentId}`, 
                         {
                             method: "POST",        
                             headers:{
@@ -73,7 +75,27 @@ class AddStudent extends Component{
                                 selectedStudents:[]
                             });
                         });
-
+                    //add his payment info now
+                    const paymentInfo = JSON.stringify(
+                        {
+                            studentId: studentId,
+                            groupId: groupId,
+                            sessionCount: this.state.fields["sessionCount"],
+                            paymentPrice: this.state.fields["paymentPrice"]
+                        }
+                    );
+                    fetch(`http://localhost:3001/payment/info`, 
+                        {
+                            method: "POST",        
+                            headers:{
+                                'Content-Type': 'application/json'
+                            },
+                            body: paymentInfo
+                        })
+                        .then(response => response.json())
+                        .then(json=>{
+                            console.log(json);
+                        });
                 }
             )
             
@@ -83,23 +105,22 @@ class AddStudent extends Component{
 
     validateForm(){
         
-        // let fields = this.state.fields;
+        let fields = this.state.fields;
         
-        // const fieldNames = ["firstName","lastName","birthday","adress","phone","parentPhone"];
-        // const errors={};
+        const fieldNames = ["paymentPrice"];
+        const errors={};
         
-        // fieldNames.forEach(fieldName=>{
-        //     if( !fields[fieldName] ){
-        //         errors[fieldName]= fieldName+" is required";
-        //     }
-        // });
-
-        // this.setState({
-        //     errors:{...errors,...this.state.errors}
-        // });
+        fieldNames.forEach(fieldName=>{
+            if( !fields[fieldName] ){
+                errors[fieldName]= fieldName+" is required";
+            }
+        });
         
-        // return Object.keys(this.state.errors).length === 0;
-        return true;
+        this.setState({
+            errors:{...errors,...this.state.errors}
+        });
+        
+        return Object.keys(this.state.errors).length === 0;
     }
 
     handleChange(event) {
@@ -113,16 +134,20 @@ class AddStudent extends Component{
         if(errors[fieldName]){
             delete errors[fieldName];
         }
+        
+        var regex = /^[0-9]*$/gm;
 
         switch (fieldName){
-            case "firstName":
-                if(fieldValue.length!==0 && fieldValue.length<5) {
-                    errors[fieldName]="First name must be longer then 5 letters"
+            case "paymentPrice":
+                if(fieldValue.length!==0 && !regex.test(fieldValue)) {
+                    errors[fieldName]="Price is a number"
+                    event.target.value ="";
                 }
             break; 
-            case "lastName":
-                if(fieldValue.length!==0 && fieldValue.length<5) {
-                    errors[fieldName]="Last name must be longer then 5 letters"
+            case "sessionCount":
+                if(fieldValue.length!==0 && !regex.test(fieldValue)) {
+                    errors[fieldName]="Session count in a number";
+                    event.target.value ="";
                 }
             break;  
             default:
@@ -154,12 +179,12 @@ class AddStudent extends Component{
                     <h1>Payment info</h1>
                     <div>
                         <Input 
-                            name="price" 
+                            name="paymentPrice" 
                             label="Price/(session|month)"
                             type="text" 
                             placeholder="Price..."
                             handlechange={this.handleChange.bind(this)}
-                            error={this.state.errors["price"]}
+                            error={this.state.errors["paymentPrice"]}
                         />
                         <Input 
                             name="sessionCount" 
@@ -182,6 +207,4 @@ class AddStudent extends Component{
     }
 }
 
-
-
-export default AddStudent;
+export default AddGroupStudents;

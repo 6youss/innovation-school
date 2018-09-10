@@ -10,26 +10,25 @@ class AddStudent extends Component{
         fields:{},
         errors:{}
     };
-    input;
-
+    
     componentDidMount(){
         
-        this.input = document.getElementById("fileInput");
+        
     }
     
     uploadPicture = (e) =>{
-
-        const avatar = document.getElementById("studentPicture");
+        
+        let avatar = this.avatar;
         
         if(e.target.className === "hoverStyle"){
-            this.input.click();
+            this.fileInput.click();
         }else{
-            if (this.input.files && this.input.files[0]) {
+            if (this.fileInput.files && this.fileInput.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     avatar.src = e.target.result;
                 };
-                reader.readAsDataURL(this.input.files[0]);
+                reader.readAsDataURL(this.fileInput.files[0]);
             }
         }
       
@@ -116,7 +115,13 @@ class AddStudent extends Component{
                 <div className="formData">
                     <div className="StudentNewPicParent">
                         <div className="StudentNewPic">
-                            <img id="studentPicture" alt="avatar"  src="./default-avatar.png" width="150px"></img>
+                            <img 
+                                id="studentPicture" 
+                                alt="avatar"  
+                                src="./default-avatar.png" 
+                                width="150px"
+                                ref={avatar=>this.avatar=avatar}
+                            />
                             <div className="hoverStyle" onClick={this.uploadPicture} >
                                 <p className="hoverStyle">Upload picture</p>
                             </div>                        
@@ -173,7 +178,14 @@ class AddStudent extends Component{
                             error={this.state.errors["parentPhone"]}
                         />
                         <input id="Add-button" type="submit" value="Add" onClick={this.submit}/>
-                        <input id="fileInput" type="file" accept="image/*" style={{display:"none"}} onChange={this.uploadPicture}/>
+                        <input 
+                            id="fileInput" 
+                            type="file" 
+                            accept="image/*" 
+                            style={{display:"none"}} 
+                            onChange={this.uploadPicture}
+                            ref={fileInput=>this.fileInput=fileInput}
+                        />
                     </div>
                 </div>
             </div>

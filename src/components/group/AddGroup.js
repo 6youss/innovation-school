@@ -36,7 +36,6 @@ class Addgroup extends Component{
     }
     
     submit = ()=>{
-        console.log(this.validateForm());
         if(this.validateForm()){
             
             const group=JSON.stringify({
@@ -113,19 +112,22 @@ class Addgroup extends Component{
                 <div className="formData">
                     <div className="InputContainerStyle">
                     <Select
-                        name="Module"
+                        label="Module"
+                        name="module"
                         options={moduleOptions}
                         handleChange={this.handleChange.bind(this)}
                         error={this.state.errors["module"]}
                     />
                     <Select
-                        name="Teacher"
+                        label="Teacher"
+                        name="teacher"
                         options={teacherOptions}
                         handleChange={this.handleChange.bind(this)}
                         error={this.state.errors["teacher"]}
                     />
                     <Select
-                        name="Level"
+                        label="Level"
+                        name="level"
                         options={levelOptions}
                         handleChange={this.handleChange.bind(this)}
                         error={this.state.errors["level"]}

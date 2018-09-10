@@ -12,6 +12,7 @@ import StudentDetails from './components/student/StudentDetails'
 import TeachersList from './components/teacher/TeachersList'
 
 import Module from './components/module/AddModule'
+import Room from './components/room/AddRoom'
 
 import Group from './components/group/Group'
 import GroupDetails from './components/group/GroupDetails'
@@ -35,6 +36,7 @@ class App extends Component {
                   <Route exact path={"/group"} component = {Group}/>
                   <Route exact path={"/group/:id"} component = {GroupDetails}/>
                   <Route exact path={"/module"} component = {Module}/>
+                  <Route exact path={"/room"} component = {Room}/>
                 </main>
               <Footer/>
             </div>
