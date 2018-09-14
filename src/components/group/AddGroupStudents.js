@@ -22,28 +22,16 @@ class AddGroupStudents extends Component{
             this.props.currentStudents.length !==  prevProps.currentStudents.length){
                 this.getOtherStudents();
         }
-            
     }
 
     getOtherStudents(){
         
-        fetch("http://localhost:3001/student/")
+        fetch("http://localhost:3001/group/"+this.props.group.groupId+"/students")
         .then(res=>res.json())
         .then(json=>{
-
-            const currentStudents = this.props.currentStudents.map(student=>student.studentId);
-            
-            let otherStudents=json.students;
-            
-            if(currentStudents.length>0)
-                otherStudents = json.students.filter(student => {
-                    return !(currentStudents.indexOf(student.studentId) !== -1)
-                });
-            
             this.setState({
-                students: otherStudents
+                students: json.otherStudents
             });
-
         });
         
 

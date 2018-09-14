@@ -17,6 +17,11 @@ import Room from './components/room/AddRoom'
 import Group from './components/group/Group'
 import GroupDetails from './components/group/GroupDetails'
 
+import SessionDetails from './components/session/SessionDetails'
+
+import Payment from './components/payment/Payment'
+import PaymentDetails from './components/payment/PaymentDetails'
+
 class App extends Component {
 
 
@@ -35,8 +40,11 @@ class App extends Component {
                   <Route exact path={"/teacher"} component = {TeachersList}/>
                   <Route exact path={"/group"} component = {Group}/>
                   <Route exact path={"/group/:id"} component = {GroupDetails}/>
+                  <Route exact path={"/session/:id"} component = {SessionDetails}/>
                   <Route exact path={"/module"} component = {Module}/>
                   <Route exact path={"/room"} component = {Room}/>
+                  <Route exact path={"/payment/:id"} component = {PaymentDetails}/>
+                  <Route exact path={"/payment"} component = {Payment}/>
                 </main>
               <Footer/>
             </div>

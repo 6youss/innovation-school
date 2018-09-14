@@ -12,10 +12,11 @@ for(let i=1;i<61;i++){
             key:i,
             value:i<10?"0"+(i-1):(i-1)
         })
-    minutes.push({
-        key:i,
-        value:i<10?"0"+(i-1):(i-1)
-    });
+    if((i-1)%15 === 0)
+        minutes.push({
+            key:i,
+            value:i<10?"0"+(i-1):(i-1)
+        });
     if(i<13)
         months.push({
             key:i,
@@ -124,6 +125,7 @@ class AddGroupSessions extends Component{
                 <div >
                     <h1>Add Session</h1>
                     <div>
+                        <p>Teacher</p>
                         <Select
                             label="Room"
                             name="roomId"

@@ -5,6 +5,7 @@ import StudentsList from '../student/StudentsList';
 
 import AddGroupStudents from './AddGroupStudents'
 import AddGroupSessions from './AddGroupSessions'
+import SessionsList from '../session/SessionsList'
 class GroupDetails extends Component {
 
     state = {
@@ -63,6 +64,9 @@ class GroupDetails extends Component {
                     currentSessions = {this.state.sessions}
                     updateSessions = {this.updateSessions.bind(this)}
                 />
+                <SessionsList
+                    sessions={this.state.sessions}
+                />
                 <h1>Group: {groupId} </h1>
                 <NavLink to={`/module/${moduleId}`}>
                     <h2>Module: {moduleName} {level}</h2>
@@ -79,7 +83,7 @@ class GroupDetails extends Component {
                     currentStudents = {this.state.students}
                     updateStudents = {this.updateStudents.bind(this)}
                 />
-
+                
                 <h2>Exams</h2>
 
             </div>
