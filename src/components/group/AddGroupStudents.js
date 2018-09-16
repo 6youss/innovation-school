@@ -48,21 +48,15 @@ class AddGroupStudents extends Component{
                                     );
                     
                     //add the student to this group
-                    fetch(`http://localhost:3001/group/${groupId}/${studentId}`, 
-                        {
-                            method: "POST",        
-                            headers:{
-                                'Content-Type': 'application/json'
-                            },
-                            body: student
-                        })
-                        .then(response => response.json())
-                        .then(json=>{
-                            this.props.updateStudents();
-                            this.setState({
-                                selectedStudents:[]
-                            });
-                        });
+                    const addstudent=fetch(`http://localhost:3001/group/${groupId}/${studentId}`, 
+                                    {
+                                        method: "POST",        
+                                        headers:{
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: student
+                                    }).then(response => response.json());
+                    
                     //add his payment info now
                     const paymentInfo = JSON.stringify(
                         {
@@ -72,24 +66,47 @@ class AddGroupStudents extends Component{
                             paymentPrice: this.state.fields["paymentPrice"]
                         }
                     );
-                    fetch(`http://localhost:3001/payment/info`, 
+                    const addpaymentinfo=fetch(`http://localhost:3001/payment/info`, 
+                                        {
+                                            method: "POST",        
+                                            headers:{
+                                                'Content-Type': 'application/json'
+                                            },
+                                            body: paymentInfo
+                                        }).then(response => response.json());
+                    //now we generate the payment
+                    const payment = JSON.stringify(
                         {
-                            method: "POST",        
-                            headers:{
-                                'Content-Type': 'application/json'
-                            },
-                            body: paymentInfo
-                        })
-                        .then(response => response.json())
-                        .then(json=>{
-                            console.log(json);
-                        });
-                }
-            )
-            
-        }
+                            studentId: studentId,
+                            groupId: groupId,
+                            paymentPrice: parseInt(this.state.fields["paymentPrice"],10)*
+                                          parseInt(this.state.fields["sessionCount"],10)
+                        }
+                    );
+                    const addpayment=fetch(`http://localhost:3001/payment/`, 
+                                    {
+                                        method: "POST",        
+                                        headers:{
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: payment
+                                    }).then(response => response.json());
+                    
+                    Promise.all([addstudent,addpaymentinfo,addpayment])
+                    .then(([addstudent,addpaymentinfo,addpayment])=>{
 
+                        this.props.updateStudents();
+                        this.setState({
+                            selectedStudents:[]
+                        });
+
+                    });
+
+                }
+            )   
+        }
     }
+
 
     validateForm(){
         

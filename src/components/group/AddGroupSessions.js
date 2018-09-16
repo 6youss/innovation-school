@@ -10,12 +10,12 @@ for(let i=1;i<61;i++){
     if(i<25)
         hours.push({
             key:i,
-            value:i<10?"0"+(i-1):(i-1)
+            value:i<11?"0"+(i-1):(i-1)
         })
     if((i-1)%15 === 0)
         minutes.push({
             key:i,
-            value:i<10?"0"+(i-1):(i-1)
+            value:i<11?"0"+(i-1):(i-1)
         });
     if(i<13)
         months.push({
