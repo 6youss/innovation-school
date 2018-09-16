@@ -19,20 +19,52 @@ class Home extends Component {
             result.info.forEach(info=>{
                 newinfo[info.studentId]=info;
             });
-            console.log(newinfo,newpaid);
-/*
-    //sessionCount > 0
-    1-count the sessions done for each student
-    if the (sessionCount % info.sessionCount === 0) then there's a new payment
-
-        for doing that : 
-            - we should estimate how much his payments are worth 
-                by converting their price to sessions
-            - if the (sessionCount > worthOfPayment) && the condition mentioned above
-                then we can generate a new payment
+            
+            Object.keys(newinfo).forEach((key,index) =>{
                 
-*/
+                const {studentId,
+                        groupId,
+                        sessionCount,
+                        paymentPrice,
+                        sessionsDoneCount
+                        } = newinfo[key];
+                
+                const {sessionsPaidCount,dayDiff}=newpaid[key];
+
+                const payment = JSON.stringify(
+                    {
+                        studentId,
+                        groupId,
+                        paymentPrice: parseInt(paymentPrice,10)*
+                                      parseInt(sessionCount,10)
+                    }
+                );
+                
+                if(sessionCount>1){//this means that the payment is not per month
+                    //if student studied more then he paid we add a payment
+                    if(sessionsDoneCount>=sessionsPaidCount){
+                        this.addPayment(payment);
+                    }
+                }else{
+                    //month sessions
+                    if( dayDiff >= 30*sessionsPaidCount){
+                        this.addPayment(payment);
+                    }
+                }
+            });
         })
+    }
+
+    addPayment(payment){
+        fetch(`http://localhost:3001/payment/`,
+        {
+            method: "POST",        
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: payment
+        }).then(response => response.json())
+        .then(response => console.log(response));
     }
 
     render(){     
