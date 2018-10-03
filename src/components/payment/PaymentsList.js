@@ -1,10 +1,9 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom'
 
 const PaymentsList = ({payments,selectedPayments,handleSelect}) => {
     
     const PaymentItem = ({payment,select,selected})=>{
-        const {paymentId,paymentPrice,paymentDone,groupId,paymentDate} = payment;
+        const {paymentPrice,paymentDone,groupId,paymentDate} = payment;
         return (
                 <li className={(selected)?"bigSelected":"big"} onClick={select.bind(this,payment)} >
                     <div className="img">
@@ -33,5 +32,6 @@ const PaymentsList = ({payments,selectedPayments,handleSelect}) => {
     return (
         (list.length>0)? list : <p>"Can't find any payments..."</p>
     )
-} 
+}
+
 export default PaymentsList;

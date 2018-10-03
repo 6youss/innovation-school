@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import './Student.css'
-import './AddStudent.css'
+
 
 import Input from "../Input"
 
@@ -16,21 +15,25 @@ class AddStudent extends Component{
         
     }
     
-    uploadPicture = (e) =>{
+    uploadPicture = (e,setavatar) =>{
         
         let avatar = this.avatar;
         
-        if(e.target.className === "hoverStyle"){
+        
+        
+        if(!setavatar){
             this.fileInput.click();
         }else{
-            if (this.fileInput.files && this.fileInput.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    avatar.src = e.target.result;
-                };
-                reader.readAsDataURL(this.fileInput.files[0]);
-            }
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                avatar.src = e.target.result;
+            };
+            reader.readAsDataURL(this.fileInput.files[0]);
         }
+            // if (this.fileInput.files && this.fileInput.files[0]) {
+                
+            // }
+        
       
     }
 
@@ -41,8 +44,8 @@ class AddStudent extends Component{
             Object.keys(this.state.fields).forEach(fieldName=>{
                 formData.append(fieldName,this.state.fields[fieldName]);
             });
-            if (this.input.files && this.input.files[0])
-                formData.append("picture",this.input.files[0]);
+            if (this.fileInput.files && this.fileInput.files[0])
+                formData.append("picture",this.fileInput.files[0]);
             
             const url = "http://localhost:3001/student/";
     
@@ -63,7 +66,7 @@ class AddStudent extends Component{
         
         let fields = this.state.fields;
         
-        const fieldNames = ["firstName","lastName","birthday","adress","phone","parentPhone"];
+        const fieldNames = ["firstName","lastName"];//,"birthday","adress","phone","parentPhone"
         const errors={};
         
         fieldNames.forEach(fieldName=>{
@@ -83,8 +86,10 @@ class AddStudent extends Component{
         let fields = this.state.fields,
         errors = this.state.errors,
         fieldName = event.target.name,
+        //format as first letter upper case
         fieldValue = event.target.value;
 
+        
         fields[fieldName] = fieldValue;
 
         if(errors[fieldName]){
@@ -111,8 +116,8 @@ class AddStudent extends Component{
     render(){
         
         return (
-            <div className="AddStudent">
-                <div className="formData">
+            <div className= 'modal-container' onClick={this.props.addStudent}>
+                <div className="row-container">
                     <div className="StudentNewPicParent">
                         <div className="StudentNewPic">
                             <img 
@@ -123,11 +128,12 @@ class AddStudent extends Component{
                                 ref={avatar=>this.avatar=avatar}
                             />
                             <div className="hoverStyle" onClick={this.uploadPicture} >
-                                <p className="hoverStyle">Upload picture</p>
-                            </div>                        
+                                <p>Upload picture</p>
+                            </div>
                         </div>
-                        <p>+</p>
+                        <img src='../add_photo.svg'/>
                     </div>
+                    
                     <div className="InputContainerStyle">
                         <Input 
                             name="firstName" 
@@ -161,7 +167,7 @@ class AddStudent extends Component{
                             handlechange={this.handleChange.bind(this)}
                             error={this.state.errors["adress"]}
                         />
-                        <Input 
+                        <Input
                             name="phone" 
                             label="Phone" 
                             type="text" 
@@ -177,13 +183,13 @@ class AddStudent extends Component{
                             handlechange={this.handleChange.bind(this)}
                             error={this.state.errors["parentPhone"]}
                         />
-                        <input id="Add-button" type="submit" value="Add" onClick={this.submit}/>
+                        <input className='ino_button' id="Add-button" type="submit" value="Add" onClick={this.submit}/>
                         <input 
                             id="fileInput" 
                             type="file" 
                             accept="image/*" 
                             style={{display:"none"}} 
-                            onChange={this.uploadPicture}
+                            onChange={this.uploadPicture.bind(this,true)}
                             ref={fileInput=>this.fileInput=fileInput}
                         />
                     </div>

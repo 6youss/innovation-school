@@ -1,101 +1,146 @@
-.AddStudent{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+.modal-container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.formData{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 30px;
-    border: 1px solid black;
-    background-color: #eee;
+
+.row-container{
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 3%;
+  background-color: #eee;
+  border-radius: 10px;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
 }
+
 .InputContainerStyle{
-    display:flex;
-    flex-wrap: wrap;
-    margin: 10px;
-    padding: 0 0 0 0;
-    margin: 0 0 0 20px;
+  display:flex;
+  flex-wrap: wrap;
+  flex-basis: 80%;
+  justify-content: end;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
 }
 
-.InputContainerStyle>div{
-    flex: 0 calc(46% - 5px);
-    margin: 0 0 1% 0;
-    padding: 0 2% 0 0;
+.ino_button{
+  color:white;
+  flex-basis: 10%;
+  padding: 15px 30px 15px 30px;
+  margin-left: auto;
+  border-radius: 20px;
+  border: 1px solid rgba(0,0,0,0.4);
+  /*
+  border: 4px solid transparent;
+  border-image: linear-gradient(90deg,#aaa,#fff);
+  border-image-slice: 1;
+  */  
+  box-shadow: 0px 13px 20px rgba(0,0,0,0.4); 
+  background-color: cadetblue;
 }
 
+.ino_button:hover{
+  background-color: cornflowerblue;
+}
+
+/*
+  @keyframes ino-button-hover{
+    from{box-shadow: 0px 13px 20px rgba(0,0,0,0.4); }
+    to{box-shadow: 0px 0px 20px rgba(0,0,0,0.4);}
+  }
+border: 4px solid transparent;
+  border-image: linear-gradient(90deg,#aaa,#fff);
+  border-image-slice: 1;
+*/
 .PersoInput{
-    
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 0px 0px 5px 0px;  
+  font-size:13px;
 }
 
-.PersoInput>p{
-    font-size:13px;
-    padding:0px;
-    margin: 0 0 3px 0;
+.PersoInput input[type="text"]{
+  padding: 8px 0px 8px 5px;
+  margin: 0px 0px 5px 0px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
 }
 
-.PersoInput>input{
-    width:100%;
-    padding: 5px 0 5px 5px;
+.error{
+  color:red;
+  font-size: 12px;
+  padding: 3px;
+  margin: 0 0 0 0;
 }
 
-.InputContainerStyle>input[type="submit"]{
-    width:60px;
-    padding:7px;
-    margin-right: 6%;
-    margin-left:auto;
+h1{
+  color: #333;
+  font-family: montserrat;
+  font-size: 26px;
+  padding: 0;
+  margin: 0 0 10px 0;
 }
 
 .StudentNewPicParent{
-    position: relative;
+  position: relative;
+  flex-basis: 10%;
 }
 
 .StudentNewPic{
-    position: relative;
-    width: 110px;
-    height: 110px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 50%;
-    background-color: white;
+  position: relative;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background-color: white;
 
 }
 
 .StudentNewPic>img{
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }
 
-.StudentNewPicParent>p{
-    position: absolute;
-    left: 85px;
-    top:-10px;
+.StudentNewPicParent>img{
+  padding: 1px;
+  background-color: beige;
+  border-radius: 50%; 
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 85px;
+  top: 10px;
 }
 
 .hoverStyle{
-
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    visibility: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  visibility: hidden;
 }
 .hoverStyle>p{
-    color: white;
-    font-size: 12px;
-    background-color: rgba(0, 0, 0, 0.8);
+  color:white;
+  font-size: 12px;
 }
+
 .StudentNewPic:hover .hoverStyle{
-    visibility: visible;
+  visibility: visible;
 }
 
 

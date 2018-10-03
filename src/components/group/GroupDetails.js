@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom'
-import './Group.css'
 import StudentsList from '../student/StudentsList';
 
 import AddGroupStudents from './AddGroupStudents'

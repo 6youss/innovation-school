@@ -11,10 +11,39 @@ class AddBill extends Component {
     }
 
     getPdf(payments){
-        
         fetch('http://localhost:3001/bill',{
-            method: 'GET',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                payments:this.props.payments,
+                validated:false
+            }),
             responseType: 'blob'
+        })
+        .then(res=>{
+            return res.blob();
+        })
+        .then(res=>{
+            var url = window.URL.createObjectURL(res);
+            this.frame.src=url;
+        })
+        .catch(res=>{
+            console.log(res);
+        });
+    }
+
+    validateDoc=()=>{
+        fetch('http://localhost:3001/bill',{
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                payments:this.props.payments,
+                validated:true
+            })
         })
         .then(res=>{
             return res.blob();
@@ -33,7 +62,7 @@ class AddBill extends Component {
         return (
             <div>
                 <iframe title='bill' ref={frame=>this.frame=frame}/>
-                <button>
+                <button onClick={this.validateDoc}>
                     Validate
                 </button>
             </div>

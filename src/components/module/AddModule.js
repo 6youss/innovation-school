@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import './AddModule.css'
-
 import Input from "../Input"
 
 class AddModule extends Component{

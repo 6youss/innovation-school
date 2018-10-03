@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './Student.css'
 
 import AddStudent from './AddStudent'
 import StudentsList from './StudentsList';
@@ -9,7 +8,7 @@ class Student extends Component {
     initialStudents;
     state = {students : [],
         searchInput:"",
-        newStudent:true
+        newStudent:false
     }
     
     
@@ -34,10 +33,12 @@ class Student extends Component {
         });
     }
     
-    addStudent = ()=>{
-        this.setState({
-            newStudent: !this.state.newStudent    
-        });
+    addStudent = (e)=>{
+        
+        if(e.target.className === 'modal-container' || e.target.className === 'addstudent')
+            this.setState({
+                newStudent: !this.state.newStudent    
+            });
     }
 
     render(){
@@ -48,12 +49,20 @@ class Student extends Component {
         
         return (
             <div>
-            <h1 onClick={this.addStudent} > Add Student </h1>
-            { this.state.newStudent && <AddStudent updateStudents = {this.getStudents.bind(this)} />}
+            
+            { this.state.newStudent && 
+                <AddStudent 
+                    updateStudents = {this.getStudents.bind(this)}
+                    addStudent = {this.addStudent.bind(this)}
+                />
+            }
             <ul className="studentList">
                 <div className="StudentsHeader">
-                    <h1>Students</h1>                    
-                    <input type="text" placeholder="Search.." className="Input" onChange={this.onChangeHandler.bind(this)}/>
+                    <div className="StudentsHeader">
+                        <h1 style={{margin:'0 30px 0 0'}}>Students</h1>
+                        <p className='addstudent' onClick={this.addStudent} >Add</p> 
+                    </div>             
+                    <input type="text" placeholder="Search.." className="search" onChange={this.onChangeHandler.bind(this)}/>
                 </div>
                 <StudentsList students={list}/>
             </ul>

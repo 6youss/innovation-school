@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
-import './Student.css'
+
 
 const StudentsList = ({students,handleSelect,selectedStudents,handleNote,handleReview,presentStudents}) => {
     

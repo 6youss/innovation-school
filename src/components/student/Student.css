@@ -1,9 +1,12 @@
 main{
     padding:3%;
+    background-color: #aaa;
 }
+
 .StudentDetails {
     overflow:auto; 
 }
+
 .PictureContainer {
     width: 250px;
     height: 250px;
@@ -11,18 +14,14 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    
     margin: 10px;
-
     float:left;
 }
-
 
 .StudentPicture {
     width: 250px;
     height: 250px;
     object-fit: cover;
-    
 }
 
 .StudentInfo{
@@ -67,17 +66,26 @@ main{
     width:20%;
 }
 
-.Input{
-    margin-left: auto;
-    padding: 10px;
-    width: 30%;
-}
+
 
 .StudentsHeader{
-    overflow: auto;
     display: flex;
     flex-direction: row;
+    flex-wrap:wrap;
     align-items: center;
+    justify-content: space-between;
+}
+
+.search{
+    padding: 10px;
+    flex-grow: 0.5;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .StudentsHeader input[type='text']{
+        flex-basis: 100%;
+    }
 }
 
 .left .radio{

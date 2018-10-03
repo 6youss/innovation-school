@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+
+import './components/student/Student.css';
+import './components/student/AddStudent.css';
 import './App.css';
 
 import Header from './components/Header'

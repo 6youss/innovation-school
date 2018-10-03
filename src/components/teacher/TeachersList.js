@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom'
-import './Teacher.css'
 
 import AddTeacher from './AddTeacher'
 

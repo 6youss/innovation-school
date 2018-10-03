@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {NavLink} from 'react-router-dom'
-import './Student.css'
+
 import ListHeader from '../ListHeader';
 import PaymentsList from '../payment/PaymentsList';
 import GroupsList from '../group/GroupsList';

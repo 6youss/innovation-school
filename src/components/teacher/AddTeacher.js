@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import './Teacher.css'
-import './AddTeacher.css'
 
 import Input from "../Input"
 
