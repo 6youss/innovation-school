@@ -3,14 +3,12 @@ import {NavLink} from 'react-router-dom'
 
 const SessionsList = ({sessions}) => {
     
-    const SessionItem = ({sessionId,roomId,sessionDate,sessionDone})=>{
+    const SessionItem = ({sessionId,moduleName,roomId,sessionDate,sessionDone})=>{
         return (
-            <NavLink to={`/session/${sessionId}`}>
-            <li className="big">
-                <div className="img"><p>{"Room "+roomId}</p></div>
-                <div className="center"><p>{sessionDate}</p></div>
-                <div className="left"><p>{sessionDone?"Done":"Not done"}</p></div>
-            </li>
+            <NavLink to={`/session/${sessionId}`} className='list-item'>
+                <div><p>{moduleName}</p></div>
+                <div><p>{"Room "+roomId}</p></div>
+                <div><p>{sessionDate}</p></div>
             </NavLink>
         )
     }
@@ -20,15 +18,16 @@ const SessionsList = ({sessions}) => {
                     <SessionItem 
                         key={session.sessionId} 
                         sessionId={session.sessionId}
+                        moduleName={session.moduleName}
                         roomId={session.roomId} 
                         sessionDate={session.sessionDate} 
                         sessionDone={session.sessionDone}
                     />
                 );
     return (
-        <ul>
+        <div className="list">
             {(list.length>0)? list : <p>"Can't find any session..."</p>}
-        </ul>
+        </div>
     )
 } 
 export default SessionsList;

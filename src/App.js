@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import './App.css';
 
 import './components/student/Student.css';
 import './components/student/AddStudent.css';
-import './App.css';
+import './components/student/StudentsList.css';
+import './components/student/StudentDetails.css';
+
 
 import Header from './components/Header'
 import Footer from './components/Footer'

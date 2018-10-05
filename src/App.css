@@ -2,3 +2,8 @@
   font-family: montserrat;
   src: url(./fonts/MONTSERRAT-BOLD.TTF);
 }
+
+main{
+  padding: 3% 5%;
+  background: #aaa;
+}

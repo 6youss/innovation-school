@@ -3,30 +3,31 @@ import {NavLink} from 'react-router-dom'
 
 const GroupsList = ({groups}) => {
     
-    const GroupItem = ({groupId,moduleId,level})=>{
+    const GroupItem = ({groupId,level,moduleName})=>{
         return (
-            <NavLink to={`/group/${groupId}`}>
-            <li className="big">
-                <div className="img">{groupId}</div>
-                <div className="center"><p>{moduleId}</p></div>
-                <div className="left"><p>{level}</p></div>
-            </li>
+            <NavLink className='list-item' to={`/group/${groupId}`}>
+                <div><p>{groupId}</p></div>
+                <div><p>{moduleName}</p></div>
+                <div><p>{level}</p></div>
             </NavLink>
         )
     }
 
-    const list = groups
-                .map(group => {
-                    return <GroupItem 
-                        key={group.groupId} 
-                        groupId={group.groupId}
-                        moduleId={group.moduleId}
-                        level={group.level}
-                    />
-                });
+    const list =<div className="list">
+                {
+                    groups.map(group => {
+                        return <GroupItem 
+                            key={group.groupId} 
+                            groupId={group.groupId}
+                            moduleName={group.moduleName}
+                            level={group.level}
+                        />
+                    })
+                }
+                </div>;
 
     return (
-        (list.length>0)? list : <p>"Can't find any groups..."</p>
+        (groups.length>0)? list : <p>"Can't find any groups..."</p>
     )
 } 
 export default GroupsList;

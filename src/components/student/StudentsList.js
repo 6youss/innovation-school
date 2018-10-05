@@ -1,19 +1,19 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
 
-
-const StudentsList = ({students,handleSelect,selectedStudents,handleNote,handleReview,presentStudents}) => {
+const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,handleNote,handleReview,presentStudents}) => {
     
     const StudentItem = ({studentId,firstName,lastName,picture})=>{
         return (
-            <NavLink to={`/student/${studentId}`}>
+            <div className="student-item-container" onClick={handleDetails.bind(this,studentId)}>
                 <li className="big">
                     <div className="img">
                         <img 
                             className ="StudentAvatar" 
-                            src={`http://localhost:3001/uploads/${picture}`} 
-                            alt={"Student Avatar"}>
-                        </img>
+                            src={`http://localhost:3001/uploads/${picture}`}
+                            alt={"Student Avatar"}
+                            onError={(e)=>{e.target.src="../default-avatar.png"}}
+                        />
                     </div>
                     <div className="center">
                         <p>{firstName} {lastName}</p>
@@ -22,8 +22,8 @@ const StudentsList = ({students,handleSelect,selectedStudents,handleNote,handleR
                         <p>Details</p>
                     </div>
                 </li>
-            </NavLink>
-        )   
+            </div>
+        )
     }
 
     const StudentItemSelect = ({studentId,firstName,lastName,picture,select,selected})=>{
@@ -145,10 +145,8 @@ const StudentsList = ({students,handleSelect,selectedStudents,handleNote,handleR
                         />
                     }
                 });
-                
-
     return (
-        (list.length>0)? list : <p>"Can't find any student..."</p>
+        list.length>0? list : <p>"Can't find any student..."</p>
     )
 } 
 export default StudentsList;
