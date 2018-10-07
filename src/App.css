@@ -2,7 +2,9 @@
   font-family: montserrat;
   src: url(./fonts/MONTSERRAT-BOLD.TTF);
 }
-
+html,body,main{
+  height: 100%;
+}
 main{
   padding: 3% 5%;
   background: #aaa;

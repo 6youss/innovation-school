@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Select = ({label,name,options,handleChange,error})=>{
+const Select = ({label,name,options,handleChange,error,className})=>{
     
     return (
-     <div>
-        <p>{label}</p>
+     <div className={className}>
+        <p  style={{margin:'0 0 3px 0'}}>{label}</p>
         <select name={name} defaultValue={name} onChange={handleChange}>
             <option value={name} disabled>{label?label:name}</option>
             {
@@ -18,7 +18,7 @@ const Select = ({label,name,options,handleChange,error})=>{
                 )
             }
         </select>
-        <p>{error}</p>
+        <p className='error'>{error}</p>
         </div>
     )
 }

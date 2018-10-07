@@ -10,6 +10,8 @@
     flex-basis: 33.33%;
     padding: 5px;
     box-sizing: border-box;
+    text-decoration: none;
+    color: black;
 }
 
 @media only screen and (max-width: 768px) {

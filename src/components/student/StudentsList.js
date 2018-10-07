@@ -1,16 +1,16 @@
-import React from 'react';
+import React from 'react'
 import {NavLink} from 'react-router-dom'
 
 const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,handleNote,handleReview,presentStudents}) => {
     
     const StudentItem = ({studentId,firstName,lastName,picture})=>{
         return (
-            <div className="student-item-container" onClick={handleDetails.bind(this,studentId)}>
+            <NavLink className="student-item-container" to={'/student/'+studentId}>
                 <li className="big">
                     <div className="img">
-                        <img 
+                        <img
                             className ="StudentAvatar" 
-                            src={`http://localhost:3001/uploads/${picture}`}
+                            src={picture?`http://localhost:3001/uploads/${picture}`:"../default-avatar.png"}
                             alt={"Student Avatar"}
                             onError={(e)=>{e.target.src="../default-avatar.png"}}
                         />
@@ -22,7 +22,8 @@ const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,hand
                         <p>Details</p>
                     </div>
                 </li>
-            </div>
+            
+            </NavLink>
         )
     }
 

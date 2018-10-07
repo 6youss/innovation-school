@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 class AddBill extends Component {
 
     state = {
-        
     }
 
     componentDidMount(){
@@ -58,9 +57,8 @@ class AddBill extends Component {
     }
 
     render(){
-        
         return (
-            <div>
+            <div className='bill-container'>
                 <iframe title='bill' ref={frame=>this.frame=frame}/>
                 <button onClick={this.validateDoc}>
                     Validate

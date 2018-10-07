@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom'
+import {CSSTransition} from 'react-transition-group';
 
 import PaymentsList from '../payment/PaymentsList';
 import GroupsList from '../group/GroupsList';
@@ -8,6 +10,7 @@ import AddBill from '../bill/AddBill';
 class StudentDetails extends Component {
 
     state = {
+        student:{firstName:'',lastName:'',picture:''},
         payments:[],
         groups:[],
         sessions:[],
@@ -15,10 +18,19 @@ class StudentDetails extends Component {
         addBill:false
     }
 
-    studentId = this.props.student.studentId;
-    student = this.props.student;
-
+    studentId = this.props.match.params.id;
+    
     componentDidMount(){
+        console.log(this.props);
+        fetch("http://localhost:3001/student/"+this.studentId)
+        .then( res => res.json())
+        .then(json=>{
+            if(json.student.length>0)
+            this.setState({
+                student : json.student[0]
+            });
+        });
+
         fetch("http://localhost:3001/student/"+this.studentId+"/payments")
         .then( res => res.json())
         .then(json=>{
@@ -56,11 +68,57 @@ class StudentDetails extends Component {
         this.setState({selectedPayments});
     }
 
+    addBill=()=>{
+        const scrollUp = setInterval(()=>{
+            if(this.detailsContainer.scrollTop > 0){
+                this.detailsContainer.scrollTop-=this.detailsContainer.scrollTop/5;
+            }else{
+                clearInterval(scrollUp);
+            }
+        },0);
+        this.setState({
+            addBill:true
+        });
+    }
+
     render(){
-        const {firstName,lastName,picture} = this.props.student;
+        console.log(this.state.student);
+        const {firstName,lastName,picture} = this.state.student;
         return (
-            <div className='modal-container' onClick={this.props.handleClick}>
-                <div className="student-details">
+            <div className='modal-container'
+                onClick={
+                    (event)=>{
+                        if(event.target.className === 'modal-container')
+                            this.props.history.push('/student');
+                        if(this.state.addBill===true 
+                            && event.target.className!=='bill-container open'){
+                            this.setState( {addBill:false});
+                        }
+                    }
+                }
+            >
+                <CSSTransition
+                        key={2}
+                        in={true}
+                        appear={true}
+                        classNames='student-details'
+                        timeout={200}
+                        unmountOnExit
+                >
+                <div className="student-details" ref={ref=>this.detailsContainer=ref}>
+                    
+                    <CSSTransition
+                        key={1}
+                        in={this.state.addBill}
+                        classNames='bill-container'
+                        timeout={{ enter: 500, exit: 300 }}
+                        unmountOnExit
+                    >
+                        <AddBill
+                            payments={this.state.selectedPayments}
+                        />
+                    </CSSTransition>
+                    
                     <div className='details-row-container1'>
                         <img className ="student-picture"
                             src={`http://localhost:3001/uploads/${picture}`}
@@ -101,22 +159,20 @@ class StudentDetails extends Component {
                                 handleSelect = {this.handleSelect.bind(this)}
                             />
                             {this.state.selectedPayments.length>0 &&
-                                <button onClick={()=>this.setState({addBill:!this.state.addBill})}>
+                                <button onClick={this.addBill}>
                                     Pay
                                 </button>
                             }
                         </div>
-                        {this.state.addBill &&
-                                <AddBill
-                                    payments={this.state.selectedPayments}
-                                />
-                        }
+                        
                     </div>
+                    
                 </div>
+                </CSSTransition>
             </div>
         )
     }
 
 }
 
-export default StudentDetails;
+export default withRouter( StudentDetails);

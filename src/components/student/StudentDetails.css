@@ -1,16 +1,26 @@
 .student-details{
-    background: #aaa;
-    height: 100%;
     flex-basis: 80%;
-    padding: 20px;
+    height: 100%;
     overflow: auto;
     box-sizing: border-box;
+    background: white;
+    position: relative;
+}
+
+.student-details-appear {
+    height:0%
+}
+ 
+.student-details-appear.student-details-appear-active {
+    height:100%;
+    transition: height 200ms ease-in;
 }
 
 .details-row-container1{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding: 20px 2%;
 }
 
 .student-picture {
@@ -30,32 +40,103 @@
 }
 
 .details-row-container2{
+    flex: 1 1 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding: 10px 2%;
+    background-color:cornflowerblue
 }
 
 .details-row-container2>div{
-    flex-basis: 33.33%;
-    padding: 5px;
+    flex-basis: 33.333%;
+    padding: 10px;
     box-sizing: border-box;
+}
+
+.details-row-container2>div>h3{
+    color: white;
+    margin: 0 0 10px 0;
+    padding: 0;
 }
 
 .list-item{
     flex-basis: 100%;
     background: white;
-    margin: 3px;
+    margin: 2px;
     text-decoration: none;
     color: #000;
     box-sizing: border-box;
     border-radius: 5px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, .5);
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, .3);
     height: 50px;
 
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
+
+.bill-container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: white;
+    height: 100%;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+    box-sizing: border-box;
+    justify-content: end;
+}
+
+.bill-container-enter {
+    width:0%;
+    height:0%
+}
+ 
+.bill-container-enter.bill-container-enter-active {
+    width:80%;
+    height:100%;
+    transition: all 500ms ease-in;
+}
+
+.bill-container-exit {
+    width:80%;
+    height:100%;
+}
+ 
+.bill-container-exit.bill-container-exit-active {
+    width:0%;
+    height:0%;
+    transition: all 300ms ease-in;
+}
+
+/* @keyframes pdfkeys{
+    from{width: 0%;}
+    to{width: 80%;}
+}
+
+.bill-entered{
+    background: red;
+}
+.bill-entering{
+    animation: pdfkeys 0.4s;
+}
+@keyframes negpdfkeys{
+    from{width: 80%;}
+    to{width: 0%;}
+}
+.bill-exiting{
+    animation: negpdfkeys 0.4s;
+} */
+
+.bill-container>iframe{
+    flex-basis: 100%;
+    height: 94%;
+}
+
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */

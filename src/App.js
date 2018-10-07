@@ -7,6 +7,8 @@ import './components/student/AddStudent.css';
 import './components/student/StudentsList.css';
 import './components/student/StudentDetails.css';
 
+import './components/group/AddGroup.css';
+
 
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -41,7 +43,7 @@ class App extends Component {
               <Header/>
                 <main>
                   <Route exact path={"/"} component = {Home} />
-                  <Route exact path={"/student"} component = {Student}/>
+                  <Route path={"/student"} component = {Student}/>
                   <Route exact path={"/student/:id"} component = {StudentDetails}/>
                   <Route exact path={"/teacher"} component = {TeachersList}/>
                   <Route exact path={"/group"} component = {Group}/>

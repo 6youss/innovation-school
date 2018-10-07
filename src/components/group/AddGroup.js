@@ -107,11 +107,9 @@ class Addgroup extends Component{
                 value: level
             }));
         return (
-            <div className="Addgroup">
-                <h1>Add group</h1>
-                <div className="formData">
-                    <div className="InputContainerStyle">
+                <div className="add-group">
                     <Select
+                        className = "add-group-item"
                         label="Module"
                         name="module"
                         options={moduleOptions}
@@ -119,6 +117,7 @@ class Addgroup extends Component{
                         error={this.state.errors["module"]}
                     />
                     <Select
+                        className = "add-group-item"
                         label="Teacher"
                         name="teacher"
                         options={teacherOptions}
@@ -126,16 +125,21 @@ class Addgroup extends Component{
                         error={this.state.errors["teacher"]}
                     />
                     <Select
+                        className = "add-group-item"
                         label="Level"
                         name="level"
                         options={levelOptions}
                         handleChange={this.handleChange.bind(this)}
                         error={this.state.errors["level"]}
                     />
-                    <input id="Add-button" type="submit" value="Add" onClick={this.submit}/>
-                    </div>
+                    <input 
+                        id="Add-button" 
+                        type="submit" 
+                        value="Add"
+                        className="ino_button"
+                        onClick={this.submit}
+                    />
                 </div>
-            </div>
         )   
     }
 }

@@ -23,8 +23,7 @@ class Student extends Component {
         .then( res => res.json())
         .then(json=>{
           this.setState({
-            students : json.students,
-            studentIndex:0
+            students : json.students
           });
           this.initialStudents=json.students;
         });

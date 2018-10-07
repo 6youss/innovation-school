@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom'
 import GroupsList from './GroupsList'
+
+import {CSSTransition} from 'react-transition-group';
 import AddGroup from './AddGroup'
+
 
 class Group extends Component {
     
@@ -9,9 +12,8 @@ class Group extends Component {
     state = {
         groups : [],
         searchInput:"",
-        newGroup:true
+        newGroup:false
     }
-    
     
     componentDidMount(){
         this.getGroups();
@@ -62,17 +64,33 @@ class Group extends Component {
         
         return (
             <div>
-            { this.state.newGroup && <AddGroup updateGroups = {this.getGroups.bind(this)} />}
-            <ul className="groupList">
-                <div className="groupsHeader">
-                    <h1>Groups</h1>
-                    <p onClick={this.addGroup} > Add group </p>
-                    <input type="text" placeholder="Search.." className="Input" onChange={this.onChangeHandler.bind(this)}/>
+                <div className="StudentsHeader">
+                    <div className="StudentsHeader">
+                        <h1 style={{margin:'0 30px 0 0'}}>Groups</h1>
+                        <p onClick={this.addGroup} > Add group </p>
+                    </div>
+                    <input
+                        type="text" 
+                        placeholder="Search.." 
+                        className="search" 
+                        onChange={this.onChangeHandler.bind(this)}
+                    />
                 </div>
+
+                <CSSTransition
+                    key={3}
+                    in={this.state.newGroup}
+                    appear={true}
+                    timeout={300}
+                    classNames='drop-down'
+                    unmountOnExit
+                >
+                    <AddGroup updateGroups = {this.getGroups.bind(this)} />
+                </CSSTransition>
+                
                 <GroupsList
                     groups={list}
                 />
-            </ul>
             </div>
         )
 
