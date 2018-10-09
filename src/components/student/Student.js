@@ -36,11 +36,10 @@ class Student extends Component {
         });
     }
     
-    addStudent = (e)=>{
-        if(e.target.className === 'modal-container' || e.target.className === 'addstudent')
-            this.setState({
-                newStudent: !this.state.newStudent    
-            });
+    addStudent = ()=>{
+        this.setState({
+            newStudent: !this.state.newStudent    
+        });
     }
 
     handleDetails(e){

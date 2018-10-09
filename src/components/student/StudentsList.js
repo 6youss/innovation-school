@@ -6,22 +6,18 @@ const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,hand
     const StudentItem = ({studentId,firstName,lastName,picture})=>{
         return (
             <NavLink className="student-item-container" to={'/student/'+studentId}>
-                <li className="big">
-                    <div className="img">
+                <div className="student-list-item">
+                    <div>
                         <img
-                            className ="StudentAvatar" 
+                            className ="StudentAvatar"
                             src={picture?`http://localhost:3001/uploads/${picture}`:"../default-avatar.png"}
                             alt={"Student Avatar"}
                             onError={(e)=>{e.target.src="../default-avatar.png"}}
                         />
                     </div>
-                    <div className="center">
-                        <p>{firstName} {lastName}</p>
-                    </div>
-                    <div className="left">
-                        <p>Details</p>
-                    </div>
-                </li>
+                    <p>{firstName} {lastName}</p>
+                    <p>Details</p>
+                </div>
             
             </NavLink>
         )
@@ -147,7 +143,7 @@ const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,hand
                     }
                 });
     return (
-        list.length>0? list : <p>"Can't find any student..."</p>
+        students.length>0? list : <p>"Can't find any student..."</p>
     )
 } 
 export default StudentsList;

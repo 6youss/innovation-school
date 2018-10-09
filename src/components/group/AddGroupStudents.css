@@ -1,0 +1,9 @@
+.group-students-input{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.group-students-input>div{
+  flex-grow: 1;
+}
+

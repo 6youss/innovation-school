@@ -8,6 +8,8 @@ import './components/student/StudentsList.css';
 import './components/student/StudentDetails.css';
 
 import './components/group/AddGroup.css';
+import './components/group/GroupDetails.css';
+import './components/group/AddGroupStudents.css';
 
 
 import Header from './components/Header'
@@ -46,7 +48,7 @@ class App extends Component {
                   <Route path={"/student"} component = {Student}/>
                   <Route exact path={"/student/:id"} component = {StudentDetails}/>
                   <Route exact path={"/teacher"} component = {TeachersList}/>
-                  <Route exact path={"/group"} component = {Group}/>
+                  <Route path={"/group"} component = {Group}/>
                   <Route exact path={"/group/:id"} component = {GroupDetails}/>
                   <Route exact path={"/session/:id"} component = {SessionDetails}/>
                   <Route exact path={"/module"} component = {Module}/>

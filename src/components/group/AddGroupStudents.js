@@ -1,7 +1,9 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 
 import Input from "../Input"
-import StudentsList from '../student/StudentsList';
+import StudentsList from '../student/StudentsList'
+
+import Modal from '../Modal'
 
 class AddGroupStudents extends Component{
 
@@ -14,18 +16,17 @@ class AddGroupStudents extends Component{
 
 
     componentDidMount(){
-
+        this.getOtherStudents();
     }
 
-    componentDidUpdate(prevProps){
-        if(this.state.students.length === 0 ||
-            this.props.currentStudents.length !==  prevProps.currentStudents.length){
-                this.getOtherStudents();
-        }
-    }
+    // componentDidUpdate(prevProps){
+    //     if(this.state.students.length === 0 ||
+    //         this.props.currentStudents.length !==  prevProps.currentStudents.length){
+    //             this.getOtherStudents();
+    //     }
+    // }
 
     getOtherStudents(){
-        
         fetch("http://localhost:3001/group/"+this.props.group.groupId+"/students")
         .then(res=>res.json())
         .then(json=>{
@@ -33,8 +34,6 @@ class AddGroupStudents extends Component{
                 students: json.otherStudents
             });
         });
-        
-
     }
 
     submit = ()=>{
@@ -179,10 +178,10 @@ class AddGroupStudents extends Component{
     render(){
         
         return (
-            <div>
-                <div >
-                    <h1>Payment info</h1>
-                    <div>
+                <Modal modalId='group-students' closeMe={this.props.handleAddStudents}>
+                    <div className='student-details'>
+                    <h3>Add Students</h3>
+                    <div className='group-students-input'>
                         <Input 
                             name="paymentPrice" 
                             label="Price/(session|month)"
@@ -193,21 +192,21 @@ class AddGroupStudents extends Component{
                         />
                         <Input 
                             name="sessionCount" 
-                            label="Number of sessions (0 for month payment)" 
+                            label="Sessions Number" 
                             type="text" 
                             placeholder="Number of sessions to get paid..."
                             handlechange={this.handleChange.bind(this)}
                             error={this.state.errors["sessionCount"]}
                         />
-                        <StudentsList 
-                            students={this.state.students}
-                            selectedStudents={this.state.selectedStudents}
-                            handleSelect = {this.handleSelect.bind(this)}
-                        />
-                        <input id="Add-button" type="submit" value="Add" onClick={this.submit}/>
                     </div>
-                </div>
-            </div>
+                    <StudentsList 
+                        students={this.state.students}
+                        selectedStudents={this.state.selectedStudents}
+                        handleSelect = {this.handleSelect.bind(this)}
+                    />
+                    <input id="Add-button" type="submit" value="Add" onClick={this.submit}/>
+                    </div>
+                </Modal>
         )   
     }
 }

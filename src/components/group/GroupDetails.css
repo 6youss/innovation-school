@@ -1,0 +1,39 @@
+.group-details{
+  flex-basis: 80%;
+  height: 100%;
+  overflow: auto;
+  box-sizing: border-box;
+  background: white;
+  position: relative;
+}
+
+.group-details-row1{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px 2%;
+}
+.group-details-row2{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px 2%;
+  background: #eee;
+}
+
+.group-details-row2>div{
+  flex-basis: 50%;
+  padding: 0 3%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .group-details-row2>div{
+      flex-basis: 100%;
+  }
+}

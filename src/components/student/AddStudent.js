@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 
 import Input from "../Input"
+import Modal from "../Modal"
 
 class AddStudent extends Component{
 
@@ -11,7 +12,6 @@ class AddStudent extends Component{
     };
     
     componentDidMount(){
-        
         
     }
     
@@ -116,7 +116,7 @@ class AddStudent extends Component{
     render(){
         
         return (
-            <div className= 'modal-container' onClick={this.props.addStudent}>
+            <Modal modalId='add-student' closeMe={this.props.addStudent}>
                 <div className="row-container">
                     <div className="StudentNewPicParent">
                         <div className="StudentNewPic">
@@ -194,7 +194,7 @@ class AddStudent extends Component{
                         />
                     </div>
                 </div>
-            </div>
+            </Modal>
         )   
     }
 }

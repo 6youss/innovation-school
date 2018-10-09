@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import Select from "../Select"
+import Modal from "../Modal"
 
 var today = new Date();
 var currentYear = today.getFullYear();
@@ -121,8 +122,8 @@ class AddGroupSessions extends Component{
     render(){
 
         return (
-            <div>
-                <div >
+            <Modal modalId='group-sessions' closeMe={this.props.handleAddSessions}>
+                <div className='student-details'>
                     <h1>Add Session</h1>
                     <div>
                         <p>Teacher</p>
@@ -171,7 +172,7 @@ class AddGroupSessions extends Component{
                         <input id="Add-button" type="submit" value="Add" onClick={this.submit}/>
                     </div>
                 </div>
-            </div>
+            </Modal>
         )   
     }
 }

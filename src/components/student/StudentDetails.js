@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom'
 import {CSSTransition} from 'react-transition-group';
 
+import Modal from '../Modal'
 import PaymentsList from '../payment/PaymentsList';
 import GroupsList from '../group/GroupsList';
 import SessionsList from '../session/SessionsList';
@@ -81,22 +82,25 @@ class StudentDetails extends Component {
         });
     }
 
+    handleClose(){
+        if(this.state.addBill){
+            this.setState({
+                addBill:false
+            });           
+            this.props.history.goBack();
+        }else
+            this.props.history.goBack();
+    }
+
+    handleClosePdf(){
+
+    }
+
     render(){
         console.log(this.state.student);
         const {firstName,lastName,picture} = this.state.student;
         return (
-            <div className='modal-container'
-                onClick={
-                    (event)=>{
-                        if(event.target.className === 'modal-container')
-                            this.props.history.push('/student');
-                        if(this.state.addBill===true 
-                            && event.target.className!=='bill-container open'){
-                            this.setState( {addBill:false});
-                        }
-                    }
-                }
-            >
+            <Modal modalId='student-details' closeMe={this.handleClose.bind(this)}>
                 <CSSTransition
                         key={2}
                         in={true}
@@ -169,7 +173,7 @@ class StudentDetails extends Component {
                     
                 </div>
                 </CSSTransition>
-            </div>
+            </Modal>
         )
     }
 
