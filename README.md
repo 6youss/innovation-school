@@ -1,12 +1,12 @@
 "# innovation-school" 
 
-UI for managing a school made with React
+A React JS made UI for managing a school.
 
-To use it you must have npm installed
+To use it you must have *Node Package Manager* installed
 
 You must be in the main folder and run these two commands:
 
-npm install
-npm start
+### npm install
+### npm start
 
-that's it !
+You're good to go!
