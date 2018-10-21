@@ -1,5 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
+import Loader from '../HOC/Loader'
 
 const GroupsList = ({groups}) => {
     
@@ -30,4 +31,4 @@ const GroupsList = ({groups}) => {
         (groups.length>0)? list : <p>"Can't find any groups..."</p>
     )
 } 
-export default GroupsList;
+export default Loader('groups')(GroupsList);

@@ -1,95 +1,60 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom'
-import ListHeader from '../ListHeader';
 
+import AddTeacher from './AddTeacher'
+import TeachersList from './TeachersList';
 
 class Teacher extends Component {
-
-    state = {teacher : []}
-
-    teacherId = this.props.match.params.id;
-
+    
+    
+    state = {teachers : [],
+        newTeacher:true
+    }
+    
+    
     componentDidMount(){
-        fetch("http://localhost:3001/teacher/"+this.teacherId)
+        this.getTeachers();
+    }
+
+    getTeachers(){
+        fetch("http://localhost:3001/teacher")
         .then( res => res.json())
         .then(json=>{
-            this.setState({
-                teacher : json.teacher[0]
-            });
+          this.setState({
+            teachers : json.teachers
+          });
+          
         });
     }
-
-    Groupe = ({groupeId,moduleName})=>{
-        return (
-            <NavLink to={`/groupe/${groupeId}`}>
-            <li className="big">
-                <div className="img"><p></p></div>
-                <div className="center"><p></p></div>
-                <div className="left"><p></p></div>
-            </li>
-            </NavLink>
-        )
+    
+    AddTeacher = ()=>{
+        this.setState({
+            newTeacher: !this.state.newTeacher    
+        });
     }
-
-    Session =  ({sessionId,groupeId,roomId,date,sessionDone})=>{
-        return (
-            <NavLink to={`/session/${sessionId}`}>
-            <li className="big">
-                <div className="img"><p></p></div>
-                <div className="center"><p></p></div>
-                <div className="left"><p></p></div>
-            </li>
-            </NavLink>
-        )   
-    }
-
-    Payment = ({paymentId,price,date,done})=>{
-        return (
-            <NavLink to={`/payment/${paymentId}`}>
-            <li className="big">
-                <div className="img"><p></p></div>
-                <div className="center"><p></p></div>
-                <div className="left"><p></p></div>
-            </li>
-            </NavLink>
-        )   
-    }
-
+    
     render(){
-
-        const {firstName,lastName,picture} = this.state.teacher;
         
         return (
             <div>
-            <div className="TeacherDetails">
-                <div style={{float:"right"}}>
-                    <p>edit</p>
-                    <p>delete</p>
+            { this.state.newTeacher && <AddTeacher updateTeachers = {this.getTeachers.bind(this)} />}
+            <div>
+                <div>
+                    <h1>Teachers</h1>
+                    <p onClick={this.AddTeacher} > Add teacher </p>
                 </div>
-
-                <aside className="PictureContainer">
-                    <img className ="TeacherPicture" 
-                        src={(picture)?`http://localhost:3001/uploads/${picture}`: "../default-avatar.png" }
-                        alt={"Teacher Avatar"}
-                    />
-                </aside>
-
-                <div className="TeacherInfo">
-                    <h1>{firstName} {lastName}</h1>
-                    <p>Inscription date: 01/01/19</p>
-                    <p>Birthday: 01/01/19</p>
-                    <p>Phone Number: </p>
-                    <p>Parent Number: </p>
-                </div>
-
-            </div>
-            <div className="TeacherDetails">
-                <ListHeader title="Groups" />
-                <ListHeader title="Sessions" />
-                <ListHeader title="Payments" icons="Add" />
+                {
+                    this.state.teachers.length>0 ? 
+                        <TeachersList
+                            teachers={this.state.teachers}
+                        /> 
+                    : 
+                        <p>"Can't find any teacher..."</p>
+                }
             </div>
             </div>
         )
+
     }
 
 }

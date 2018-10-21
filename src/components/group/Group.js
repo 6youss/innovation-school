@@ -63,7 +63,7 @@ class Group extends Component {
                 || ( (group.moduleId+" "+group.groupId).indexOf(this.state.searchInput) !== -1) )
         
         return (
-            <div>
+            <div style={{width:'50%'}}>
                 <div className="StudentsHeader">
                     <div className="StudentsHeader">
                         <h1 style={{margin:'0 30px 0 0'}}>Groups</h1>

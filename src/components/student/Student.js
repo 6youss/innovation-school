@@ -7,6 +7,7 @@ import StudentDetails from './StudentDetails'
 class Student extends Component {
     
     initialStudents;
+    
     state = {
         students : [],
         searchInput:"",
@@ -26,8 +27,7 @@ class Student extends Component {
             students : json.students
           });
           this.initialStudents=json.students;
-        });
-
+        });   
     }
 
     onChangeHandler(e){
@@ -62,7 +62,7 @@ class Student extends Component {
                 || ( (student.firstName+" "+student.lastName).indexOf(this.state.searchInput) !== -1) );
         
         return (
-            <div>
+            <div style={{width:'100%'}}>
                 { this.state.newStudent && 
                     <AddStudent 
                         updateStudents = {this.getStudents.bind(this)}

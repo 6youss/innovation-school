@@ -60,7 +60,7 @@ class GroupDetails extends Component {
     }
 
     handleClose(){
-        this.props.history.push('/group');
+        this.props.history.goBack();
     }
 
     handleAddStudents(){
@@ -76,7 +76,9 @@ class GroupDetails extends Component {
     }
 
     render(){
+
         const  {groupId,level,teacherId,firstName,lastName,moduleId,moduleName} = this.state.group;
+        
         return (
             <Modal modalId='group-details' closeMe={this.handleClose.bind(this)}>
                 <div className='group-details'>
@@ -104,16 +106,7 @@ class GroupDetails extends Component {
                             </div>
                             <SessionsList
                                 sessions={this.state.sessions}
-                            />
-                            {this.state.addGroupSessions &&
-                                <AddGroupSessions
-                                    group={this.state.group}
-                                    currentSessions = {this.state.sessions}
-                                    updateSessions = {this.updateSessions.bind(this)}
-                                    handleAddSessions={this.handleAddSessions.bind(this)}
-                                />
-                            }
-                            
+                            />                            
                         </div>
                         
                         <div>
@@ -123,20 +116,28 @@ class GroupDetails extends Component {
                             </div>
                             <StudentsList students={this.state.students}/>
 
-                            { this.state.addGroupStudents &&
-                                <AddGroupStudents
-                                    group={this.state.group}
-                                    currentStudents = {this.state.students}
-                                    updateStudents = {this.updateStudents.bind(this)}
-                                    handleAddStudents={this.handleAddStudents.bind(this)}
-                                />
-                            }
                         </div>
                         <h3>Exams</h3>
                         
                     </div>
                     
                 </div>
+                { this.state.addGroupStudents &&
+                    <AddGroupStudents
+                        group={this.state.group}
+                        currentStudents = {this.state.students}
+                        updateStudents = {this.updateStudents.bind(this)}
+                        handleAddStudents={this.handleAddStudents.bind(this)}
+                    />
+                }
+                {this.state.addGroupSessions &&
+                    <AddGroupSessions
+                        group={this.state.group}
+                        currentSessions = {this.state.sessions}
+                        updateSessions = {this.updateSessions.bind(this)}
+                        handleAddSessions={this.handleAddSessions.bind(this)}
+                    />
+                }
             </Modal>
         )
     }

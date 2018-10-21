@@ -7,11 +7,11 @@
     position: relative;
 }
 
-.student-details-appear {
+.student-details-appear{
     height:0%
 }
  
-.student-details-appear.student-details-appear-active {
+.student-details-appear.student-details-appear-active{
     height:100%;
     transition: height 200ms ease-in;
 }
@@ -23,7 +23,7 @@
     padding: 20px 2%;
 }
 
-.student-picture {
+.student-picture{
     width: 250px;
     height: 250px;
     border-radius: 10px;
@@ -45,7 +45,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 10px 2%;
-    background-color:cornflowerblue
+    background-color:var(--color1);
 }
 
 .details-row-container2>div{
@@ -75,42 +75,6 @@
     flex-wrap: wrap;
 }
 
-.bill-container{
-    display: flex;
-    flex-wrap: wrap;
-    width: 80%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: white;
-    height: 100%;
-    padding: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
-    box-sizing: border-box;
-    justify-content: end;
-}
-
-.bill-container-enter {
-    width:0%;
-    height:0%
-}
- 
-.bill-container-enter.bill-container-enter-active {
-    width:80%;
-    height:100%;
-    transition: all 500ms ease-in;
-}
-
-.bill-container-exit {
-    width:80%;
-    height:100%;
-}
- 
-.bill-container-exit.bill-container-exit-active {
-    width:0%;
-    height:0%;
-    transition: all 300ms ease-in;
-}
 
 /* @keyframes pdfkeys{
     from{width: 0%;}
@@ -131,13 +95,7 @@
     animation: negpdfkeys 0.4s;
 } */
 
-.bill-container>iframe{
-    flex-basis: 100%;
-    height: 94%;
-}
-
-
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px){
     /* For mobile phones: */
     .details-row-container2>div{
         flex-basis: 100%;

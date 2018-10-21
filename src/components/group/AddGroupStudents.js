@@ -11,7 +11,8 @@ class AddGroupStudents extends Component{
         students:[],
         selectedStudents:[],
         fields:{},
-        errors:{}
+        errors:{},
+        searchInput:'',
     };
 
 
@@ -161,7 +162,6 @@ class AddGroupStudents extends Component{
     }
 
     handleSelect(studentId){
-
         let selectedStudents = this.state.selectedStudents;
         let studentIndex = selectedStudents.indexOf(studentId);
         
@@ -169,42 +169,63 @@ class AddGroupStudents extends Component{
             selectedStudents.push(studentId);
         }else{
             selectedStudents.splice(studentIndex,1);
-        }
-        console.log(selectedStudents);
-        
+        }      
         this.setState({selectedStudents});
     }
 
+    handleSearch(e){
+        this.setState({
+            searchInput: e.target.value,
+        });
+    }
+
     render(){
-        
+        const students = this.state.students
+        .filter(student => this.state.searchInput === ''
+                || ( (student.firstName+" "+student.lastName).indexOf(this.state.searchInput) !== -1) );
         return (
                 <Modal modalId='group-students' closeMe={this.props.handleAddStudents}>
-                    <div className='student-details'>
-                    <h3>Add Students</h3>
-                    <div className='group-students-input'>
-                        <Input 
-                            name="paymentPrice" 
-                            label="Price/(session|month)"
-                            type="text" 
-                            placeholder="Price..."
-                            handlechange={this.handleChange.bind(this)}
-                            error={this.state.errors["paymentPrice"]}
-                        />
-                        <Input 
-                            name="sessionCount" 
-                            label="Sessions Number" 
-                            type="text" 
-                            placeholder="Number of sessions to get paid..."
-                            handlechange={this.handleChange.bind(this)}
-                            error={this.state.errors["sessionCount"]}
-                        />
-                    </div>
-                    <StudentsList 
-                        students={this.state.students}
-                        selectedStudents={this.state.selectedStudents}
-                        handleSelect = {this.handleSelect.bind(this)}
-                    />
-                    <input id="Add-button" type="submit" value="Add" onClick={this.submit}/>
+                    <div className='add-group-students'>
+                        <div className='add-group-students-head'>
+                            <h3>Add Students</h3>
+                            <Input
+                                    name="search" 
+                                    type="text" 
+                                    placeholder="Search..."
+                                    handlechange={this.handleSearch.bind(this)}
+                            />
+                        </div>
+                        <div className='group-students-list-container'>
+                            <div className='group-students-list'>
+                                <StudentsList 
+                                    students={students}
+                                    selectedStudents={this.state.selectedStudents}
+                                    handleSelect = {this.handleSelect.bind(this)}
+                                />
+                            </div>
+                        </div>
+                        <div className='group-students-input'>
+                                <Input 
+                                    name="paymentPrice" 
+                                    label="Price/(session|month)"
+                                    type="text" 
+                                    placeholder="Price..."
+                                    handlechange={this.handleChange.bind(this)}
+                                    error={this.state.errors["paymentPrice"]}
+                                />
+                                <Input 
+                                    name="sessionCount" 
+                                    label="Sessions Number" 
+                                    type="text" 
+                                    placeholder="Number of sessions to get paid..."
+                                    handlechange={this.handleChange.bind(this)}
+                                    error={this.state.errors["sessionCount"]}
+                                />
+                            
+                        </div>
+                        <div style={{display:'flex'}}>
+                            <input className='ino_button' id="Add-button" type="submit" value="Add" onClick={this.submit}/>
+                        </div>
                     </div>
                 </Modal>
         )   

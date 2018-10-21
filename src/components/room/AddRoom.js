@@ -108,25 +108,28 @@ class AddRoom extends Component{
     render(){
         
         return (
-            <div className="AddRoom">
+            <div className="add-room-container">
                 <h1>Add Room</h1>
-                <Input 
-                    name="roomId"
-                    label="Room Number"
-                    type="text"
-                    placeholder="Room Number..."
-                    handlechange={this.handleChange.bind(this)}
-                    error={this.state.errors["roomId"]}
-                />
-                <Input 
-                    name="places" 
-                    label="Room Places"
-                    type="text" 
-                    placeholder="Room Places..." 
-                    handlechange={this.handleChange.bind(this)}
-                    error={this.state.errors["places"]}
-                />
-                <input id="Add-button" type="submit" value="Add" onClick={this.submit}/>
+                <div className='add-room-input'>
+                    <Input 
+                        name="roomId"
+                        label="Room Number"
+                        type="text"
+                        placeholder="Room Number..."
+                        handlechange={this.handleChange.bind(this)}
+                        error={this.state.errors["roomId"]}
+                    />
+                    <Input 
+                        name="places" 
+                        label="Room Places"
+                        type="text" 
+                        placeholder="Room Places..." 
+                        handlechange={this.handleChange.bind(this)}
+                        error={this.state.errors["places"]}
+                    />
+                    <input className='ino_button' id="Add-button" type="submit" value="Add" onClick={this.submit}/>
+                </div>
+                
             </div>
         )   
     }

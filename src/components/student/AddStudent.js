@@ -118,6 +118,7 @@ class AddStudent extends Component{
         return (
             <Modal modalId='add-student' closeMe={this.props.addStudent}>
                 <div className="row-container">
+                
                     <div className="StudentNewPicParent">
                         <div className="StudentNewPic">
                             <img 
@@ -135,54 +136,66 @@ class AddStudent extends Component{
                     </div>
                     
                     <div className="InputContainerStyle">
-                        <Input 
-                            name="firstName" 
-                            label="First Name" 
-                            type="text" 
-                            placeholder="First Name..." 
-                            handlechange={this.handleChange.bind(this)}
-                            error={this.state.errors["firstName"]}
-                        />
-                        <Input 
-                            name="lastName" 
-                            label="Last Name" 
-                            type="text" 
-                            placeholder="Last Name..." 
-                            handlechange={this.handleChange.bind(this)}
-                            error={this.state.errors["lastName"]}
-                        />
-                        <Input 
-                            name="birthday" 
-                            label="Birthday" 
-                            type="text" 
-                            placeholder="Birthday..." 
-                            handlechange={this.handleChange.bind(this)}
-                            error={this.state.errors["birthday"]}
-                        />
-                        <Input 
-                            name="adress" 
-                            label="Adress" 
-                            type="text" 
-                            placeholder="Adress..." 
-                            handlechange={this.handleChange.bind(this)}
-                            error={this.state.errors["adress"]}
-                        />
-                        <Input
-                            name="phone" 
-                            label="Phone" 
-                            type="text" 
-                            placeholder="Phone..." 
-                            handlechange={this.handleChange.bind(this)}
-                            error={this.state.errors["phone"]}
-                        />
-                        <Input 
-                            name="parentPhone" 
-                            label="Parent Phone" 
-                            type="text" 
-                            placeholder="Parent Phone..." 
-                            handlechange={this.handleChange.bind(this)}
-                            error={this.state.errors["parentPhone"]}
-                        />
+                        <div className="PersoInput">
+                            <Input 
+                                name="firstName" 
+                                label="First Name" 
+                                type="text" 
+                                placeholder="First Name..." 
+                                handlechange={this.handleChange.bind(this)}
+                                error={this.state.errors["firstName"]}
+                            />
+                        </div>
+                        <div className="PersoInput">
+                            <Input 
+                                name="lastName" 
+                                label="Last Name" 
+                                type="text" 
+                                placeholder="Last Name..." 
+                                handlechange={this.handleChange.bind(this)}
+                                error={this.state.errors["lastName"]}
+                            />
+                        </div>
+                        <div className="PersoInput">
+                            <Input 
+                                name="birthday" 
+                                label="Birthday" 
+                                type="text" 
+                                placeholder="Birthday..." 
+                                handlechange={this.handleChange.bind(this)}
+                                error={this.state.errors["birthday"]}
+                            />
+                        </div>
+                        <div className="PersoInput">
+                            <Input 
+                                name="adress" 
+                                label="Adress" 
+                                type="text" 
+                                placeholder="Adress..." 
+                                handlechange={this.handleChange.bind(this)}
+                                error={this.state.errors["adress"]}
+                            />
+                        </div>
+                        <div className="PersoInput">
+                            <Input
+                                name="phone" 
+                                label="Phone" 
+                                type="text" 
+                                placeholder="Phone..." 
+                                handlechange={this.handleChange.bind(this)}
+                                error={this.state.errors["phone"]}
+                            />
+                        </div>
+                        <div className="PersoInput">
+                            <Input 
+                                name="parentPhone" 
+                                label="Parent Phone" 
+                                type="text" 
+                                placeholder="Parent Phone..." 
+                                handlechange={this.handleChange.bind(this)}
+                                error={this.state.errors["parentPhone"]}
+                            />
+                        </div>
                         <input className='ino_button' id="Add-button" type="submit" value="Add" onClick={this.submit}/>
                         <input 
                             id="fileInput" 

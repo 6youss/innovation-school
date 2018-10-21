@@ -1,5 +1,7 @@
-import React from 'react'
-import {NavLink} from 'react-router-dom'
+import React from 'react';
+import {NavLink} from 'react-router-dom';
+import Loader from '../HOC/Loader';
+
 
 const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,handleNote,handleReview,presentStudents}) => {
     
@@ -7,14 +9,12 @@ const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,hand
         return (
             <NavLink className="student-item-container" to={'/student/'+studentId}>
                 <div className="student-list-item">
-                    <div>
-                        <img
-                            className ="StudentAvatar"
-                            src={picture?`http://localhost:3001/uploads/${picture}`:"../default-avatar.png"}
-                            alt={"Student Avatar"}
-                            onError={(e)=>{e.target.src="../default-avatar.png"}}
-                        />
-                    </div>
+                    <img
+                        className ="StudentAvatar"
+                        src={picture?`http://localhost:3001/uploads/${picture}`:"../default-avatar.png"}
+                        alt={"Student Avatar"}
+                        onError={(e)=>{e.target.src="../default-avatar.png"}}
+                    />                
                     <p>{firstName} {lastName}</p>
                     <p>Details</p>
                 </div>
@@ -25,18 +25,17 @@ const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,hand
 
     const StudentItemSelect = ({studentId,firstName,lastName,picture,select,selected})=>{
         return (
-            <li className={(selected)?"bigSelected":"big"} onClick={select.bind(this,studentId)}>
-                <div className="img">
-                    <img 
-                        className ="StudentAvatar" 
-                        src={`http://localhost:3001/uploads/${picture}`} 
-                        alt={"Student Avatar"}>
-                    </img>
-                </div>
-                <div className="center">
+            <li className="student-item-container" onClick={select.bind(this,studentId)}>
+                <div className={selected?"student-list-item selected":"student-list-item"}>
+                    
+                        <img
+                            className ="StudentAvatar"
+                            src={picture?`http://localhost:3001/uploads/${picture}`:"../default-avatar.png"}
+                            alt={"Student Avatar"}
+                            onError={(e)=>{e.target.src="../default-avatar.png"}}
+                        />
+                    
                     <p>{firstName} {lastName}</p>
-                </div>
-                <div className="left">
                     <p>Details</p>
                 </div>
             </li>
@@ -146,4 +145,4 @@ const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,hand
         students.length>0? list : <p>"Can't find any student..."</p>
     )
 } 
-export default StudentsList;
+export default Loader('students')(StudentsList);

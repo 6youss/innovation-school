@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 class AddBill extends Component {
 
     state = {
+        validated:false
     }
 
     componentDidMount(){
@@ -45,11 +46,9 @@ class AddBill extends Component {
             })
         })
         .then(res=>{
-            return res.blob();
-        })
-        .then(res=>{
-            var url = window.URL.createObjectURL(res);
-            this.frame.src=url;
+            this.setState({
+                validated:true
+            })
         })
         .catch(res=>{
             console.log(res);
@@ -58,11 +57,22 @@ class AddBill extends Component {
 
     render(){
         return (
-            <div className='bill-container'>
+            <div 
+                className='bill-container' 
+            >
                 <iframe title='bill' ref={frame=>this.frame=frame}/>
-                <button onClick={this.validateDoc}>
-                    Validate
-                </button>
+                <div>
+                    <button className='ino_button cancel' onClick={this.props.cancelBill}>
+                        Close
+                    </button>
+                    <button 
+                        onClick={()=>{this.validateDoc();}}
+                        className='ino_button validate'
+                        enable={!this.state.validated}
+                    >
+                        { this.state.validated?'Bill Validated !':'Validate' }
+                    </button>
+                </div>
             </div>
         )
     }

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom'
 import {CSSTransition} from 'react-transition-group';
 
-import Modal from '../Modal'
 import PaymentsList from '../payment/PaymentsList';
 import GroupsList from '../group/GroupsList';
 import SessionsList from '../session/SessionsList';
@@ -81,26 +80,28 @@ class StudentDetails extends Component {
             addBill:true
         });
     }
-
-    handleClose(){
-        if(this.state.addBill){
-            this.setState({
-                addBill:false
-            });           
-            this.props.history.goBack();
-        }else
-            this.props.history.goBack();
+    cancelBill(){
+        this.setState({
+            addBill:false
+        });
     }
-
-    handleClosePdf(){
-
-    }
-
     render(){
-        console.log(this.state.student);
+        
         const {firstName,lastName,picture} = this.state.student;
         return (
-            <Modal modalId='student-details' closeMe={this.handleClose.bind(this)}>
+            <div className='modal-container'
+                onClick={
+                    (event)=>{
+                        if(event.target.className === 'modal-container')
+                            this.props.history.goBack();
+                        // if(this.state.addBill===true 
+                        //     && event.target.className!=='bill-container open'){
+                        //     this.setState( {addBill:false});
+                        // }
+                    }
+                }
+            >
+            
                 <CSSTransition
                         key={2}
                         in={true}
@@ -110,19 +111,6 @@ class StudentDetails extends Component {
                         unmountOnExit
                 >
                 <div className="student-details" ref={ref=>this.detailsContainer=ref}>
-                    
-                    <CSSTransition
-                        key={1}
-                        in={this.state.addBill}
-                        classNames='bill-container'
-                        timeout={{ enter: 500, exit: 300 }}
-                        unmountOnExit
-                    >
-                        <AddBill
-                            payments={this.state.selectedPayments}
-                        />
-                    </CSSTransition>
-                    
                     <div className='details-row-container1'>
                         <img className ="student-picture"
                             src={`http://localhost:3001/uploads/${picture}`}
@@ -163,7 +151,7 @@ class StudentDetails extends Component {
                                 handleSelect = {this.handleSelect.bind(this)}
                             />
                             {this.state.selectedPayments.length>0 &&
-                                <button onClick={this.addBill}>
+                                <button onClick={this.addBill} className='ino_button validate'>
                                     Pay
                                 </button>
                             }
@@ -173,7 +161,19 @@ class StudentDetails extends Component {
                     
                 </div>
                 </CSSTransition>
-            </Modal>
+                <CSSTransition
+                        key={1}
+                        in={this.state.addBill}
+                        classNames='bill-container'
+                        timeout={200}
+                        unmountOnExit
+                >
+                        <AddBill
+                            payments={this.state.selectedPayments}
+                            cancelBill={this.cancelBill.bind(this)}
+                        />
+                </CSSTransition>
+            </div>
         )
     }
 

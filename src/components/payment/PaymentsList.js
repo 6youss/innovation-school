@@ -5,7 +5,7 @@ const PaymentsList = ({payments,selectedPayments,handleSelect}) => {
     const PaymentItem = ({payment,select,selected})=>{
         const {paymentPrice,paymentDone,groupId,paymentDate} = payment;
         return (
-                <li className={(selected)?"bigSelected":'list-item'} onClick={select.bind(this,payment)} >
+                <li className={(selected)?"list-item selected":'list-item'} onClick={select.bind(this,payment)} >
                     <div>
                         <p>Group {groupId}</p>
                     </div>                    

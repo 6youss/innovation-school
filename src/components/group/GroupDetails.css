@@ -18,15 +18,15 @@
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 20px 2%;
-  background: #eee;
+  background: var(--color1);
+  color: white;
 }
 
 .group-details-row2>div{
   flex-basis: 50%;
   padding: 0 3%;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
+  
 }
 
 

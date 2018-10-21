@@ -1,9 +1,73 @@
+.add-group-students{
+  flex-basis: 80%;
+  height:100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: var(--color2);
+  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.add-group-students>div {
+  flex-basis: 100%;
+  margin: 0 0 5px 0;
+  padding: 0 5%;
+}
+
+.add-group-students-head>h3{
+  margin: 10px 0;
+}
+.add-group-students-head{
+  height: 15%;
+  box-sizing: border-box;
+  background: var(--color1);
+  color: white;
+}
+
 .group-students-input{
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .group-students-input>div{
-  flex-grow: 1;
+  flex-basis: 46%;
 }
+
+.group-students-list-container{
+  height: 50%;
+}
+.group-students-list{
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  /* box-shadow: 0 2px 3px rgba(0,0,0,.4); */
+  background: var(--color4);
+  padding: 10px;
+  border-radius: 5px;
+  overflow: auto;
+}
+
+
+.group-students-list-container .student-item-container{
+  flex-basis: 50%;
+}
+
+@media only screen and (max-width: 768px){
+  /* For mobile phones: */
+  .group-students-input>div{
+    flex-basis: 100%;
+  }
+
+  .group-students-list-container .student-item-container{
+    flex-basis: 100%;
+  }
+
+}
+
+
 

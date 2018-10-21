@@ -7,6 +7,7 @@
 }
 
 .student-list-item{
+    flex: 1 1 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,6 +19,11 @@
     text-align: center;
     height: 50px;
 }
+
+.selected{
+    border-bottom: 5px solid var(--color3);
+}
+
 
 .StudentAvatar{
     border-radius: 50%; 
@@ -31,6 +37,7 @@
     box-sizing: border-box;
     text-decoration: none;
     color: black;
+    display: flex;
 }
 
 @media only screen and (max-width: 768px) {

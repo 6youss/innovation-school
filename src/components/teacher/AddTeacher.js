@@ -11,7 +11,6 @@ class AddTeacher extends Component{
     input;
 
     componentDidMount(){
-        
         this.input = document.getElementById("fileInput");
     }
     
@@ -110,67 +109,86 @@ class AddTeacher extends Component{
     render(){
         
         return (
-            <div className="AddTeacher">
+            <div className='add-teacher-container'>
                 <h1>Add Teacher</h1>
-                <div className="formData">
-                    <div className="TeacherNewPicParent">
-                        <div className="TeacherNewPic">
-                            <img id="TeacherPicture" alt="avatar"  src="./default-avatar.png" width="150px"></img>
+                <div className="row-container">
+                    <div className="StudentNewPicParent">
+                        <div className="StudentNewPic">
+                            <img 
+                                id="studentPicture" 
+                                alt="avatar"  
+                                src="./default-avatar.png" 
+                                width="150px"
+                                ref={avatar=>this.avatar=avatar}
+                            />
                             <div className="hoverStyle" onClick={this.uploadPicture} >
-                                <p className="hoverStyle">Upload picture</p>
-                            </div>                        
+                                <p>Upload picture</p>
+                            </div>
                         </div>
-                        <p>+</p>
+                        <img src='../add_photo.svg'/>
                     </div>
+
                     <div className="InputContainerStyle">
-                        <Input 
-                            name="firstName" 
-                            label="First Name" 
-                            type="text" 
-                            placeholder="First Name..." 
-                            handlechange={this.handleChange.bind(this)}
-                            error={this.state.errors["firstName"]}
-                        />
-                        <Input 
-                            name="lastName" 
-                            label="Last Name" 
-                            type="text" 
-                            placeholder="Last Name..." 
-                            handlechange={this.handleChange.bind(this)}
-                            error={this.state.errors["lastName"]}
-                        />
-                        <Input 
-                            name="birthday" 
-                            label="Birthday" 
-                            type="text" 
-                            placeholder="Birthday..." 
-                            handlechange={this.handleChange.bind(this)}
-                            error={this.state.errors["birthday"]}
-                        />
-                        <Input 
-                            name="adress" 
-                            label="Adress" 
-                            type="text" 
-                            placeholder="Adress..." 
-                            handlechange={this.handleChange.bind(this)}
-                            error={this.state.errors["adress"]}
-                        />
-                        <Input 
-                            name="phone" 
-                            label="Phone" 
-                            type="text" 
-                            placeholder="Phone..." 
-                            handlechange={this.handleChange.bind(this)}
-                            error={this.state.errors["phone"]}
-                        />
-                        <Input 
-                            name="parentPhone" 
-                            label="Parent Phone" 
-                            type="text" 
-                            placeholder="Parent Phone..." 
-                            handlechange={this.handleChange.bind(this)}
-                            error={this.state.errors["parentPhone"]}
-                        />
+                        <div className="PersoInput">
+                            <Input 
+                                name="firstName" 
+                                label="First Name" 
+                                type="text" 
+                                placeholder="First Name..." 
+                                handlechange={this.handleChange.bind(this)}
+                                error={this.state.errors["firstName"]}
+                            />
+                        </div>
+                        <div className="PersoInput">
+                            <Input 
+                                name="lastName" 
+                                label="Last Name" 
+                                type="text" 
+                                placeholder="Last Name..." 
+                                handlechange={this.handleChange.bind(this)}
+                                error={this.state.errors["lastName"]}
+                            />
+                        </div>
+                        <div className="PersoInput">
+                            <Input 
+                                name="birthday" 
+                                label="Birthday" 
+                                type="text" 
+                                placeholder="Birthday..." 
+                                handlechange={this.handleChange.bind(this)}
+                                error={this.state.errors["birthday"]}
+                            />
+                        </div>
+                        <div className="PersoInput">
+                            <Input 
+                                name="adress" 
+                                label="Adress" 
+                                type="text" 
+                                placeholder="Adress..." 
+                                handlechange={this.handleChange.bind(this)}
+                                error={this.state.errors["adress"]}
+                            />
+                        </div>
+                        <div className="PersoInput">
+                            <Input 
+                                name="phone" 
+                                label="Phone" 
+                                type="text" 
+                                placeholder="Phone..." 
+                                handlechange={this.handleChange.bind(this)}
+                                error={this.state.errors["phone"]}
+                            />
+                        </div>
+                        <div className="PersoInput">
+                            <Input 
+                                name="parentPhone" 
+                                label="Parent Phone" 
+                                type="text" 
+                                placeholder="Parent Phone..." 
+                                handlechange={this.handleChange.bind(this)}
+                                error={this.state.errors["parentPhone"]}
+                            />
+                        </div>
                         <input id="Add-button" type="submit" value="Add" onClick={this.submit}/>
                         <input id="fileInput" type="file" accept="image/*" style={{display:"none"}} onChange={this.uploadPicture}/>
                     </div>

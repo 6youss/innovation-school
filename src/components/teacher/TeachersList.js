@@ -1,35 +1,11 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom'
 
-import AddTeacher from './AddTeacher'
-
-
-
 class TeachersList extends Component {
     
-    initialTeachers;
-    state = {teachers : [],
-        searchInput:"",
-        newTeacher:true
+    state = {
+        searchInput:""
     }
-    
-    
-    componentDidMount(){
-        this.getTeachers();
-    }
-
-    getTeachers(){
-        fetch("http://localhost:3001/teacher")
-        .then( res => res.json())
-        .then(json=>{
-          this.setState({
-            teachers : json.teachers
-          });
-          this.initialTeachers=json.teachers;
-        });
-    }
-
-
     
     onChangeHandler(e){
         this.setState({
@@ -37,12 +13,6 @@ class TeachersList extends Component {
         });
     }
     
-    AddTeacher = ()=>{
-        this.setState({
-            newTeacher: !this.state.newTeacher    
-        });
-    }
-
     Teacher = ({teacherId,firstName,lastName,picture})=>{
         return (
             <NavLink to={`/teacher/${teacherId}`}>
@@ -56,7 +26,7 @@ class TeachersList extends Component {
     }
     
     render(){
-        const list = this.state.teachers
+        const list = this.props.teachers
         .filter(teacher => this.state.searchInput === '' 
                 || ( (teacher.firstName+" "+teacher.lastName).indexOf(this.state.searchInput) !== -1) )
         .map(teacher => 
@@ -64,17 +34,14 @@ class TeachersList extends Component {
 
         return (
             <div>
-            { this.state.newTeacher && <AddTeacher updateTeachers = {this.getTeachers.bind(this)} />}
-            <ul className="TeacherList">
+            <div className="TeacherList">
                 <div className="TeachersHeader">
-                    <h1>teachers</h1>
-                    <p onClick={this.AddTeacher} > Add teacher </p>
                     <input type="text" placeholder="Search.." className="Input" onChange={this.onChangeHandler.bind(this)}/>
                 </div>
                 {
                     (list.length>0)? list : <p>"Can't find any teacher..."</p>
                 }
-            </ul>
+            </div>
             </div>
         )
 

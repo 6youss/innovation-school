@@ -103,19 +103,26 @@ class AddModule extends Component{
     render(){
         
         return (
-            <div className="AddModule">
+            <div className='add-module-container'>
                 <h1>Add Module</h1>
-                <div className="formData">
-                    <div className="ModuleNewPicParent">
-                        <div className="ModuleNewPic">
-                            <img id="ModulePicture" alt="avatar"  src="./default-avatar.png" width="150px"></img>
+                <div className="add-module">
+                    <div className="StudentNewPicParent">
+                        <div className="StudentNewPic">
+                            <img 
+                                id="studentPicture" 
+                                alt="avatar"  
+                                src="./default-avatar.png" 
+                                width="150px"
+                                ref={avatar=>this.avatar=avatar}
+                            />
                             <div className="hoverStyle" onClick={this.uploadPicture} >
-                                <p className="hoverStyle">Upload picture</p>
-                            </div>                        
+                                <p>Upload picture</p>
+                            </div>
                         </div>
-                        <p>+</p>
+                        <img src='../add_photo.svg'/>
                     </div>
-                    <div className="InputContainerStyle">
+
+                    <div className='module-input'>
                         <Input 
                             name="moduleName" 
                             label="Module Name" 
@@ -124,9 +131,10 @@ class AddModule extends Component{
                             handlechange={this.handleChange.bind(this)}
                             error={this.state.errors["moduleName"]}
                         />
-                        <input id="Add-button" type="submit" value="Add" onClick={this.submit}/>
-                        <input id="fileInput" type="file" accept="image/*" style={{display:"none"}} onChange={this.uploadPicture}/>
+                        <input className='ino_button' id="Add-button" type="submit" value="Add" onClick={this.submit}/>
                     </div>
+                    
+                    <input id="fileInput" type="file" accept="image/*" style={{display:"none"}} onChange={this.uploadPicture}/>
                 </div>
             </div>
         )   
