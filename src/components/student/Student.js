@@ -21,7 +21,7 @@ class Student extends Component {
     }
 
     getStudents(){
-        fetch("http://localhost:3001/student")
+        fetch("http://192.168.1.5:3001/student")
         .then( res => res.json())
         .then(json=>{
           this.setState({
