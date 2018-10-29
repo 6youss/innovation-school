@@ -1,21 +1,21 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 
 
-class Modal extends Component {
+const  Modal = (props)=> {
 
-    close(e){
-      if(e.target.id===this.props.modalId){
-        this.props.closeMe();
+    function close(e){
+      if(e.target.id===props.modalId){
+        props.closeMe();
       }
     }
-    render(){
-        return (
-                <div id={this.props.modalId} className="modal-container" onClick={this.close.bind(this)}>
-                    {this.props.children}
-                </div>
-        )   
-    }
+    
+    return (
+            <div id={props.modalId} className="modal-container" onClick={close.bind(this)}>
+                {props.children}
+            </div>
+    )   
+    
 
 }
 

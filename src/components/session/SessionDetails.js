@@ -56,7 +56,7 @@ class SessionDetails extends Component {
                 json.students.forEach(student=>{
                     presentStudents[student.studentId]={
                         evaluation:"Medium",
-                        observation:"Not given"
+                        observation:"Write an observation"
                     }
                 });
                 this.setState({
@@ -181,28 +181,29 @@ class SessionDetails extends Component {
     render(){
         const sessionDone = this.state.session.sessionDone;
         return (
-            <div>
+            <div style={{width:'100%'}}>
                 {sessionDone?
                     <div>
-                    <h3>Mark Notes:</h3>
-                    <StudentsList
-                        students={this.state.students}
-                        presentStudents={this.state.presentStudents}
-                        handleNote = {this.handleNote.bind(this)}
-                        handleReview = {this.handleReview.bind(this)}
-                    />
+                        <h3>Mark Notes:</h3>
+                        <StudentsList
+                            students={this.state.students}
+                            presentStudents={this.state.presentStudents}
+                            handleNote = {this.handleNote.bind(this)}
+                            handleReview = {this.handleReview.bind(this)}
+                        />
                     </div>
                     :
                     <div>
-                    <h3>Mark absents:</h3>
-                    <StudentsList
-                        students={this.state.students}
-                        selectedStudents={this.state.absentStudents}
-                        handleSelect = {this.handleSelect.bind(this)}
-                    />
+                        <h3>Mark absents:</h3>
+                        <StudentsList
+                            students={this.state.students}
+                            selectedStudents={this.state.absentStudents}
+                            handleSelect = {this.handleSelect.bind(this)}
+                        />
                     </div>
                 }
                 <input 
+                    className='ino_button'
                     id="Add-button" 
                     type="submit" 
                     value="Submit" 

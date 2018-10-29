@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Input from "../Input"
 
-import {withRouter,Redirect} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 
 class Signup extends Component{
 

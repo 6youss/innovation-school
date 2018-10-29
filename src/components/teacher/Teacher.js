@@ -1,16 +1,19 @@
 import React, {Component} from 'react';
-import {NavLink} from 'react-router-dom'
 
 import AddTeacher from './AddTeacher'
 import TeachersList from './TeachersList';
+
+
+import TeacherDetails from './TeacherDetails'
+import PrivateRoute from '../PrivateRoute'
 
 class Teacher extends Component {
     
     
     state = {teachers : [],
-        newTeacher:true
+        newTeacher:false,
+        searchInput:""
     }
-    
     
     componentDidMount(){
         this.getTeachers();
@@ -27,31 +30,48 @@ class Teacher extends Component {
         });
     }
     
-    AddTeacher = ()=>{
+    addTeacher = ()=>{
         this.setState({
             newTeacher: !this.state.newTeacher    
         });
     }
+
+    onChangeHandler(e){
+        this.setState({
+            searchInput: e.target.value,
+        });
+    }
     
     render(){
+        const list = this.state.teachers
+        .filter(teacher => this.state.searchInput === '' 
+                || ( (teacher.firstName+" "+teacher.lastName).indexOf(this.state.searchInput) !== -1) );
         
         return (
-            <div>
-            { this.state.newTeacher && <AddTeacher updateTeachers = {this.getTeachers.bind(this)} />}
-            <div>
-                <div>
-                    <h1>Teachers</h1>
-                    <p onClick={this.AddTeacher} > Add teacher </p>
-                </div>
-                {
-                    this.state.teachers.length>0 ? 
-                        <TeachersList
-                            teachers={this.state.teachers}
-                        /> 
-                    : 
-                        <p>"Can't find any teacher..."</p>
+            <div style={{width:'100%'}}>
+                { this.state.newTeacher && 
+                    <AddTeacher 
+                        addTeacher = {this.addTeacher.bind(this)}
+                        updateTeachers = {this.getTeachers.bind(this)}
+                    />
                 }
-            </div>
+                <div  className="StudentsHeader">
+                    <div className="StudentsHeader">
+                        <h1 style={{margin:'0 30px 0 0'}}>Teachers</h1>
+                        <p className='addstudent' onClick={this.addTeacher} > Add teacher </p>
+                        
+                    </div>
+                    <input 
+                        className="search" 
+                        type="text" 
+                        placeholder="Search.." 
+                        onChange={this.onChangeHandler.bind(this)}
+                    />    
+                </div>
+                <TeachersList
+                        teachers={list}
+                />
+                <PrivateRoute rights={[0,1]} path={"/teacher/:id"} component = {TeacherDetails}/>
             </div>
         )
 

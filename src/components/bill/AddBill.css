@@ -44,7 +44,6 @@
 .validate{
   margin: 3px 0 3px 50px;
   float: right;
-  width: auto;
   background-color: forestgreen;
 }
 .cancel{

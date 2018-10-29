@@ -4,22 +4,23 @@ import {NavLink} from 'react-router-dom'
 class TeachersList extends Component {
     
     state = {
-        searchInput:""
+        
     }
     
-    onChangeHandler(e){
-        this.setState({
-            searchInput: e.target.value,
-        });
-    }
+   
     
     Teacher = ({teacherId,firstName,lastName,picture})=>{
         return (
-            <NavLink to={`/teacher/${teacherId}`}>
-            <li className="big">
-                <div className="img"><img className ="TeacherAvatar" src={`http://localhost:3001/uploads/${picture}`} alt={"Teacher Avatar"}></img></div>
+            <NavLink to={`/teacher/${teacherId}`} className="student-item-container">
+            <li className="student-list-item justify-center">
+                <img 
+                    className ="StudentAvatar"
+                    src={picture?`http://localhost:3001/uploads/${picture}`:"../default-avatar.png"}
+                    alt={"Teacher Avatar"}
+                    onError={(e)=>{e.target.src="../default-avatar.png"}}
+                >
+                </img>
                 <div className="center"><p>{firstName} {lastName}</p></div>
-                <div className="left"><p>Details</p></div>
             </li>
             </NavLink>
         )   
@@ -27,17 +28,15 @@ class TeachersList extends Component {
     
     render(){
         const list = this.props.teachers
-        .filter(teacher => this.state.searchInput === '' 
-                || ( (teacher.firstName+" "+teacher.lastName).indexOf(this.state.searchInput) !== -1) )
         .map(teacher => 
-            <this.Teacher key={teacher.teacherId} teacherId={teacher.teacherId} firstName={teacher.firstName} lastName={teacher.lastName} picture={teacher.picture}/>);
-
+            <this.Teacher 
+                key={teacher.teacherId}
+                {...teacher}
+            />
+        );
         return (
             <div>
-            <div className="TeacherList">
-                <div className="TeachersHeader">
-                    <input type="text" placeholder="Search.." className="Input" onChange={this.onChangeHandler.bind(this)}/>
-                </div>
+            <div className="list">
                 {
                     (list.length>0)? list : <p>"Can't find any teacher..."</p>
                 }

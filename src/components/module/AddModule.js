@@ -119,7 +119,7 @@ class AddModule extends Component{
                                 <p>Upload picture</p>
                             </div>
                         </div>
-                        <img src='../add_photo.svg'/>
+                        <img alt='addpic_icon' src='../add_photo.svg'/>
                     </div>
 
                     <div className='module-input'>

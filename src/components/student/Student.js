@@ -4,6 +4,8 @@ import AddStudent from './AddStudent'
 import StudentsList from './StudentsList';
 import StudentDetails from './StudentDetails'
 
+import PrivateRoute from '../PrivateRoute'
+
 class Student extends Component {
     
     initialStudents;
@@ -12,7 +14,6 @@ class Student extends Component {
         students : [],
         searchInput:"",
         newStudent:false,
-        studentIndex:-1
     }
     
     componentDidMount(){
@@ -49,13 +50,6 @@ class Student extends Component {
         });
     }
 
-    handleClick=(e)=>{
-        if(e.target.className === 'modal-container')
-            this.setState({
-                studentIndex:-1
-            });
-    }
-
     render(){
         const list = this.state.students
         .filter(student => this.state.searchInput === '' 
@@ -63,6 +57,7 @@ class Student extends Component {
         
         return (
             <div style={{width:'100%'}}>
+            
                 { this.state.newStudent && 
                     <AddStudent 
                         updateStudents = {this.getStudents.bind(this)}
@@ -75,23 +70,17 @@ class Student extends Component {
                         <p className='addstudent' onClick={this.addStudent}>Add</p>
                     </div>
                     <input 
+                        className="search" 
                         type="text" 
                         placeholder="Search.." 
-                        className="search" 
                         onChange={this.onChangeHandler.bind(this)}
                     />
                 </div>
                 <ul className="list">
                     <StudentsList students={list} handleDetails={this.handleDetails.bind(this)}/>
                 </ul>
-                {
-                    this.state.studentIndex>-1 && 
-                    <StudentDetails 
-                        student={this.state.students[this.state.studentIndex]}
-                        handleClick={this.handleClick}
-                    />
-                }
-                
+
+                <PrivateRoute rights={[0,1]} path={"/student/:id"} component = {StudentDetails}/>
             </div>
         );
     }

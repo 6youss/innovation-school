@@ -10,7 +10,7 @@ const PaymentsList = ({payments,selectedPayments,handleSelect}) => {
                         <p>Group {groupId}</p>
                     </div>                    
                     <div>
-                        <p>{paymentDate}</p>
+                        <p>{paymentDate+' '+paymentDone}</p>
                     </div>
                     <div>
                         <p>{paymentPrice} DA</p>

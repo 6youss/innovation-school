@@ -1,46 +1,32 @@
 
 .navbar {
-    overflow: hidden;
+    display: flex;
     background-color: var(--color1);
-    
-    padding-left:2%;
 }
 
 .navbar .navbar-right {
-    float: left;
-    margin: 0px 0px 0px 30px;
-}
-.navbar .branding {
-    float: left;
-    padding: 10px 0px 10px 0px;
-}
-.navbar a {
-    float: left;
-    color: white;
-    text-align: center;
-    padding: 16px 16px 0px 0px;
-    text-decoration: none;
-}
-
-.navbar h3 {
-    float: left;
+    flex-basis: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     color: white;
     text-align: center;
     text-decoration: none;
     padding: 0;
 }
-
-.Footer{
-    display: flex;
-    flex-direction: column;
-    background-color: var(--color3);
-    min-height: 100px;
+.navbar .branding {
+    padding: 10px;
+}
+.navbar a {
+    color: white;
+    text-decoration: none;
+    outline : none;
 }
 
-.Footer h3 {
-    font-size: 11px;
-    display: block;
+.navbar h3 {
+    font-family: montserrat;
+    font-size: 18px;
     color: white;
-    padding: 3px 10%;
     text-decoration: none;
+    border: none;
 }

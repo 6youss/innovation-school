@@ -5,6 +5,9 @@ import GroupsList from './GroupsList'
 import {CSSTransition} from 'react-transition-group';
 import AddGroup from './AddGroup'
 
+import GroupDetails from './GroupDetails'
+
+import PrivateRoute from '../PrivateRoute'
 
 class Group extends Component {
     
@@ -64,6 +67,7 @@ class Group extends Component {
         
         return (
             <div style={{width:'50%'}}>
+                <PrivateRoute rights={[0,1]} exact path={"/group/:id"} component = {GroupDetails}/>
                 <div className="StudentsHeader">
                     <div className="StudentsHeader">
                         <h1 style={{margin:'0 30px 0 0'}}>Groups</h1>

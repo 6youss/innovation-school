@@ -16,11 +16,7 @@ class AddStudent extends Component{
     }
     
     uploadPicture = (e,setavatar) =>{
-        
         let avatar = this.avatar;
-        
-        
-        
         if(!setavatar){
             this.fileInput.click();
         }else{
@@ -29,12 +25,7 @@ class AddStudent extends Component{
                 avatar.src = e.target.result;
             };
             reader.readAsDataURL(this.fileInput.files[0]);
-        }
-            // if (this.fileInput.files && this.fileInput.files[0]) {
-                
-            // }
-        
-      
+        }      
     }
 
     submit = ()=>{
@@ -132,7 +123,7 @@ class AddStudent extends Component{
                                 <p>Upload picture</p>
                             </div>
                         </div>
-                        <img src='../add_photo.svg'/>
+                        <img alt='addpic_icon' src='../add_photo.svg'/>
                     </div>
                     
                     <div className="InputContainerStyle">

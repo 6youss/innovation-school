@@ -5,7 +5,6 @@ class Lougout extends Component{
   
     render(){
         localStorage.removeItem('token');
-        localStorage.removeItem('user');
         return (
             <Redirect to='/signin'/>
         )   

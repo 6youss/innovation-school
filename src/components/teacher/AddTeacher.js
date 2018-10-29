@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import Input from "../Input"
+import Modal from "../Modal"
 
 class AddTeacher extends Component{
 
@@ -14,22 +15,17 @@ class AddTeacher extends Component{
         this.input = document.getElementById("fileInput");
     }
     
-    uploadPicture = (e) =>{
-
-        const avatar = document.getElementById("TeacherPicture");
-        
-        if(e.target.className === "hoverStyle"){
-            this.input.click();
+    uploadPicture = (e,setavatar) =>{
+        let avatar = this.avatar;
+        if(!setavatar){
+            this.fileInput.click();
         }else{
-            if (this.input.files && this.input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    avatar.src = e.target.result;
-                };
-                reader.readAsDataURL(this.input.files[0]);
-            }
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                avatar.src = e.target.result;
+            };
+            reader.readAsDataURL(this.fileInput.files[0]);
         }
-      
     }
 
     submit = ()=>{
@@ -51,6 +47,7 @@ class AddTeacher extends Component{
                     .then(response => response.json())
                     .then(json=>{
                         this.props.updateTeachers();
+                        this.props.addTeacher();
                         console.log("Added Teacher: "+ json);
                     });
         }
@@ -109,8 +106,7 @@ class AddTeacher extends Component{
     render(){
         
         return (
-            <div className='add-teacher-container'>
-                <h1>Add Teacher</h1>
+            <Modal modalId='add-student' closeMe={this.props.addTeacher}>
                 <div className="row-container">
                     <div className="StudentNewPicParent">
                         <div className="StudentNewPic">
@@ -125,7 +121,7 @@ class AddTeacher extends Component{
                                 <p>Upload picture</p>
                             </div>
                         </div>
-                        <img src='../add_photo.svg'/>
+                        <img alt='addpic_icon' src='../add_photo.svg'/>
                     </div>
 
                     <div className="InputContainerStyle">
@@ -189,11 +185,20 @@ class AddTeacher extends Component{
                                 error={this.state.errors["parentPhone"]}
                             />
                         </div>
-                        <input id="Add-button" type="submit" value="Add" onClick={this.submit}/>
-                        <input id="fileInput" type="file" accept="image/*" style={{display:"none"}} onChange={this.uploadPicture}/>
+                        <input className='ino_button' id="Add-button" type="submit" value="Add" onClick={this.submit}/>
+                        <input 
+                            id="fileInput" 
+                            type="file" 
+                            accept="image/*" 
+                            style={{display:"none"}} 
+                            onChange={this.uploadPicture.bind(this,true)}
+                            ref={fileInput=>this.fileInput=fileInput}
+                        />
+
                     </div>
                 </div>
-            </div>
+                
+            </Modal>
         )   
     }
 }

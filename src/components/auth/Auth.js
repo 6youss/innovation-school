@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Input from "../Input"
 
-import {withRouter,Redirect} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 
 class Auth extends Component{
 
@@ -17,7 +17,7 @@ class Auth extends Component{
     submit = (e)=>{
       e.preventDefault();
       if(this.validateForm()){
-          fetch('http://localhost:3001/user/signin',{
+          fetch('http://192.168.1.5:3001/user/signin',{
               method:'POST',
               headers:{
                 'Content-Type': 'application/json'
@@ -34,7 +34,6 @@ class Auth extends Component{
             }else{
                 if(res.token){
                     localStorage.setItem('token',res.token);
-                    localStorage.setItem('user',JSON.stringify(res.user[0]));
                     this.props.history.push('/student');
                 }
             }
@@ -104,17 +103,21 @@ class Auth extends Component{
 
     render(){
 
-        
-        
         return (
             <div className="add-room-container">
+                { this.props.location.state &&
+                <div>
+                    <h1>You must Sign in to view this page</h1>
+                </div>
+                }
+                
                 <h1>Sign in</h1>
                 <form className='add-room-input' onSubmit={this.submit}>
                     <Input
                         name="userName"
-                        label="userName"
+                        label="User Name"
                         type="text"
-                        placeholder="userName..."
+                        placeholder="User Name..."
                         handlechange={this.handleChange.bind(this)}
                         error={this.state.errors["userName"]}
                     />
