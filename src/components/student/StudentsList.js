@@ -11,7 +11,7 @@ const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,hand
                 <div className="student-list-item">
                     <img
                         className ="StudentAvatar"
-                        src={picture?`http://localhost:3001/uploads/${picture}`:"../default-avatar.png"}
+                        src={picture?`http://192.168.1.5:3001/uploads/${picture}`:"../default-avatar.png"}
                         alt={"Student Avatar"}
                         onError={(e)=>{e.target.src="../default-avatar.png"}}
                     />                
@@ -29,7 +29,7 @@ const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,hand
                     
                         <img
                             className ="StudentAvatar"
-                            src={picture?`http://localhost:3001/uploads/${picture}`:"../default-avatar.png"}
+                            src={picture?`http://192.168.1.5:3001/uploads/${picture}`:"../default-avatar.png"}
                             alt={"Student Avatar"}
                             onError={(e)=>{e.target.src="../default-avatar.png"}}
                         />
@@ -58,7 +58,7 @@ const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,hand
                     <li className="student-list-item justify-center" onClick={this.changeObserv.bind(this)}>
                         <img
                             className ="StudentAvatar"
-                            src={this.props.picture?`http://localhost:3001/uploads/${this.props.picture}`:"../default-avatar.png"}
+                            src={this.props.picture?`http://192.168.1.5:3001/uploads/${this.props.picture}`:"../default-avatar.png"}
                             alt={"Student Avatar"}
                             onError={(e)=>{e.target.src="../default-avatar.png"}}
                         />

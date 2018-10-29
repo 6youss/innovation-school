@@ -38,7 +38,7 @@ class AddStudent extends Component{
             if (this.fileInput.files && this.fileInput.files[0])
                 formData.append("picture",this.fileInput.files[0]);
             
-            const url = "http://localhost:3001/student/";
+            const url = "http://192.168.1.5:3001/student/";
     
             return  fetch(url, {
                         method: "POST",

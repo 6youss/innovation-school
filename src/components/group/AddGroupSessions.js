@@ -48,7 +48,7 @@ class AddGroupSessions extends Component{
     }
 
     getRooms(){
-        fetch("http://localhost:3001/room/")
+        fetch("http://192.168.1.5:3001/room/")
         .then(res=>res.json())
         .then(json=>{
             this.setState({
@@ -69,7 +69,7 @@ class AddGroupSessions extends Component{
             });
             console.log(session);
     
-            fetch("http://localhost:3001/session/", {
+            fetch("http://192.168.1.5:3001/session/", {
                 method: "POST",        
                 headers:{
                     'Content-Type': 'application/json'

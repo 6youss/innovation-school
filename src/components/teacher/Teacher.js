@@ -20,7 +20,7 @@ class Teacher extends Component {
     }
 
     getTeachers(){
-        fetch("http://localhost:3001/teacher")
+        fetch("http://192.168.1.5:3001/teacher")
         .then( res => res.json())
         .then(json=>{
           this.setState({

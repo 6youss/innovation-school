@@ -23,13 +23,13 @@ class GroupDetails extends Component {
     groupId = this.props.match.params.id;
 
     componentDidMount(){
-        const group = fetch("http://localhost:3001/group/"+this.groupId)
+        const group = fetch("http://192.168.1.5:3001/group/"+this.groupId)
         .then( res => res.json()),
 
-        students = fetch("http://localhost:3001/group/"+this.groupId+"/students")
+        students = fetch("http://192.168.1.5:3001/group/"+this.groupId+"/students")
         .then( res => res.json()),
 
-        sessions = fetch("http://localhost:3001/group/"+this.groupId+"/sessions")
+        sessions = fetch("http://192.168.1.5:3001/group/"+this.groupId+"/sessions")
         .then( res => res.json());
 
         Promise.all([group,students,sessions])
@@ -43,7 +43,7 @@ class GroupDetails extends Component {
     }
 
     updateStudents(){
-        fetch("http://localhost:3001/group/"+this.groupId+"/students")
+        fetch("http://192.168.1.5:3001/group/"+this.groupId+"/students")
         .then( res => res.json())
         .then(students=>{
             this.setState({students:students.students});
@@ -52,7 +52,7 @@ class GroupDetails extends Component {
     }
 
     updateSessions(){
-        fetch("http://localhost:3001/group/"+this.groupId+"/sessions")
+        fetch("http://192.168.1.5:3001/group/"+this.groupId+"/sessions")
         .then( res => res.json())
         .then(sessions=>{
             this.setState({sessions:sessions.sessions});

@@ -17,7 +17,7 @@ class Signup extends Component{
     submit = (e)=>{
       e.preventDefault();
       if(this.validateForm()){
-          fetch('http://localhost:3001/user/signup',{
+          fetch('http://192.168.1.5:3001/user/signup',{
               method:'POST',
               headers:{
                 'Content-Type': 'application/json'

@@ -23,7 +23,7 @@ class Group extends Component {
     }
 
     getGroups(){
-        fetch("http://localhost:3001/group")
+        fetch("http://192.168.1.5:3001/group")
         .then( res => res.json())
         .then(json=>{
           this.setState({

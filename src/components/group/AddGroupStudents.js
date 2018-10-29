@@ -28,7 +28,7 @@ class AddGroupStudents extends Component{
     // }
 
     getOtherStudents(){
-        fetch("http://localhost:3001/group/"+this.props.group.groupId+"/students")
+        fetch("http://192.168.1.5:3001/group/"+this.props.group.groupId+"/students")
         .then(res=>res.json())
         .then(json=>{
             this.setState({
@@ -48,7 +48,7 @@ class AddGroupStudents extends Component{
                                     );
                     
                     //add the student to this group
-                    const addstudent=fetch(`http://localhost:3001/group/${groupId}/${studentId}`, 
+                    const addstudent=fetch(`http://192.168.1.5:3001/group/${groupId}/${studentId}`, 
                                     {
                                         method: "POST",        
                                         headers:{
@@ -66,7 +66,7 @@ class AddGroupStudents extends Component{
                             paymentPrice: this.state.fields["paymentPrice"]
                         }
                     );
-                    const addpaymentinfo=fetch(`http://localhost:3001/payment/info`, 
+                    const addpaymentinfo=fetch(`http://192.168.1.5:3001/payment/info`, 
                                         {
                                             method: "POST",        
                                             headers:{
@@ -83,7 +83,7 @@ class AddGroupStudents extends Component{
                                           parseInt(this.state.fields["sessionCount"],10)
                         }
                     );
-                    const addpayment=fetch(`http://localhost:3001/payment/`, 
+                    const addpayment=fetch(`http://192.168.1.5:3001/payment/`, 
                                     {
                                         method: "POST",        
                                         headers:{

@@ -19,7 +19,7 @@ class TeacherDetails extends Component {
     
     componentDidMount(){
         
-        fetch("http://localhost:3001/teacher/"+this.teacherId)
+        fetch("http://192.168.1.5:3001/teacher/"+this.teacherId)
         .then( res => res.json())
         .then(json=>{
             if(json.teacher.length>0)
@@ -28,7 +28,7 @@ class TeacherDetails extends Component {
             });
         });
 
-        fetch("http://localhost:3001/teacher/"+this.teacherId+"/sessions")
+        fetch("http://192.168.1.5:3001/teacher/"+this.teacherId+"/sessions")
         .then( res => res.json())
         .then(json=>{
             

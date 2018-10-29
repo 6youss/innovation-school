@@ -41,7 +41,7 @@ class AddModule extends Component{
             if (this.input.files && this.input.files[0])
                 formData.append("picture",this.input.files[0]);
             
-            const url = "http://localhost:3001/module/";
+            const url = "http://192.168.1.5:3001/module/";
     
             return  fetch(url, {
                         method: "POST",

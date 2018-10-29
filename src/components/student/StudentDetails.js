@@ -24,7 +24,7 @@ class StudentDetails extends Component {
     
     componentDidMount(){
         console.log(this.props);
-        fetch("http://localhost:3001/student/"+this.studentId)
+        fetch("http://192.168.1.5:3001/student/"+this.studentId)
         .then( res => res.json())
         .then(json=>{
             if(json.student.length>0)
@@ -33,7 +33,7 @@ class StudentDetails extends Component {
             });
         });
 
-        fetch("http://localhost:3001/student/"+this.studentId+"/payments")
+        fetch("http://192.168.1.5:3001/student/"+this.studentId+"/payments")
         .then( res => res.json())
         .then(json=>{
             this.setState({
@@ -41,7 +41,7 @@ class StudentDetails extends Component {
             });
         });
 
-        fetch("http://localhost:3001/student/"+this.studentId+"/groups")
+        fetch("http://192.168.1.5:3001/student/"+this.studentId+"/groups")
         .then( res => res.json())
         .then(json=>{
             this.setState({
@@ -49,7 +49,7 @@ class StudentDetails extends Component {
             });
         });
 
-        fetch("http://localhost:3001/student/"+this.studentId+"/sessions")
+        fetch("http://192.168.1.5:3001/student/"+this.studentId+"/sessions")
         .then( res => res.json())
         .then(json=>{
             this.setState({
@@ -104,7 +104,7 @@ class StudentDetails extends Component {
                 <div className="student-details" ref={ref=>this.detailsContainer=ref}>
                     <div className='details-row-container1'>
                         <img className ="student-picture"
-                            src={`http://localhost:3001/uploads/${picture}`}
+                            src={`http://192.168.1.5:3001/uploads/${picture}`}
                             alt={"Student Avatar"}
                             onError={(e)=>{e.target.src="../default-avatar.png"}}
                         />

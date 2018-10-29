@@ -11,7 +11,7 @@ class AddBill extends Component {
     }
 
     getPdf(payments){
-        fetch('http://localhost:3001/bill',{
+        fetch('http://192.168.1.5:3001/bill',{
             headers:{
                 'Content-Type': 'application/json'
             },
@@ -35,7 +35,7 @@ class AddBill extends Component {
     }
 
     validateDoc=()=>{
-        fetch('http://localhost:3001/bill',{
+        fetch('http://192.168.1.5:3001/bill',{
             headers:{
                 'Content-Type': 'application/json'
             },
