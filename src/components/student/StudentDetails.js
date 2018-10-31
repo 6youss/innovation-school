@@ -58,6 +58,23 @@ class StudentDetails extends Component {
         });
     }
 
+    deleteStudent=()=>{
+        var result = window.confirm("Do you really want to delete this student?");
+        if (result) {
+            fetch("http://192.168.1.5:3001/student/"+this.studentId, {
+                method: "DELETE"
+            })
+            .then(response => response.json())
+            .then(json=>{
+                if(!json.error){
+                    this.props.history.push('/student');
+                }else{
+                    console.log(json.error);
+                } 
+            });
+        }
+    }
+
     handleSelect(payment){
         let selectedPayments = this.state.selectedPayments;
         let paymentIndex = selectedPayments.findIndex(selected=>selected.paymentId===payment.paymentId);
@@ -118,7 +135,7 @@ class StudentDetails extends Component {
                         </div>
                         <div>
                             <p>edit</p>
-                            <p>delete</p>
+                            <div onClick={this.deleteStudent} className='delete'>X</div>
                         </div>
                     </div>
                     <div className='details-row-container2'>

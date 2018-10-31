@@ -20,6 +20,10 @@ class Student extends Component {
         this.getStudents();
     }
 
+    componentWillReceiveProps(){
+        this.getStudents();
+    }
+
     getStudents(){
         fetch("http://192.168.1.5:3001/student")
         .then( res => res.json())

@@ -28,9 +28,9 @@ class AddStudent extends Component{
         }      
     }
 
-    submit = ()=>{
+    submit = (e)=>{
+        e.preventDefault();
         if(this.validateForm()){
-
             var formData = new FormData();
             Object.keys(this.state.fields).forEach(fieldName=>{
                 formData.append(fieldName,this.state.fields[fieldName]);
@@ -38,16 +38,18 @@ class AddStudent extends Component{
             if (this.fileInput.files && this.fileInput.files[0])
                 formData.append("picture",this.fileInput.files[0]);
             
-            const url = "http://192.168.1.5:3001/student/";
-    
-            return  fetch(url, {
+            return  fetch("http://192.168.1.5:3001/student/", {
                         method: "POST",
                         body: formData
                     })
                     .then(response => response.json())
                     .then(json=>{
-                        this.props.updateStudents();
-                        console.log("added student");
+                        if(!json.error){
+                            this.props.updateStudents();
+                            this.props.addStudent();
+                        }else{
+                            console.log(json.error);
+                        } 
                     });
         }
 
@@ -70,7 +72,7 @@ class AddStudent extends Component{
             errors:{...errors,...this.state.errors}
         });
         
-        return Object.keys(this.state.errors).length === 0;
+        return Object.keys(this.state.errors).length === 0 && Object.keys(errors).length === 0;
     }
 
     handleChange(event) {
@@ -108,7 +110,7 @@ class AddStudent extends Component{
         
         return (
             <Modal modalId='add-student' closeMe={this.props.addStudent}>
-                <div className="row-container">
+                <form className="row-container" onSubmit={this.submit}>
                 
                     <div className="StudentNewPicParent">
                         <div className="StudentNewPic">
@@ -187,7 +189,7 @@ class AddStudent extends Component{
                                 error={this.state.errors["parentPhone"]}
                             />
                         </div>
-                        <input className='ino_button' id="Add-button" type="submit" value="Add" onClick={this.submit}/>
+                        <input className='ino_button' id="Add-button" type="submit" value="Add"/>
                         <input 
                             id="fileInput" 
                             type="file" 
@@ -197,7 +199,7 @@ class AddStudent extends Component{
                             ref={fileInput=>this.fileInput=fileInput}
                         />
                     </div>
-                </div>
+                </form>
             </Modal>
         )   
     }

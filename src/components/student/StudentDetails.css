@@ -75,6 +75,16 @@
     flex-wrap: wrap;
 }
 
+.delete{
+    width: 16px;
+    height: 16px;
+    padding: 10px;
+    background-color: red;
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+}
+
 
 /* @keyframes pdfkeys{
     from{width: 0%;}

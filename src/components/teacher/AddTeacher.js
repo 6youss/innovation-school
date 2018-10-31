@@ -58,7 +58,7 @@ class AddTeacher extends Component{
         
         let fields = this.state.fields;
         
-        const fieldNames = ["firstName","lastName","birthday","adress","phone","parentPhone"];
+        const fieldNames = ["firstName","lastName"];//,"birthday","adress","phone","parentPhone"];
         const errors={};
         
         fieldNames.forEach(fieldName=>{
