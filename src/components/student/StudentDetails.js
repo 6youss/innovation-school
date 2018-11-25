@@ -120,11 +120,11 @@ class StudentDetails extends Component {
                 >
                 <div className="student-details" ref={ref=>this.detailsContainer=ref}>
                     <div className='details-row-container1'>
-                        <img className ="student-picture"
+                        <img className ="student-picture student-pic"
                             src={`http://192.168.1.5:3001/uploads/${picture}`}
                             alt={"Student Avatar"}
                             onError={(e)=>{e.target.src="../default-avatar.png"}}
-                        />
+                        /> 
                         <div className ="student-props">
                             <h1>{firstName} {lastName}</h1>
                             <p>Inscription date: 01/01/19</p>
@@ -133,9 +133,14 @@ class StudentDetails extends Component {
                             <p>Adress: </p>
                             <p>Parent Number: </p>
                         </div>
-                        <div>
-                            <p>edit</p>
-                            <div onClick={this.deleteStudent} className='delete'>X</div>
+                        <div className ="buttons">
+                            <button onClick={this.deleteStudent} className="button button-edit">
+                                Edit
+                            </button>
+                            <p/>
+                            <button onClick={this.deleteStudent} className="button button-delete">
+                                Delete
+                            </button>
                         </div>
                     </div>
                     <div className='details-row-container2'>

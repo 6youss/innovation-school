@@ -6,32 +6,24 @@ import {
        } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute'
 
-
-
 /** DESIGN */
 import './App.css';
 import './components/Header.css';
-
 //student
 import './components/student/Student.css';
 import './components/student/AddStudent.css';
 import './components/student/StudentsList.css';
 import './components/student/StudentDetails.css';
-
 //group
 import './components/group/AddGroup.css';
 import './components/group/GroupDetails.css';
 import './components/group/AddGroupStudents.css';
-
 //bill
 import './components/bill/AddBill.css';
-
 //module
 import './components/module/AddModule.css';
-
 //room
 import './components/room/AddRoom.css';
-
 
 /** COMPONENTS */
 import Header from './components/Header'

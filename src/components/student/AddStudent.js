@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import Input from "../Input"
 import Modal from "../Modal"
 
-class AddStudent extends Component{
+class AddStudent extends Component {
 
     state = {
         fields:{},
@@ -189,7 +189,7 @@ class AddStudent extends Component{
                                 error={this.state.errors["parentPhone"]}
                             />
                         </div>
-                        <input className='ino_button' id="Add-button" type="submit" value="Add"/>
+                        <input className="btn btn-primary" id="Add-button" type="submit" value="Add"/>
                         <input 
                             id="fileInput" 
                             type="file" 
