@@ -25,15 +25,13 @@
 }
 
 .details-row-container1 .student-props{
-
     flex-basis: 40%;
 }
 .details-row-container1 .student-pic{
-    
+    flex-basis: 30%;
 }
 .details-row-container1 .buttons{
-    
-    flex-basis: 5%;
+    flex-basis: 10%;
     display: flex;
     flex-direction: column;
 }
@@ -94,18 +92,20 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    border: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
 .button-delete{
-    background-color: var(--delete-color);
+    background-color: var(--delete-color) ;
     color: white;
 }
 .button-delete:hover{
     background-color: var(--delete-color-hover);
 }
 .button-delete:focus{
-    border: 2px solid var(--delete-color-hover);
+    box-shadow: 0px 0px 1px 3px var(--delete-color-outline);
 }
 
 .button-delete::before{
@@ -117,34 +117,33 @@
     background-size: 20px 20px;
 }
 
-
-/* @keyframes pdfkeys{
-    from{width: 0%;}
-    to{width: 80%;}
-}
-
-.bill-entered{
-    background: red;
-}
-.bill-entering{
-    animation: pdfkeys 0.4s;
-}
-@keyframes negpdfkeys{
-    from{width: 80%;}
-    to{width: 0%;}
-}
-.bill-exiting{
-    animation: negpdfkeys 0.4s;
-} */
-
 @media only screen and (max-width: 768px){
     /* For mobile phones: */
+    
     .details-row-container2>div{
         flex-basis: 100%;
     }
+
     .student-details{
-        flex-basis: 90%;
+       width: 100%;
     }
+    
+    .details-row-container1 .student-props{
+        order:3;
+        flex-basis: 90%;
+        margin: 10px 0;
+    }
+    
+    .details-row-container1 .student-pic{
+        order:1;
+        flex-basis: 70%;
+    }
+
+    .details-row-container1 .buttons{
+        order:2;
+        flex-basis: 20%;
+    }
+
 }
 
 

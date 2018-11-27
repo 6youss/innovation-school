@@ -7,7 +7,7 @@
   flex-basis: 100%;
 }
 .row-container{
-  overflow: auto;
+  
   width: 80%;
   margin: 0 auto;
   display: flex;
@@ -69,7 +69,8 @@
 }
 
 
-.perso-input-text{
+.perso-input-text,.react-datepicker__input-container input[type='text']{
+  flex-basis: 100%;
   padding: 8px 0px 8px 5px;
   margin: 0px 0px 5px 0px;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.7);
@@ -137,6 +138,14 @@
 
 .StudentNewPic:hover .hoverStyle{
   visibility: visible;
+}
+
+.react-datepicker-wrapper{
+  flex-basis: 100%;
+}
+
+.react-datepicker__input-container{
+  display: flex !important;
 }
 
 

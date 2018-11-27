@@ -1,10 +1,11 @@
 .navbar {
     display: flex;
+    flex-wrap: wrap;
     background-color: var(--color1);
 }
 
 .navbar .navbar-right {
-    flex-basis: 50%;
+    flex-basis: 40%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -13,19 +14,48 @@
     text-decoration: none;
     padding: 0;
 }
+
+.navbar-left{
+    flex-basis:10%;
+    display:flex;
+    justify-content:space-around;
+}
 .navbar .branding {
     padding: 10px;
 }
-.navbar a {
-    color: white;
-    text-decoration: none;
-    outline : none;
-}
 
-.navbar h3 {
-    font-family: montserrat;
-    font-size: 18px;
+.navbar-item{
+    opacity: 0.70;
     color: white;
     text-decoration: none;
     border: none;
+}
+
+.active{
+    opacity: 1;
+}
+
+
+@media only screen and (max-width: 768px){
+    /* For mobile phones: */
+    .navbar-right{
+        flex-basis: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        
+    }
+    .navbar-left{
+        flex-basis:100%;
+        display:flex;
+        justify-content:space-around;
+    }
+    .navbar-item{
+        flex-basis: 100%;
+        padding: 5px 0;
+    }
+    .navbar{
+        justify-content: center;
+    }
+
 }

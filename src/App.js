@@ -24,6 +24,8 @@ import './components/bill/AddBill.css';
 import './components/module/AddModule.css';
 //room
 import './components/room/AddRoom.css';
+//Modal
+import './components/Modal.css';
 
 /** COMPONENTS */
 import Header from './components/Header'
@@ -32,6 +34,7 @@ import NotFound from './components/NotFound'
 import Auth from './components/auth/Auth'
 import Signup from './components/auth/Signup'
 import Logout from './components/auth/Logout'
+
 
 import Student from './components/student/Student'
 //import StudentDetails from './components/student/StudentDetails'

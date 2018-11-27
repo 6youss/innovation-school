@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-
-
 import Input from "../Input"
 import Modal from "../Modal"
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class AddStudent extends Component {
 
@@ -33,6 +33,7 @@ class AddStudent extends Component {
         if(this.validateForm()){
             var formData = new FormData();
             Object.keys(this.state.fields).forEach(fieldName=>{
+                
                 formData.append(fieldName,this.state.fields[fieldName]);
             });
             if (this.fileInput.files && this.fileInput.files[0])
@@ -76,6 +77,7 @@ class AddStudent extends Component {
     }
 
     handleChange(event) {
+        
         let fields = this.state.fields,
         errors = this.state.errors,
         fieldName = event.target.name,
@@ -103,7 +105,18 @@ class AddStudent extends Component {
             default:
             break;
         }
+        
         this.setState({fields,errors});
+    }
+
+    handleDate=(date)=>{
+        
+        this.setState({
+            fields:{...this.state.fields,
+                selectedDate:date,
+                birthday: date.toISOString().slice(0,10)
+            }
+        });
     }
 
     render(){
@@ -150,14 +163,12 @@ class AddStudent extends Component {
                             />
                         </div>
                         <div className="PersoInput">
-                            <Input 
-                                name="birthday" 
-                                label="Birthday" 
-                                type="text" 
-                                placeholder="Birthday..." 
-                                handlechange={this.handleChange.bind(this)}
-                                error={this.state.errors["birthday"]}
-                            />
+                        <p style={{margin: '0px 0px 3px'}}>Birthday</p>
+                        <DatePicker
+                            selected={this.state.fields.selectedDate}
+                            onChange={this.handleDate}
+                            placeholderText="Click or write to set a date"
+                        />
                         </div>
                         <div className="PersoInput">
                             <Input 
@@ -189,6 +200,7 @@ class AddStudent extends Component {
                                 error={this.state.errors["parentPhone"]}
                             />
                         </div>
+
                         <input className="btn btn-primary" id="Add-button" type="submit" value="Add"/>
                         <input 
                             id="fileInput" 
