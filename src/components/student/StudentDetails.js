@@ -8,11 +8,12 @@ import PaymentsList from '../payment/PaymentsList';
 import GroupsList from '../group/GroupsList';
 import SessionsList from '../session/SessionsList';
 import AddBill from '../bill/AddBill';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class StudentDetails extends Component {
 
     state = {
-        student:{firstName:'',lastName:'',picture:''},
+        student:{},
         payments:[],
         groups:[],
         sessions:[],
@@ -23,14 +24,13 @@ class StudentDetails extends Component {
     studentId = this.props.match.params.id;
     
     componentDidMount(){
-        console.log(this.props);
         fetch("http://192.168.1.5:3001/student/"+this.studentId)
         .then( res => res.json())
         .then(json=>{
             if(json.student.length>0)
-            this.setState({
-                student : json.student[0]
-            });
+                this.setState({
+                    student : json.student[0]
+                });
         });
 
         fetch("http://192.168.1.5:3001/student/"+this.studentId+"/payments")
@@ -105,8 +105,17 @@ class StudentDetails extends Component {
         });
     }
     render(){
-        
-        const {firstName,lastName,picture} = this.state.student;
+        const {
+               firstName, 
+               lastName,
+               sex, 
+               picture, 
+               birthday, 
+               adress, 
+               phone, 
+               parentPhone, 
+               inscriptionDate
+            } = this.state.student;
         return (
             <Modal modalId={'studentId'} closeMe={this.props.history.goBack}>
             
@@ -123,23 +132,38 @@ class StudentDetails extends Component {
                         <img className ="student-picture student-pic"
                             src={`http://192.168.1.5:3001/uploads/${picture}`}
                             alt={"Student Avatar"}
-                            onError={(e)=>{e.target.src="../default-avatar.png"}}
+                            onError={(e)=>{e.target.src=sex?"../default-avatar.png":"../default-avatar-female.png"}}
                         /> 
                         <div className ="student-props">
                             <h1>{firstName} {lastName}</h1>
-                            <p>Inscription date: 01/01/19</p>
-                            <p>Birthday: 01/01/19</p>
-                            <p>Phone Number: </p>
-                            <p>Adress: </p>
-                            <p>Parent Number: </p>
+                            <p>
+                                <FontAwesomeIcon className='button-icon' icon='address-book'/>
+                                <strong>Adress:</strong> {adress}
+                            </p>
+                            <p>
+                                <FontAwesomeIcon className='button-icon' icon='sign-in-alt'/>
+                                <strong>Inscription date:</strong> {inscriptionDate}
+                            </p>
+                            <p>
+                                <FontAwesomeIcon className='button-icon' icon='birthday-cake'/>
+                                <strong>Birthday:</strong> {birthday}
+                            </p>
+                            <p>
+                                <FontAwesomeIcon className='button-icon' icon='phone'/>
+                                <strong>Phone Number:</strong> {phone}
+                            </p>
+                            <p>
+                                <FontAwesomeIcon className='button-icon' icon='user-tie'/>
+                                <strong>Parent Number:</strong> {parentPhone}
+                            </p>
                         </div>
                         <div className ="buttons">
                             <button onClick={this.deleteStudent} className="button button-edit">
-                                Edit
+                                <FontAwesomeIcon className='button-icon' icon="edit"/>Edit
                             </button>
                             <p/>
                             <button onClick={this.deleteStudent} className="button button-delete">
-                                Delete
+                                <FontAwesomeIcon className='button-icon' icon="trash-alt"/>Delete
                             </button>
                         </div>
                     </div>

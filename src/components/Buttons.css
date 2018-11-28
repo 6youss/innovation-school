@@ -1,0 +1,38 @@
+.button {
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  border: 1px solid transparent;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.button-delete{
+  background-color: var(--delete-color) ;
+  color: white;
+}
+.button-delete:hover{
+  background-color: var(--delete-color-hover);
+}
+.button-delete:focus{
+  box-shadow: 0px 0px 1px 4px var(--delete-color-outline);
+}
+
+.button-edit{
+  background-color: var(--edit-color) ;
+  color: white;
+}
+.button-edit:hover{
+  background-color: var(--edit-color-hover);
+}
+.button-edit:focus{
+  box-shadow: 0px 0px 1px 4px var(--edit-color-outline);
+}
+.button-icon{
+  font-size: 17px;
+  display: inline-block;
+  margin: 0 5px 0 0;
+}

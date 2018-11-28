@@ -9,6 +9,7 @@ import PrivateRoute from './components/PrivateRoute'
 /** DESIGN */
 import './App.css';
 import './components/Header.css';
+import './components/Buttons.css';
 //student
 import './components/student/Student.css';
 import './components/student/AddStudent.css';
@@ -52,7 +53,10 @@ import SessionDetails from './components/session/SessionDetails'
 import Payment from './components/payment/Payment'
 import PaymentDetails from './components/payment/PaymentDetails'
 
-
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTrashAlt,faEdit,faAddressBook,faSignInAlt,faBirthdayCake,faPhone,faUserTie,faUserPlus} 
+       from '@fortawesome/free-solid-svg-icons'
+library.add(faTrashAlt,faEdit,faAddressBook,faSignInAlt,faBirthdayCake,faPhone,faUserTie,faUserPlus);
 
 class App extends Component {
 

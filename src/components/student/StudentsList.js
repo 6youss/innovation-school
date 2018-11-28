@@ -5,15 +5,19 @@ import Loader from '../HOC/Loader';
 
 const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,handleNote,handleReview,presentStudents}) => {
     
-    const StudentItem = ({studentId,firstName,lastName,picture})=>{
+    const StudentItem = ({studentId,firstName,lastName,picture,sex})=>{
+        const picSrc = picture?
+                        `http://192.168.1.5:3001/uploads/${picture}`
+                        :
+                        (sex?"../default-avatar.png":"../default-avatar-female.png");
         return (
             <NavLink className="student-item-container" to={'/student/'+studentId}>
                 <div className="student-list-item">
                     <img
                         className ="StudentAvatar"
-                        src={picture?`http://192.168.1.5:3001/uploads/${picture}`:"../default-avatar.png"}
+                        src={picSrc}
                         alt={"Student Avatar"}
-                        onError={(e)=>{e.target.src="../default-avatar.png"}}
+                        onError={(e)=>{e.target.src=picSrc}}
                     />                
                     <p>{firstName} {lastName}</p>
                 </div>
@@ -117,10 +121,7 @@ const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,hand
                     if(handleSelect){
                         return <StudentItemSelect 
                             key={student.studentId} 
-                            studentId={student.studentId} 
-                            firstName={student.firstName} 
-                            lastName={student.lastName} 
-                            picture={student.picture} 
+                            {...student}
                             select={handleSelect}
                             selected={(selectedStudents.indexOf(student.studentId)!==-1)}
                         />
@@ -128,20 +129,14 @@ const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,hand
                         if(handleNote){
                             return <StudentItemNote
                                 key={student.studentId} 
-                                studentId={student.studentId} 
-                                firstName={student.firstName} 
-                                lastName={student.lastName} 
-                                picture={student.picture} 
+                                {...student}
                                 note={handleNote}
                                 present={presentStudents[student.studentId]}
                             />
                         }else
                         return <StudentItem 
                             key={student.studentId} 
-                            studentId={student.studentId}
-                            firstName={student.firstName} 
-                            lastName={student.lastName} 
-                            picture={student.picture} 
+                            {...student}
                         />
                     }
                 });
