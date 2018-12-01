@@ -66,7 +66,7 @@ class Group extends Component {
                 || ( (group.moduleId+" "+group.groupId).indexOf(this.state.searchInput) !== -1) )
         
         return (
-            <div style={{width:'50%'}}>
+            <div style={{width:'100%'}}>
                 <PrivateRoute rights={[0,1]} exact path={"/group/:id"} component = {GroupDetails}/>
                 <div className="StudentsHeader">
                     <div className="StudentsHeader">

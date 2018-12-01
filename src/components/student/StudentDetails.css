@@ -1,7 +1,6 @@
 .student-details{
-    margin: 0 auto;
+    margin: 0 auto 40px auto;
     width: 80%;
-    height: 100%;
     overflow: auto;
     box-sizing: border-box;
     background: white;
@@ -9,15 +8,16 @@
     display: flex;
     flex-direction: column;
     border-radius: 5px;
+    
 }
 
 .student-details-appear{
-    height:0%
+    width: 0;
 }
  
 .student-details-appear.student-details-appear-active{
-    height:100%;
-    transition: height 200ms ease-in;
+    width:80%;
+    transition: width 200ms ease-in;
 }
 
 .details-row-container1{

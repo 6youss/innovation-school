@@ -124,37 +124,39 @@ class AddGroupSessions extends Component{
         return (
             <Modal modalId='group-sessions' closeMe={this.props.handleAddSessions}>
                 <div className='student-details'>
-                    <h1>Add Session</h1>
-                    <div>
-                        <p>Teacher</p>
+                    <h1 className='add-session-title'>Add Session</h1>
+                    <div className='add-session-inputs'>
                         <Select
-                            label="Room"
+                            label=""
                             name="roomId"
                             options={this.state.rooms}
                             handleChange={this.handleChange.bind(this)}
                             error={this.state.errors["roomId"]}
                         />
-                        <Select
-                            label=""
-                            name="day"
-                            options={days}
-                            handleChange={this.handleChange.bind(this)}
-                            error={this.state.errors["day"]}
-                        />
-                        <Select
-                            label=""
-                            name="month"
-                            options={months}
-                            handleChange={this.handleChange.bind(this)}
-                            error={this.state.errors["month"]}
-                        />
-                        <Select
-                            label=""
-                            name="year"
-                            options={years}
-                            handleChange={this.handleChange.bind(this)}
-                            error={this.state.errors["year"]}
-                        />
+                        <div className='session-date'>
+                            <Select
+                                label=""
+                                name="day"
+                                options={days}
+                                handleChange={this.handleChange.bind(this)}
+                                error={this.state.errors["day"]}
+                            />
+                            <Select
+                                label=""
+                                name="month"
+                                options={months}
+                                handleChange={this.handleChange.bind(this)}
+                                error={this.state.errors["month"]}
+                            />
+                            <Select
+                                label=""
+                                name="year"
+                                options={years}
+                                handleChange={this.handleChange.bind(this)}
+                                error={this.state.errors["year"]}
+                            />
+                        </div>
+                        <div className='session-time'>
                         <Select
                             label=""
                             name="hour"
@@ -169,9 +171,13 @@ class AddGroupSessions extends Component{
                             handleChange={this.handleChange.bind(this)}
                             error={this.state.errors["minute"]}
                         />
+                        </div>
+                    </div>
+                    <div style={{padding:'40px 5%'}}>
                         <input id="Add-button" type="submit" value="Add" onClick={this.submit}/>
                     </div>
-                </div>
+                    </div>
+                
             </Modal>
         )   
     }

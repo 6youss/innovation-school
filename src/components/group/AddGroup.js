@@ -45,7 +45,7 @@ class Addgroup extends Component{
             });
 
             const url = "http://192.168.1.5:3001/group/";
-    
+            
             return fetch(url, {
                         method: "POST",        
                         headers:{
@@ -55,6 +55,7 @@ class Addgroup extends Component{
                     })
                     .then(response => response.json())
                     .then(json=>{
+                        console.log(json);
                         this.props.updateGroups();
                     });
         }
@@ -81,31 +82,35 @@ class Addgroup extends Component{
         let fields = this.state.fields,
         fieldName = event.target.name,
         fieldValue = event.target.value;
-
+        
+        
+        switch(fieldName){
+            case 'module': 
+                fieldValue = event.target.options[event.target.options.selectedIndex].getAttribute('data-key');
+            break;
+            case 'teacher': 
+                fieldValue = event.target.options[event.target.options.selectedIndex].getAttribute('data-key');
+            break;
+        }
         fields[fieldName] = fieldValue;
-
         this.setState({
             fields
         });
     }
 
     render(){
-        
-        const moduleOptions =
-        this.state.modules.map(module=>({
-                key: module.moduleId,
-                value: module.moduleName
-            }));
-        const teacherOptions =
-        this.state.teachers.map(teacher=>({
-                key: teacher.teacherId,
-                value: teacher.firstName+" "+teacher.lastName
-            }));
-        const levelOptions =
-        levels.map(level=>({
-                key: level,
-                value: level
-            }));
+        const moduleOptions = this.state.modules.map(module=>({
+            key: module.moduleId,
+            value: module.moduleName
+        }));
+        const teacherOptions = this.state.teachers.map(teacher=>({
+            key: teacher.teacherId,
+            value: teacher.firstName+" "+teacher.lastName
+        }));
+        const levelOptions = levels.map(level=>({
+            key: level,
+            value: level
+        }));
         return (
                 <div className="add-group">
                     <Select

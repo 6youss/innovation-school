@@ -31,4 +31,4 @@ const GroupsList = ({groups}) => {
         (groups.length>0)? list : <p>"Can't find any groups..."</p>
     )
 } 
-export default Loader('groups')(GroupsList);
+export default GroupsList;

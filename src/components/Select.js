@@ -11,6 +11,7 @@ const Select = ({label,name,options,handleChange,error,className})=>{
                 options.map( option =>
                     <option 
                         key={option.key}
+                        data-key={option.key}
                         value={option.value}
                     >
                         {option.value}

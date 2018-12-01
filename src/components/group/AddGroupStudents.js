@@ -96,9 +96,10 @@ class AddGroupStudents extends Component{
                     .then(([addstudent,addpaymentinfo,addpayment])=>{
 
                         this.props.updateStudents();
-                        this.setState({
-                            selectedStudents:[]
-                        });
+                        this.props.handleAddStudents();
+                        // this.setState({
+                        //     selectedStudents:[]
+                        // });
 
                     });
 
@@ -221,9 +222,8 @@ class AddGroupStudents extends Component{
                                     handlechange={this.handleChange.bind(this)}
                                     error={this.state.errors["sessionCount"]}
                                 />
-                            
                         </div>
-                        <div style={{display:'flex'}}>
+                        <div style={{display:'flex',margin:'20px 0'}}>
                             <input className='ino_button' id="Add-button" type="submit" value="Add" onClick={this.submit}/>
                         </div>
                     </div>

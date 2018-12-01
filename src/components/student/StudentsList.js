@@ -30,16 +30,13 @@ const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,hand
         return (
             <li className="student-item-container" onClick={select.bind(this,studentId)}>
                 <div className={selected?"student-list-item selected":"student-list-item"}>
-                    
-                        <img
-                            className ="StudentAvatar"
-                            src={picture?`http://192.168.1.5:3001/uploads/${picture}`:"../default-avatar.png"}
-                            alt={"Student Avatar"}
-                            onError={(e)=>{e.target.src="../default-avatar.png"}}
-                        />
-                    
+                    <img
+                        className ="StudentAvatar"
+                        src={picture?`http://192.168.1.5:3001/uploads/${picture}`:"../default-avatar.png"}
+                        alt={"Student Avatar"}
+                        onError={(e)=>{e.target.src="../default-avatar.png"}}
+                    />
                     <p>{firstName} {lastName}</p>
-                    <p>Details</p>
                 </div>
             </li>
         )   

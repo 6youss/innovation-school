@@ -1,0 +1,22 @@
+.add-session-title{
+  padding: 20px 5%;
+  margin: 0;
+}
+
+.add-session-inputs{
+  padding: 0 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.session-date{
+  display: flex;
+}
+
+
+.session-time{
+  display: flex;
+}

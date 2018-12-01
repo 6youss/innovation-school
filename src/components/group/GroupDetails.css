@@ -1,19 +1,24 @@
 .group-details{
-  flex-basis: 80%;
-  height: 100%;
-  overflow: auto;
-  box-sizing: border-box;
-  background: white;
-  position: relative;
+    margin: 0 auto 40px auto;
+    width: 80%;
+    overflow: auto;
+    box-sizing: border-box;
+    background: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
 }
 
 .group-details-row1{
+  flex: 30% 1;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 20px 2%;
 }
 .group-details-row2{
+  flex: 70% 1;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

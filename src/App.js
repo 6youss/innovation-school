@@ -19,6 +19,7 @@ import './components/student/StudentDetails.css';
 import './components/group/AddGroup.css';
 import './components/group/GroupDetails.css';
 import './components/group/AddGroupStudents.css';
+import './components/group/AddGroupSessions.css';
 //bill
 import './components/bill/AddBill.css';
 //module
