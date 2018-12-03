@@ -203,13 +203,12 @@ class SessionDetails extends Component {
                     </div>
                 }
                 <input 
-                    className='ino_button'
+                    className='button button-edit'
                     id="Add-button" 
                     type="submit" 
                     value="Submit" 
                     onClick={sessionDone? this.markPresence.bind(this) : this.markAbsents.bind(this)}
                 />
-                <p>Compensate session</p>
             </div>
         )
     }

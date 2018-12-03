@@ -25,8 +25,13 @@ class Header extends Component{
             <nav className="navbar">
                 <div className="navbar-left">
                     <NavLink exact to="/" className='navbar-item' style={{opacity:1}}>
-                        <div className="branding">  
-                            <img src="../logo.png" alt="logo" style={{width:"80px",height:"auto"}}/>
+                        <div 
+                            onMouseEnter={(e)=>{ e.stopPropagation(); this.logo.src="../logo.png" }} 
+                            onMouseLeave={(e)=>{ e.stopPropagation(); this.logo.src="../logo.svg" }} 
+                            className="branding"
+                        >  
+                            <img ref={ref=>this.logo=ref} src="../logo.svg" alt="logo" style={{width:"80px",height:"auto"}}/>
+                            <p><strong>INNOVATION SHOOL</strong></p>
                         </div>
                     </NavLink>
                     {this.state.mobileSize &&
@@ -34,7 +39,6 @@ class Header extends Component{
                     }
                 </div>
                 <div className="navbar-right">
-                    <NavLink exact className='navbar-item' activeClassName="active" to="/">Home</NavLink>
                     <NavLink className='navbar-item' activeClassName="active" to="/student">Students</NavLink>
                     <NavLink className='navbar-item' activeClassName="active" to="/teacher">Teachers</NavLink>
                     <NavLink className='navbar-item' activeClassName="active" to="/group">Groups</NavLink>

@@ -1,8 +1,9 @@
+
 @font-face {
   font-family: montserrat;
-  src: url(./fonts/MONTSERRAT-BOLD.TTF);
+  src: url(./fonts/MONTSERRAT-REGULAR.TTF);
+  font-weight: regular;
 }
-
 html,body{
   margin: 0;
   padding: 0;

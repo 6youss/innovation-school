@@ -9,7 +9,7 @@ import AddGroupSessions from './AddGroupSessions'
 import SessionsList from '../session/SessionsList'
 
 import Modal from '../Modal'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 class GroupDetails extends Component {
 
     state = {
@@ -34,6 +34,7 @@ class GroupDetails extends Component {
 
         Promise.all([group,students,sessions])
         .then(([groupRes,studentsRes,sessionsRes])=>{
+            console.log(sessionsRes);
             this.setState({
                 group: groupRes.group[0],
                 students: studentsRes.students,
@@ -75,6 +76,9 @@ class GroupDetails extends Component {
         })
     }
 
+    deleteGroup(){
+    }
+
     render(){
 
         const  {groupId,level,teacherId,firstName,lastName,moduleId,moduleName} = this.state.group;
@@ -85,24 +89,37 @@ class GroupDetails extends Component {
                     <div className='group-details-row1'>
                         <div>
                             <h1>Group {groupId} </h1>
-                            <NavLink to={`/module/${moduleId}`}>
-                                <h2>Module: {moduleName} {level}</h2>
-                            </NavLink>
-
-                            <NavLink to={`/teacher/${teacherId}`}>
-                                <h2>Teacher: {firstName} {lastName}</h2>
-                            </NavLink>
+                                <p>
+                                    <FontAwesomeIcon className='button-icon' icon="flask"/>
+                                    <strong>Module:</strong> {moduleName}
+                                </p>
+                                <p>
+                                    <FontAwesomeIcon className='button-icon' icon="level-up-alt"/>
+                                    <strong>Level:</strong> {level}
+                                </p>
+                                <NavLink to={`/teacher/${teacherId}`} className='link-text' >
+                                    <p>
+                                        <FontAwesomeIcon className='button-icon' icon="chalkboard-teacher"/>
+                                        <strong>Teacher:</strong> {firstName} {lastName}
+                                    </p>
+                                </NavLink>
                         </div>
-                        <div>
-                            <p>edit</p>
-                            <p>delete</p>
+                        <div className ="buttons">
+                            <button onClick={this.deleteGroup} className="button button-edit">
+                                <FontAwesomeIcon className='button-icon' icon="edit"/>Edit
+                            </button>
+                            <p/>
+                            <button onClick={this.deleteGroup} className="button button-delete">
+                                <FontAwesomeIcon className='button-icon' icon="trash-alt"/>Delete
+                            </button>
                         </div>
                     </div>
+
                     <div className='group-details-row2'>
                         <div>
-                            <div className='StudentsHeader'>
+                            <div className='list-header-icon lined'>
                                 <h3>Sessions</h3>
-                                <p onClick={this.handleAddSessions.bind(this)}>add</p>
+                                <p onClick={this.handleAddSessions.bind(this)}><FontAwesomeIcon className='title-icon light' icon="user-plus"/></p>
                             </div>
                             <SessionsList
                                 sessions={this.state.sessions}
@@ -110,9 +127,9 @@ class GroupDetails extends Component {
                         </div>
                         
                         <div>
-                            <div className='StudentsHeader'>
+                            <div className='list-header-icon lined'>
                                 <h3>Students</h3>
-                                <p onClick={this.handleAddStudents.bind(this)}>add</p>
+                                <p onClick={this.handleAddStudents.bind(this)}><FontAwesomeIcon className='title-icon light' icon="user-plus"/></p>
                             </div>
                             <StudentsList students={this.state.students}/>
 

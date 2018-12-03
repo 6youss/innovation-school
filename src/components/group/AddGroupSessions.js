@@ -45,6 +45,7 @@ class AddGroupSessions extends Component{
 
     componentDidMount(){
         this.getRooms();
+        
     }
 
     getRooms(){
@@ -60,6 +61,7 @@ class AddGroupSessions extends Component{
     submit = ()=>{
         if(this.validateForm()){
             const groupId = this.props.group.groupId;
+            
             const sessionDate = `${this.state.fields.year}-${this.state.fields.month}-${this.state.fields.day} ${this.state.fields.hour}:${this.state.fields.minute}:00`
             
             const session=JSON.stringify({
@@ -67,7 +69,6 @@ class AddGroupSessions extends Component{
                 roomId: this.state.fields.roomId,
                 sessionDate: sessionDate
             });
-            console.log(session);
     
             fetch("http://192.168.1.5:3001/session/", {
                 method: "POST",        
@@ -127,7 +128,7 @@ class AddGroupSessions extends Component{
                     <h1 className='add-session-title'>Add Session</h1>
                     <div className='add-session-inputs'>
                         <Select
-                            label=""
+                            label="Room"
                             name="roomId"
                             options={this.state.rooms}
                             handleChange={this.handleChange.bind(this)}
@@ -135,7 +136,7 @@ class AddGroupSessions extends Component{
                         />
                         <div className='session-date'>
                             <Select
-                                label=""
+                                label="Date"
                                 name="day"
                                 options={days}
                                 handleChange={this.handleChange.bind(this)}
@@ -158,7 +159,7 @@ class AddGroupSessions extends Component{
                         </div>
                         <div className='session-time'>
                         <Select
-                            label=""
+                            label="Hour"
                             name="hour"
                             options={hours}
                             handleChange={this.handleChange.bind(this)}
@@ -173,8 +174,14 @@ class AddGroupSessions extends Component{
                         />
                         </div>
                     </div>
-                    <div style={{padding:'40px 5%'}}>
-                        <input id="Add-button" type="submit" value="Add" onClick={this.submit}/>
+                    <div className='add-session-inputs'>
+                        <input 
+                            id="Add-button" 
+                            type="submit" 
+                            value="Add" 
+                            onClick={this.submit}
+                            className='button button-edit'
+                        />
                     </div>
                     </div>
                 

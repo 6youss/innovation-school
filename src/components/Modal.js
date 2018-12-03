@@ -13,6 +13,7 @@ class  Modal extends Component{
   }
 
   close(e){
+    e.stopPropagation();
     if(e.target.id===this.props.modalId || e.target.className==='close-modal'){
       this.props.closeMe();
     }
@@ -21,7 +22,7 @@ class  Modal extends Component{
   render(){
     return (
       <div id={this.props.modalId} className="modal-container" onClick={this.close.bind(this)}>
-        <div onClick={this.close.bind(this)} className='close-modal'><img className='close-modal' alt="sds" width="40px" height="40px" src="../close.png"/></div>
+        <div id={this.props.modalId+"-div"} onClick={this.close.bind(this)} className='close-modal' ><img id={this.props.modalId+"-img"} className='close-modal' alt="sds" width="40px" height="40px" src="../close.png"/></div>
         {this.props.children}
       </div>
     )  

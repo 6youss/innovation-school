@@ -6,7 +6,7 @@ import TeachersList from './TeachersList';
 
 import TeacherDetails from './TeacherDetails'
 import PrivateRoute from '../PrivateRoute'
-
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 class Teacher extends Component {
     
     
@@ -58,7 +58,9 @@ class Teacher extends Component {
                 <div  className="StudentsHeader">
                     <div className="StudentsHeader">
                         <h1 style={{margin:'0 30px 0 0'}}>Teachers</h1>
-                        <p className='addstudent' onClick={this.addTeacher} > Add teacher </p>
+                        <p className='title-icon' onClick={this.addTeacher} > 
+                            <FontAwesomeIcon icon='user-plus'/> 
+                        </p>
                         
                     </div>
                     <input 

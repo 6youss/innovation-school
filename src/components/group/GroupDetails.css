@@ -34,11 +34,39 @@
   
 }
 
+.link-text{
+  text-decoration: none;
+  color: black;
+}
 
+.list-header-icon{
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  padding: 0 0 10px 0;
+}
+
+.list-header-icon>h3{
+  margin: 0;
+  padding: 0;
+}
+.list-header-icon>p{
+  margin: 0;
+  padding: 0;
+}
+.lined{
+  border-bottom: 3px solid var(--color3);
+}
+.light{
+  color: var(--color2);
+}
 
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   .group-details-row2>div{
       flex-basis: 100%;
   }
+  .group-details{
+    width: 100%;
+}
 }

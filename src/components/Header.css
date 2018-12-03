@@ -2,6 +2,8 @@
     display: flex;
     flex-wrap: wrap;
     background-color: var(--color1);
+    
+    padding: 0 5%;
 }
 
 .navbar .navbar-right {
@@ -16,13 +18,23 @@
 }
 
 .navbar-left{
-    flex-basis:10%;
     display:flex;
-    justify-content:space-around;
+    justify-content:start;
 }
 .navbar .branding {
     padding: 10px;
+    display: flex;
+    align-items: center;
 }
+
+.navbar .branding p{
+
+    font-size: 15px;
+    font-family: montserrat;
+    
+    margin-left: 10px;
+}
+
 
 .navbar-item{
     opacity: 0.60;

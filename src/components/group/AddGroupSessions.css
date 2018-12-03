@@ -4,19 +4,27 @@
 }
 
 .add-session-inputs{
-  padding: 0 5%;
+  padding: 15px 5%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  
 }
 
-
+.add-session-inputs select{
+  width: 100px;
+  height: 30px;
+  padding: 5px;
+  margin: 0 5px;
+}
 .session-date{
   display: flex;
+  align-items: flex-end;
 }
 
 
 .session-time{
   display: flex;
+  align-items: flex-end;
 }

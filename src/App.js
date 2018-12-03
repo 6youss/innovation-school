@@ -55,9 +55,9 @@ import Payment from './components/payment/Payment'
 import PaymentDetails from './components/payment/PaymentDetails'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTrashAlt,faEdit,faAddressBook,faSignInAlt,faBirthdayCake,faPhone,faUserTie,faUserPlus} 
+import { faTrashAlt,faEdit,faAddressBook,faSignInAlt,faBirthdayCake,faPhone,faUserTie,faUserPlus,faChalkboardTeacher,faLevelUpAlt,faFlask} 
        from '@fortawesome/free-solid-svg-icons'
-library.add(faTrashAlt,faEdit,faAddressBook,faSignInAlt,faBirthdayCake,faPhone,faUserTie,faUserPlus);
+library.add(faTrashAlt,faEdit,faAddressBook,faSignInAlt,faBirthdayCake,faPhone,faUserTie,faUserPlus,faChalkboardTeacher,faLevelUpAlt,faFlask);
 
 class App extends Component {
 

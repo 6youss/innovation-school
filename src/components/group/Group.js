@@ -8,6 +8,7 @@ import AddGroup from './AddGroup'
 import GroupDetails from './GroupDetails'
 
 import PrivateRoute from '../PrivateRoute'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 class Group extends Component {
     
@@ -71,7 +72,7 @@ class Group extends Component {
                 <div className="StudentsHeader">
                     <div className="StudentsHeader">
                         <h1 style={{margin:'0 30px 0 0'}}>Groups</h1>
-                        <p onClick={this.addGroup} > Add group </p>
+                        <p className='title-icon' onClick={this.addGroup} > <FontAwesomeIcon icon='user-plus'/> </p>
                     </div>
                     <input
                         type="text" 
