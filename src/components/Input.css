@@ -1,0 +1,63 @@
+.InputContainerStyle{
+    display:flex;
+    flex-wrap: wrap;
+    flex-basis: 80%;
+    justify-content: start;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+.PersoInput{
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 5px 0px;
+    font-size:13px;
+    padding: 0 10px 0 0;
+    box-sizing: border-box;
+    
+}
+
+.perso-input-text,.react-datepicker__input-container input[type='text']{
+    flex-basis: 100%;
+    padding: 10px 30px 10px 8px;
+    margin: 0px 0px 5px 0px;
+    border: 1px solid rgb(187, 187, 187);;
+    border-radius: 5px;
+    color: rgb(77, 77, 77);
+    font-size: 13px
+}
+.perso-input-text:focus,.react-datepicker__input-container input[type='text']:focus{
+    box-shadow: 0px 0px 1px 3.5px var(--edit-color-outline);
+    border: 1px solid rgb(83, 185, 253);
+}
+.input-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-icon{
+    position: absolute;
+    right: 10px;
+    top: 11px;
+    font-size: 15px;
+    color: rgb(77, 77, 77);
+}
+
+.error-style{
+    color: var(--delete-color);
+    box-shadow: 0px 0px 1px 3.5px var(--delete-color-outline) !important;
+    border: 1px solid var(--delete-color) !important;
+}
+
+
+@media only screen and (max-width: 768px){
+    /* For mobile phones: */
+    .InputContainerStyle{
+        flex-basis: 100%;
+    }
+    .PersoInput{
+        flex-basis: 100%;
+    }
+}

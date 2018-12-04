@@ -200,8 +200,7 @@ class AddStudent extends Component {
                                 error={this.state.errors["parentPhone"]}
                             />
                         </div>
-
-                        <input className="btn btn-primary" id="Add-button" type="submit" value="Add"/>
+                        <input className="button button-edit" type="submit" value="Add"/>
                         <input 
                             id="fileInput" 
                             type="file" 

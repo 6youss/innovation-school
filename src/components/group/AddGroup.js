@@ -91,6 +91,8 @@ class Addgroup extends Component{
             case 'teacher': 
                 fieldValue = event.target.options[event.target.options.selectedIndex].getAttribute('data-key');
             break;
+            default:
+                
         }
         fields[fieldName] = fieldValue;
         this.setState({

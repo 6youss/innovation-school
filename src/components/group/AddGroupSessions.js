@@ -39,21 +39,31 @@ class AddGroupSessions extends Component{
 
     state = {
         rooms:[],
+        teachers:[],
         fields:{},
         errors:{}
     };
 
     componentDidMount(){
-        this.getRooms();
-        
+        this.getData();
     }
 
-    getRooms(){
+    getData(){
         fetch("http://192.168.1.5:3001/room/")
         .then(res=>res.json())
         .then(json=>{
             this.setState({
                 rooms: json.rooms.map(room=>({key:room.roomId,value:room.roomId}))
+            });
+        });
+        fetch("http://192.168.1.5:3001/teacher/")
+        .then(res=>res.json())
+        .then(json=>{
+            this.setState({
+                teachers: json.teachers.map(teacher=>({
+                    key:teacher.teacherId,
+                    value:`${teacher.firstName} ${teacher.lastName}`
+                }))
             });
         });
     }
@@ -67,7 +77,8 @@ class AddGroupSessions extends Component{
             const session=JSON.stringify({
                 groupId: groupId,
                 roomId: this.state.fields.roomId,
-                sessionDate: sessionDate
+                sessionDate: sessionDate,
+                teacherId: this.state.fields.teacherId
             });
     
             fetch("http://192.168.1.5:3001/session/", {
@@ -128,6 +139,13 @@ class AddGroupSessions extends Component{
                     <h1 className='add-session-title'>Add Session</h1>
                     <div className='add-session-inputs'>
                         <Select
+                            label="Teacher"
+                            name="teacherId"
+                            options={this.state.teachers}
+                            handleChange={this.handleChange.bind(this)}
+                            error={this.state.errors["teacherId"]}
+                        />
+                        <Select
                             label="Room"
                             name="roomId"
                             options={this.state.rooms}
@@ -158,20 +176,20 @@ class AddGroupSessions extends Component{
                             />
                         </div>
                         <div className='session-time'>
-                        <Select
-                            label="Hour"
-                            name="hour"
-                            options={hours}
-                            handleChange={this.handleChange.bind(this)}
-                            error={this.state.errors["hour"]}
-                        />
-                        <Select
-                            label=""
-                            name="minute"
-                            options={minutes}
-                            handleChange={this.handleChange.bind(this)}
-                            error={this.state.errors["minute"]}
-                        />
+                            <Select
+                                label="Hour"
+                                name="hour"
+                                options={hours}
+                                handleChange={this.handleChange.bind(this)}
+                                error={this.state.errors["hour"]}
+                            />
+                            <Select
+                                label=""
+                                name="minute"
+                                options={minutes}
+                                handleChange={this.handleChange.bind(this)}
+                                error={this.state.errors["minute"]}
+                            />
                         </div>
                     </div>
                     <div className='add-session-inputs'>

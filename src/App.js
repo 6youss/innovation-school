@@ -10,6 +10,7 @@ import PrivateRoute from './components/PrivateRoute'
 import './App.css';
 import './components/Header.css';
 import './components/Buttons.css';
+import './components/Input.css';
 //student
 import './components/student/Student.css';
 import './components/student/AddStudent.css';
@@ -55,9 +56,9 @@ import Payment from './components/payment/Payment'
 import PaymentDetails from './components/payment/PaymentDetails'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTrashAlt,faEdit,faAddressBook,faSignInAlt,faBirthdayCake,faPhone,faUserTie,faUserPlus,faChalkboardTeacher,faLevelUpAlt,faFlask} 
+import { faTrashAlt,faEdit,faAddressBook,faSignInAlt,faBirthdayCake,faPhone,faUserTie,faUserPlus,faChalkboardTeacher,faLevelUpAlt,faFlask,faTimes} 
        from '@fortawesome/free-solid-svg-icons'
-library.add(faTrashAlt,faEdit,faAddressBook,faSignInAlt,faBirthdayCake,faPhone,faUserTie,faUserPlus,faChalkboardTeacher,faLevelUpAlt,faFlask);
+library.add(faTrashAlt,faEdit,faAddressBook,faSignInAlt,faBirthdayCake,faPhone,faUserTie,faUserPlus,faChalkboardTeacher,faLevelUpAlt,faFlask,faTimes);
 
 class App extends Component {
 

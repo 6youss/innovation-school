@@ -1,23 +1,27 @@
 import React from 'react';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const Input = ({name,label,type,placeholder,handlechange,error})=>{
-    
+    const err = error?' error-style':'';
     return (
-            <div style={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          fontSize:'13px'
-                        }}>
-                { label &&
-                    <p style={{margin:'0 0 3px 0'}}>{label}</p>
-                }
-                <input className='perso-input-text' name={name} type={type} placeholder={placeholder} 
-                    onChange={handlechange}/>
+        <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        fontSize:'13px'
+                    }}>
+            { label &&
+                <p style={{margin:'0 0 3px 0'}}>{label}</p>
+            }
+            <div className='input-container'>
                 {error &&
-                    <p className='error'>{error}</p>
+                    <span className={'input-icon'}>
+                        <FontAwesomeIcon icon='times' style={{color:'var(--delete-color)'}}/>
+                    </span>
                 }
+                <input className={'perso-input-text'+err} name={name} type={type} placeholder={placeholder} 
+                    onChange={handlechange}/>
             </div>
-        
+        </div>
      )
 }
 

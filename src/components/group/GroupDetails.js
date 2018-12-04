@@ -81,7 +81,7 @@ class GroupDetails extends Component {
 
     render(){
 
-        const  {groupId,level,teacherId,firstName,lastName,moduleId,moduleName} = this.state.group;
+        const  {groupId,level,teacherId,firstName,lastName,moduleName} = this.state.group;
         
         return (
             <Modal modalId='group-details' closeMe={this.handleClose.bind(this)}>

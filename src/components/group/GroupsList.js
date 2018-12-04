@@ -1,6 +1,5 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
-import Loader from '../HOC/Loader'
 
 const GroupsList = ({groups}) => {
     
