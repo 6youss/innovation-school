@@ -163,12 +163,12 @@ class AddStudent extends Component {
                             />
                         </div>
                         <div className="PersoInput">
-                        <p style={{margin: '0px 0px 3px'}}>Birthday</p>
-                        <DatePicker
-                            selected={this.state.fields.selectedDate}
-                            onChange={this.handleDate}
-                            placeholderText="Click or write to set a date"
-                        />
+                            <p style={{margin: '0px 0px 3px'}}>Birthday</p>
+                            <DatePicker
+                                selected={this.state.fields.selectedDate}
+                                onChange={this.handleDate}
+                                placeholderText="Click or write to set a date"
+                            />
                         </div>
                         <div className="PersoInput">
                             <Input 

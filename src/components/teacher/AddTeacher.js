@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 
 import Input from "../Input"
 import Modal from "../Modal"
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class AddTeacher extends Component{
 
@@ -103,6 +105,16 @@ class AddTeacher extends Component{
         this.setState({fields,errors});
     }
 
+    handleDate=(date)=>{
+        
+        this.setState({
+            fields:{...this.state.fields,
+                selectedDate:date,
+                birthday: date.toISOString().slice(0,10)
+            }
+        });
+    }
+
     render(){
         
         return (
@@ -145,14 +157,14 @@ class AddTeacher extends Component{
                                 error={this.state.errors["lastName"]}
                             />
                         </div>
+                        
                         <div className="PersoInput">
-                            <Input 
-                                name="birthday" 
-                                label="Birthday" 
-                                type="text" 
-                                placeholder="Birthday..." 
-                                handlechange={this.handleChange.bind(this)}
-                                error={this.state.errors["birthday"]}
+                        
+                            <p style={{margin: '0px 0px 3px'}}>Birthday</p>
+                            <DatePicker
+                                selected={this.state.fields.selectedDate}
+                                onChange={this.handleDate}
+                                placeholderText="Click or write to set a date"
                             />
                         </div>
                         <div className="PersoInput">
