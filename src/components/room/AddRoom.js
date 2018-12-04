@@ -127,7 +127,7 @@ class AddRoom extends Component{
                         handlechange={this.handleChange.bind(this)}
                         error={this.state.errors["places"]}
                     />
-                    <input className='ino_button' id="Add-button" type="submit" value="Add" onClick={this.submit}/>
+                    <input className='button button-edit' id="Add-button" type="submit" value="Add" onClick={this.submit}/>
                 </div>
                 
             </div>

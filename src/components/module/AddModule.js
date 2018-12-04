@@ -131,7 +131,7 @@ class AddModule extends Component{
                             handlechange={this.handleChange.bind(this)}
                             error={this.state.errors["moduleName"]}
                         />
-                        <input className='ino_button' id="Add-button" type="submit" value="Add" onClick={this.submit}/>
+                        <input className='button button-edit' id="Add-button" type="submit" value="Add" onClick={this.submit}/>
                     </div>
                     
                     <input id="fileInput" type="file" accept="image/*" style={{display:"none"}} onChange={this.uploadPicture}/>

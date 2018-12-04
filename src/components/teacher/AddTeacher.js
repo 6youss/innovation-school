@@ -197,7 +197,7 @@ class AddTeacher extends Component{
                                 error={this.state.errors["parentPhone"]}
                             />
                         </div>
-                        <input className='ino_button' id="Add-button" type="submit" value="Add" onClick={this.submit}/>
+                        <input className='button button-edit' id="Add-button" type="submit" value="Add" onClick={this.submit}/>
                         <input 
                             id="fileInput" 
                             type="file" 

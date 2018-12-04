@@ -14,17 +14,13 @@
 }
 
 .module-input{
+  flex-basis: 70%;
   display: flex;
   flex-wrap: wrap;
-  flex-basis: 70%;
 }
 
 .module-input>div{
-  order:1;
   flex-basis: 100%;
-}
-.module-input .ino_button{
-  order:2;
 }
 
 @media only screen and (max-width: 768px){

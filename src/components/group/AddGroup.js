@@ -92,7 +92,7 @@ class Addgroup extends Component{
                 fieldValue = event.target.options[event.target.options.selectedIndex].getAttribute('data-key');
             break;
             default:
-                
+
         }
         fields[fieldName] = fieldValue;
         this.setState({
@@ -143,7 +143,7 @@ class Addgroup extends Component{
                         id="Add-button" 
                         type="submit" 
                         value="Add"
-                        className="ino_button"
+                        className="button button-edit"
                         onClick={this.submit}
                     />
                 </div>
