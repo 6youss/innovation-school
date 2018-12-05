@@ -224,7 +224,7 @@ class AddGroupStudents extends Component{
                                 />
                         </div>
                         <div style={{display:'flex',margin:'20px 0'}}>
-                            <input className='ino_button' id="Add-button" type="submit" value="Add" onClick={this.submit}/>
+                            <input className='button button-edit' id="Add-button" type="submit" value="Add" onClick={this.submit}/>
                         </div>
                     </div>
                 </Modal>

@@ -41,9 +41,21 @@ class TeacherDetails extends Component {
     }
 
     deleteTeacher(){
-        
+        var result = window.confirm("Do you really want to delete this teacher?");
+        if (result) {
+            fetch("http://192.168.1.5:3001/teacher/"+this.teacherId, {
+                method: "DELETE"
+            })
+            .then(response => response.json())
+            .then(json=>{
+                if(!json.error){
+                    this.props.history.push('/teacher');
+                }else{
+                    console.log(json);
+                } 
+            });
+        }
     }
-
     render(){
 
         const {

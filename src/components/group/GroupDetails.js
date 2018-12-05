@@ -77,6 +77,20 @@ class GroupDetails extends Component {
     }
 
     deleteGroup(){
+        var result = window.confirm("Do you really want to delete this group?");
+        if (result) {
+            fetch("http://192.168.1.5:3001/group/"+this.groupId, {
+                method: "DELETE"
+            })
+            .then(response => response.json())
+            .then(json=>{
+                if(!json.error){
+                    this.props.history.push('/group');
+                }else{
+                    console.log(json);
+                } 
+            });
+        }
     }
 
     render(){
