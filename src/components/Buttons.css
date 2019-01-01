@@ -36,3 +36,14 @@
   display: inline-block;
   margin: 0 5px 0 0;
 }
+
+.loading{
+  animation-name: fading-stroke-animation;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fading-stroke-animation {
+  from {box-shadow: 0px 0px 1px 4px rgba(79, 161, 255, 0.5);}
+  to {box-shadow: 0px 0px 1px 4px rgba(79, 161, 255, 0);}
+}

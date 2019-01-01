@@ -122,7 +122,7 @@ class Signup extends Component{
                     />
                     <Input
                         name="userType" 
-                        label="User Type"
+                        label="User Type (0 for admin / 1 for teacher)"
                         type="text" 
                         placeholder="User Type..."
                         handlechange={this.handleChange.bind(this)}
@@ -130,7 +130,7 @@ class Signup extends Component{
                     />
                     <Input
                         name="typeId" 
-                        label="Type Id"
+                        label="Teacher Id"
                         type="text" 
                         placeholder="Type Id..."
                         handlechange={this.handleChange.bind(this)}
@@ -139,7 +139,7 @@ class Signup extends Component{
 
                     <div>
                         <p>{this.state.errors['signup']}</p>
-                        <input className='ino_button' id="Add-button" type="submit" value="Sign"/>
+                        <input className='button button-edit' id="Add-button" type="submit" value="Sign up"/>
                     </div>
                 </form>
             </div>

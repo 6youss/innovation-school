@@ -3,6 +3,7 @@ import {
         BrowserRouter,
         Route,
         Switch,
+        Redirect
        } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute'
 
@@ -58,11 +59,37 @@ import PaymentDetails from './components/payment/PaymentDetails'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTrashAlt,faEdit,faAddressBook,faSignInAlt,faBirthdayCake,faPhone,faUserTie,faUserPlus,faChalkboardTeacher,faLevelUpAlt,faFlask,faTimes} 
        from '@fortawesome/free-solid-svg-icons'
+import EditStudent from './components/student/EditStudent';
+import StudentDetails from './components/student/StudentDetails';
+
 library.add(faTrashAlt,faEdit,faAddressBook,faSignInAlt,faBirthdayCake,faPhone,faUserTie,faUserPlus,faChalkboardTeacher,faLevelUpAlt,faFlask,faTimes);
 
 class App extends Component {
 
+  state ={
+    loggedin:false
+  }
+
+  componentDidMount(){
+
+    fetch("http://192.168.1.5:3001/user/token", {
+        method: "POST",
+        headers:{
+          "Authorization": localStorage.getItem('token')
+        }
+    })
+    .then(response => {
+      if(response.status != 200){
+        localStorage.removeItem('token');
+      }
+      console.log(response);
+    });
+    
+
+  }
+
   render() {
+    
     return (
         <BrowserRouter>
             <div>
@@ -74,6 +101,8 @@ class App extends Component {
                 <Route path={"/logout"} component = {Logout}/>
                 <PrivateRoute rights={[0,1]} exact path={"/"} component = {Home} />
                 <PrivateRoute rights={[0,1]} path={"/student"} component = {Student}/>
+                {/* <PrivateRoute rights={[0,1]} exact  path={"/student/:id"} component = {StudentDetails}/>
+                <PrivateRoute rights={[0,1]} exact path={"/student/:id/edit"} component = {EditStudent}/> */}
                 <PrivateRoute rights={[0,1]} path={"/teacher"} component = {Teacher}/>
                 <PrivateRoute rights={[0,1]} path={"/group"} component = {Group}/>
                 <PrivateRoute rights={[0,1]} exact path={"/session/:id"} component = {SessionDetails}/>

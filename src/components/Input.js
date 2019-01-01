@@ -1,7 +1,7 @@
 import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
-const Input = ({name,label,type,placeholder,handlechange,error})=>{
+const Input = ({name,label,type,placeholder,handlechange,error,init})=>{
     const err = error?' error-style':'';
     return (
         <div style={{
@@ -18,8 +18,14 @@ const Input = ({name,label,type,placeholder,handlechange,error})=>{
                         <FontAwesomeIcon icon='times' style={{color:'var(--delete-color)'}}/>
                     </span>
                 }
-                <input className={'perso-input-text'+err} name={name} type={type} placeholder={placeholder} 
-                    onChange={handlechange}/>
+                <input 
+                    className={'perso-input-text'+err} 
+                    name={name} 
+                    type={type} 
+                    placeholder={placeholder} 
+                    onChange={handlechange}
+                    defaultValue={init}
+                />
             </div>
         </div>
      )

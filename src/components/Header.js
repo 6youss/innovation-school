@@ -43,8 +43,9 @@ class Header extends Component{
                     <NavLink className='navbar-item' activeClassName="active" to="/teacher">Teachers</NavLink>
                     <NavLink className='navbar-item' activeClassName="active" to="/group">Groups</NavLink>
                     <NavLink className='navbar-item' activeClassName="active" to="/module">Modules</NavLink>
-                <NavLink className='navbar-item' activeClassName="active" to="/room">Rooms</NavLink>
+                    <NavLink className='navbar-item' activeClassName="active" to="/room">Rooms</NavLink>
                     <NavLink className='navbar-item' activeClassName="active" to="/payment">Payments</NavLink>
+                    <NavLink className='navbar-item' activeClassName="active" to="/logout">Logout</NavLink>
                 </div>
             </nav>
         )  

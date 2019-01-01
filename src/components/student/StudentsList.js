@@ -6,10 +6,10 @@ import Loader from '../HOC/Loader';
 const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,handleNote,handleReview,presentStudents}) => {
     
     const StudentItem = ({studentId,firstName,lastName,picture,sex})=>{
-        const picSrc = picture?
+        const picSrc = picture? 
                         `http://192.168.1.5:3001/uploads/${picture}`
                         :
-                        (sex?"../default-avatar.png":"../default-avatar-female.png");
+                        (sex?"/default-avatar.png":"/default-avatar-female.png");
         return (
             <NavLink className="student-item-container" to={'/student/'+studentId}>
                 <div className="student-list-item">
@@ -17,7 +17,7 @@ const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,hand
                         className ="StudentAvatar"
                         src={picSrc}
                         alt={"Student Avatar"}
-                        onError={(e)=>{e.target.src=picSrc}}
+                        onError={(e)=>{e.target.src=(sex?"/default-avatar.png":"/default-avatar-female.png")}}
                     />                
                     <p>{firstName} {lastName}</p>
                 </div>

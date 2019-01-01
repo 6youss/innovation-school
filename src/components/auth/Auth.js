@@ -131,7 +131,7 @@ class Auth extends Component{
                     />
                     <div>
                         <p>{this.state.errors['signin']}</p>
-                        <input className='ino_button' id="Add-button" type="submit" value="Sign"/>
+                        <input className='button button-edit' id="Add-button" type="submit" value="Sign"/>
                     </div>
                 </form>
             </div>

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {withRouter} from 'react-router-dom'
 import {CSSTransition} from 'react-transition-group';
 
 import Modal from '../Modal'
@@ -9,6 +8,8 @@ import GroupsList from '../group/GroupsList';
 import SessionsList from '../session/SessionsList';
 import AddBill from '../bill/AddBill';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import PrivateRoute from '../PrivateRoute'
+import EditStudent from './EditStudent'
 
 class StudentDetails extends Component {
 
@@ -18,12 +19,23 @@ class StudentDetails extends Component {
         groups:[],
         sessions:[],
         selectedPayments:[],
-        addBill:false
+        addBill:false,
+        studentDeleted:false,
     }
 
     studentId = this.props.match.params.id;
-    
+
     componentDidMount(){
+        this.getData();
+    }
+
+    componentWillReceiveProps(){
+        if(this.props.history.action ==="POP"){
+            this.getData();
+        }
+    }
+
+    getData=()=>{
         fetch("http://192.168.1.5:3001/student/"+this.studentId)
         .then( res => res.json())
         .then(json=>{
@@ -67,7 +79,7 @@ class StudentDetails extends Component {
             .then(response => response.json())
             .then(json=>{
                 if(!json.error){
-                    this.props.history.push('/student');
+                    this.props.history.goBack();
                 }else{
                     console.log(json.error);
                 } 
@@ -105,6 +117,7 @@ class StudentDetails extends Component {
         });
     }
     render(){
+        console.log(this.props);
         const {
                firstName, 
                lastName,
@@ -116,9 +129,8 @@ class StudentDetails extends Component {
                parentPhone, 
                inscriptionDate
             } = this.state.student;
-        return (
+        return (            
             <Modal modalId={'studentId'} closeMe={this.props.history.goBack}>
-            
                 <CSSTransition
                         key={2}
                         in={true}
@@ -132,7 +144,7 @@ class StudentDetails extends Component {
                         <img className ="student-picture student-pic"
                             src={`http://192.168.1.5:3001/uploads/${picture}`}
                             alt={"Student Avatar"}
-                            onError={(e)=>{e.target.src=sex?"../default-avatar.png":"../default-avatar-female.png"}}
+                            onError={(e)=>{e.target.src=sex?"/default-avatar.png":"/default-avatar-female.png"}}
                         /> 
                         <div className ="student-props">
                             <h1>{firstName} {lastName}</h1>
@@ -158,7 +170,7 @@ class StudentDetails extends Component {
                             </p>
                         </div>
                         <div className ="buttons">
-                            <button onClick={this.deleteStudent} className="button button-edit">
+                            <button onClick={()=>{this.props.history.push('/student/'+this.studentId+'/edit')}} className="button button-edit">
                                 <FontAwesomeIcon className='button-icon' icon="edit"/>Edit
                             </button>
                             <p/>
@@ -210,10 +222,15 @@ class StudentDetails extends Component {
                             cancelBill={this.cancelBill.bind(this)}
                         />
                 </CSSTransition>
+                {
+                    this.props.history.action==="PUSH" &&
+                    <PrivateRoute rights={[0,1]} path={"/student/:id/edit"} component ={EditStudent} update={this.getData}/>
+                }
+                
             </Modal>
         )
     }
 
 }
 
-export default withRouter( StudentDetails);
+export default StudentDetails;

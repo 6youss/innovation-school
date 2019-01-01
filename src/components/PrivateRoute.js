@@ -7,7 +7,7 @@ import {
 import checkAuth from './HOC/checkAuth'
 
 const PrivateRoute = ({ component: Component,rights,path, ...rest }) => {
-  
+  console.log(rest);
   return (
     <Route
       path={path}
@@ -17,7 +17,7 @@ const PrivateRoute = ({ component: Component,rights,path, ...rest }) => {
         const checked =  checkAuth(rights,path);
         
         if(checked.component){
-          return (<Component {...props}/>);
+          return (<Component {...props} {...rest}/>);
         }
 
         if(checked.redirect) {

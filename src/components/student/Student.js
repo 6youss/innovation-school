@@ -22,7 +22,9 @@ class Student extends Component {
     }
 
     componentWillReceiveProps(){
-        this.getStudents();
+        if(this.props.history.action ==="POP"){
+            this.getStudents();
+        }
     }
 
     getStudents(){
@@ -56,6 +58,7 @@ class Student extends Component {
     }
 
     render(){
+        console.log(this.props);
         const list = this.state.students
         .filter(student => this.state.searchInput === '' 
                 || ( (student.firstName+" "+student.lastName).indexOf(this.state.searchInput) !== -1) );
@@ -86,7 +89,6 @@ class Student extends Component {
                 <ul className="list">
                     <StudentsList students={list} handleDetails={this.handleDetails.bind(this)}/>
                 </ul>
-
                 <PrivateRoute rights={[0,1]} path={"/student/:id"} component = {StudentDetails}/>
             </div>
         );

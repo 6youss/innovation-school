@@ -124,13 +124,11 @@ class AddStudent extends Component {
         return (
             <Modal modalId='add-student' closeMe={this.props.addStudent}>
                 <form className="row-container" onSubmit={this.submit}>
-                
                     <div className="StudentNewPicParent">
                         <div className="StudentNewPic">
                             <img 
-                                id="studentPicture" 
                                 alt="avatar"  
-                                src="./default-avatar.png" 
+                                src={"/default-avatar.png"}
                                 width="150px"
                                 ref={avatar=>this.avatar=avatar}
                             />
@@ -200,7 +198,8 @@ class AddStudent extends Component {
                                 error={this.state.errors["parentPhone"]}
                             />
                         </div>
-                        <input className="button button-edit" type="submit" value="Add"/>
+                        <input className="button button-edit loading" type="submit" value="Add"/>
+                        
                         <input 
                             id="fileInput" 
                             type="file" 
