@@ -29,7 +29,7 @@ class Header extends Component{
                             onMouseEnter={(e)=>{ e.stopPropagation(); this.logo.src="../logo.png" }} 
                             onMouseLeave={(e)=>{ e.stopPropagation(); this.logo.src="../logo.svg" }} 
                             className="branding"
-                        >  
+                        >
                             <img ref={ref=>this.logo=ref} src="../logo.svg" alt="logo" style={{width:"80px",height:"auto"}}/>
                             <p><strong>INNOVATION SHOOL</strong></p>
                         </div>

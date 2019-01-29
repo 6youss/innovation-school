@@ -39,7 +39,7 @@ class AddStudent extends Component {
             if (this.fileInput.files && this.fileInput.files[0])
                 formData.append("picture",this.fileInput.files[0]);
             
-            return  fetch("http://192.168.1.5:3001/student/", {
+            return  fetch(`${process.env.REACT_APP_SERVER_URL}/student/`, {
                         method: "POST",
                         body: formData
                     })
@@ -198,7 +198,7 @@ class AddStudent extends Component {
                                 error={this.state.errors["parentPhone"]}
                             />
                         </div>
-                        <input className="button button-edit loading" type="submit" value="Add"/>
+                        <input className="button button-edit" type="submit" value="Add"/>
                         
                         <input 
                             id="fileInput" 

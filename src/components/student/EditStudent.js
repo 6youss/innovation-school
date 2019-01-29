@@ -19,7 +19,7 @@ class EditStudent extends Component {
     }
 
     getStudent(){
-      fetch("http://192.168.1.5:3001/student/"+this.studentId)
+      fetch(`${process.env.REACT_APP_SERVER_URL}/student/${this.studentId}`)
       .then( res => res.json())
       .then(json=>{
           if(json.student.length>0){
@@ -54,7 +54,7 @@ class EditStudent extends Component {
             if (this.fileInput.files && this.fileInput.files[0])
                 formData.append("picture",this.fileInput.files[0]);
             console.log(formData);
-            return  fetch("http://192.168.1.5:3001/student/"+this.studentId, {
+            return  fetch(`${process.env.REACT_APP_SERVER_URL}/student/${this.studentId}`, {
                         method: "PUT",
                         body: formData
                     })
@@ -140,7 +140,7 @@ class EditStudent extends Component {
                         <div className="StudentNewPic">
                             <img 
                                 alt="avatar"
-                                src={`http://192.168.1.5:3001/uploads/${this.state.fields["picture"]}`}
+                                src={`${process.env.REACT_APP_SERVER_URL}/uploads/${this.state.fields["picture"]}`}
                                 width="150px"
                                 ref={avatar=>this.avatar=avatar}
                                 onError={(e)=>{e.target.src='/default-avatar.png'}}

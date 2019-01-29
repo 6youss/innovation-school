@@ -17,7 +17,7 @@ class AddRoom extends Component{
     submit = ()=>{
         if(this.validateForm()){
 
-            fetch("http://192.168.1.5:3001/room/"+this.state.fields["roomId"])
+            fetch(`${process.env.REACT_APP_SERVER_URL}/room/${this.state.fields["roomId"]}`)
             .then(res=>res.json())
             .then(json=>{                
                 if(json.room.length>0){
@@ -33,7 +33,7 @@ class AddRoom extends Component{
                         places: this.state.fields["places"],
                     });
             
-                    fetch("http://192.168.1.5:3001/room/", 
+                    fetch(`${process.env.REACT_APP_SERVER_URL}/room/`, 
                     {
                         method: "POST",        
                         headers:{

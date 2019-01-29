@@ -19,9 +19,9 @@ class Addgroup extends Component{
 
     getData(){
 
-        let modules = fetch("http://192.168.1.5:3001/module")
+        let modules = fetch(`${process.env.REACT_APP_SERVER_URL}/module`)
         .then( res => res.json()) ,
-        teachers= fetch("http://192.168.1.5:3001/teacher")
+        teachers= fetch(`${process.env.REACT_APP_SERVER_URL}/teacher`)
         .then( res => res.json());
         
         Promise.all([modules, teachers])
@@ -44,7 +44,7 @@ class Addgroup extends Component{
                 level: this.state.fields.level
             });
 
-            const url = "http://192.168.1.5:3001/group/";
+            const url = `${process.env.REACT_APP_SERVER_URL}/group/`;
             
             return fetch(url, {
                         method: "POST",        

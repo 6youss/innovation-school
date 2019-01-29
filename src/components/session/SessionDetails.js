@@ -11,7 +11,7 @@ class SessionDetails extends Component {
     }
 
     componentDidMount(){
-        fetch("http://192.168.1.5:3001/session/"+this.props.match.params.id)
+        fetch(`${process.env.REACT_APP_SERVER_URL}/session/${this.props.match.params.id}`)
         .then( res => res.json())
         .then(json=>{
             const session = json.session[0];
@@ -22,10 +22,10 @@ class SessionDetails extends Component {
 
     getSessionStudents(sessionId,groupId,sessionDone){
         if(sessionDone){
-            const students=fetch("http://192.168.1.5:3001/session/"+sessionId+"/students")
+            const students=fetch(`${process.env.REACT_APP_SERVER_URL}/session/${sessionId}/students`)
             .then( res => res.json());
             
-            const studentsReviews = fetch("http://192.168.1.5:3001/session/"+sessionId+"/reviews")
+            const studentsReviews = fetch(`${process.env.REACT_APP_SERVER_URL}/session/${sessionId}/reviews`)
             .then( res => res.json());
             
             Promise.all([students,studentsReviews])
@@ -49,7 +49,7 @@ class SessionDetails extends Component {
             });
                 
         }else{
-            fetch("http://192.168.1.5:3001/group/"+groupId+"/students")
+            fetch(`${process.env.REACT_APP_SERVER_URL}/group/${groupId}/students`)
             .then( res => res.json())
             .then(json=>{
                 let presentStudents = {};
@@ -84,7 +84,7 @@ class SessionDetails extends Component {
         this.state.students.forEach(student => {
             if( (this.state.absentStudents.indexOf(student.studentId) !== -1) )
                 markStudents.push(
-                    fetch("http://192.168.1.5:3001/session/"+this.state.session.sessionId+"/absent",{
+                    fetch(`${process.env.REACT_APP_SERVER_URL}/session/${this.state.session.sessionId}/absent`,{
                         method: "POST",        
                         headers:{
                             'Content-Type': 'application/json'
@@ -95,7 +95,7 @@ class SessionDetails extends Component {
                 );
             else{
                 markStudents.push(
-                    fetch("http://192.168.1.5:3001/session/"+this.state.session.sessionId+"/present",{
+                    fetch(`${process.env.REACT_APP_SERVER_URL}/session/${this.state.session.sessionId}/present`,{
                         method: "POST",        
                         headers:{
                             'Content-Type': 'application/json'
@@ -128,7 +128,7 @@ class SessionDetails extends Component {
         const addPresence=[];
         presence.forEach(present => {
             addPresence.push(
-                fetch("http://192.168.1.5:3001/session/"+this.state.session.sessionId+"/present",{
+                fetch(`${process.env.REACT_APP_SERVER_URL}/session/${this.state.session.sessionId}/present`,{
                 method: "PUT",
                 headers:{
                     'Content-Type': 'application/json'
@@ -152,7 +152,7 @@ class SessionDetails extends Component {
             ...this.state.session,
             sessionDone:1
         }
-        fetch("http://192.168.1.5:3001/session/",{
+        fetch(`${process.env.REACT_APP_SERVER_URL}/session/`,{
             method: "PUT",        
             headers:{
                 'Content-Type': 'application/json'

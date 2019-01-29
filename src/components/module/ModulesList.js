@@ -10,7 +10,7 @@ const ModulesList = ({modules}) => {
             <NavLink to={`/module/${moduleId}`} className='list-item'>
                 <img
                     className ="StudentAvatar"
-                    src={picture?`http://192.168.1.5:3001/uploads/${picture}`:"../default-avatar.png"}
+                    src={picture?`${process.env.REACT_APP_SERVER_URL}/uploads/${picture}`:"../default-avatar.png"}
                     alt={"Student Avatar"}
                     onError={(e)=>{e.target.src="../default-avatar.png"}}
                 />

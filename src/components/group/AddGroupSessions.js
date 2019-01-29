@@ -49,14 +49,14 @@ class AddGroupSessions extends Component{
     }
 
     getData(){
-        fetch("http://192.168.1.5:3001/room/")
+        fetch(`${process.env.REACT_APP_SERVER_URL}/room/`)
         .then(res=>res.json())
         .then(json=>{
             this.setState({
                 rooms: json.rooms.map(room=>({key:room.roomId,value:room.roomId}))
             });
         });
-        fetch("http://192.168.1.5:3001/teacher/")
+        fetch(`${process.env.REACT_APP_SERVER_URL}/teacher/`)
         .then(res=>res.json())
         .then(json=>{
             this.setState({
@@ -81,7 +81,7 @@ class AddGroupSessions extends Component{
                 teacherId: this.state.fields.teacherId
             });
     
-            fetch("http://192.168.1.5:3001/session/", {
+            fetch(`${process.env.REACT_APP_SERVER_URL}/session/`, {
                 method: "POST",        
                 headers:{
                     'Content-Type': 'application/json'
@@ -118,11 +118,16 @@ class AddGroupSessions extends Component{
     handleChange(event) {
         let fields = this.state.fields,
         errors = this.state.errors,
-        fieldName = event.target.name,
-        fieldValue = event.target.value;
-
+        fieldName = event.target.name,fieldValue;
+        
+        switch(fieldName){
+            case 'teacherId': 
+                fieldValue = event.target.options[event.target.options.selectedIndex].getAttribute('data-key');
+            break;
+            default:
+            fieldValue = event.target.value;
+        }
         fields[fieldName] = fieldValue;
-
         if(errors[fieldName]){
             delete errors[fieldName];
         }

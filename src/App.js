@@ -72,7 +72,7 @@ class App extends Component {
 
   componentDidMount(){
 
-    fetch("http://192.168.1.5:3001/user/token", {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/user/token`, {
         method: "POST",
         headers:{
           "Authorization": localStorage.getItem('token')

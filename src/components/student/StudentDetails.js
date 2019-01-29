@@ -36,7 +36,7 @@ class StudentDetails extends Component {
     }
 
     getData=()=>{
-        fetch("http://192.168.1.5:3001/student/"+this.studentId)
+        fetch(`${process.env.REACT_APP_SERVER_URL}/student/${this.studentId}`)
         .then( res => res.json())
         .then(json=>{
             if(json.student.length>0)
@@ -45,7 +45,7 @@ class StudentDetails extends Component {
                 });
         });
 
-        fetch("http://192.168.1.5:3001/student/"+this.studentId+"/payments")
+        fetch(`${process.env.REACT_APP_SERVER_URL}/student/${this.studentId}/payments`)
         .then( res => res.json())
         .then(json=>{
             this.setState({
@@ -53,7 +53,7 @@ class StudentDetails extends Component {
             });
         });
 
-        fetch("http://192.168.1.5:3001/student/"+this.studentId+"/groups")
+        fetch(`${process.env.REACT_APP_SERVER_URL}/student/${this.studentId}/groups`)
         .then( res => res.json())
         .then(json=>{
             this.setState({
@@ -61,7 +61,7 @@ class StudentDetails extends Component {
             });
         });
 
-        fetch("http://192.168.1.5:3001/student/"+this.studentId+"/sessions")
+        fetch(`${process.env.REACT_APP_SERVER_URL}/student/${this.studentId}/sessions`)
         .then( res => res.json())
         .then(json=>{
             this.setState({
@@ -73,7 +73,7 @@ class StudentDetails extends Component {
     deleteStudent=()=>{
         var result = window.confirm("Do you really want to delete this student?");
         if (result) {
-            fetch("http://192.168.1.5:3001/student/"+this.studentId, {
+            fetch(`${process.env.REACT_APP_SERVER_URL}/student/${this.studentId}`, {
                 method: "DELETE"
             })
             .then(response => response.json())
@@ -142,7 +142,7 @@ class StudentDetails extends Component {
                 <div className="student-details" ref={ref=>this.detailsContainer=ref}>
                     <div className='details-row-container1'>
                         <img className ="student-picture student-pic"
-                            src={`http://192.168.1.5:3001/uploads/${picture}`}
+                            src={`${process.env.REACT_APP_SERVER_URL}/uploads/${picture}`}
                             alt={"Student Avatar"}
                             onError={(e)=>{e.target.src=sex?"/default-avatar.png":"/default-avatar-female.png"}}
                         /> 

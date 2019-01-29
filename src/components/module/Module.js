@@ -24,7 +24,7 @@ class Module extends Component {
     }
 
     getModules(){
-        fetch("http://192.168.1.5:3001/module")
+        fetch(`${process.env.REACT_APP_SERVER_URL}/module`)
         .then( res => res.json())
         .then(json=>{
           this.setState({

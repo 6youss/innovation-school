@@ -7,7 +7,7 @@ const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,hand
     
     const StudentItem = ({studentId,firstName,lastName,picture,sex})=>{
         const picSrc = picture? 
-                        `http://192.168.1.5:3001/uploads/${picture}`
+                        `${process.env.REACT_APP_SERVER_URL}/uploads/${picture}`
                         :
                         (sex?"/default-avatar.png":"/default-avatar-female.png");
         return (
@@ -32,7 +32,7 @@ const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,hand
                 <div className={selected?"student-list-item selected":"student-list-item"}>
                     <img
                         className ="StudentAvatar"
-                        src={picture?`http://192.168.1.5:3001/uploads/${picture}`:"../default-avatar.png"}
+                        src={picture?`${process.env.REACT_APP_SERVER_URL}/uploads/${picture}`:"../default-avatar.png"}
                         alt={"Student Avatar"}
                         onError={(e)=>{e.target.src="../default-avatar.png"}}
                     />
@@ -59,7 +59,7 @@ const StudentsList = ({students,handleDetails,handleSelect,selectedStudents,hand
                     <li className="student-list-item justify-center" onClick={this.changeObserv.bind(this)}>
                         <img
                             className ="StudentAvatar"
-                            src={this.props.picture?`http://192.168.1.5:3001/uploads/${this.props.picture}`:"../default-avatar.png"}
+                            src={this.props.picture?`${process.env.REACT_APP_SERVER_URL}/uploads/${this.props.picture}`:"../default-avatar.png"}
                             alt={"Student Avatar"}
                             onError={(e)=>{e.target.src="../default-avatar.png"}}
                         />

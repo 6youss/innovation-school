@@ -19,7 +19,7 @@ class TeacherDetails extends Component {
     
     componentDidMount(){
         
-        fetch("http://192.168.1.5:3001/teacher/"+this.teacherId)
+        fetch(`${process.env.REACT_APP_SERVER_URL}/teacher/${this.teacherId}`)
         .then( res => res.json())
         .then(json=>{
             console.log(json);
@@ -29,7 +29,7 @@ class TeacherDetails extends Component {
             });
         });
 
-        fetch("http://192.168.1.5:3001/teacher/"+this.teacherId+"/sessions")
+        fetch(`${process.env.REACT_APP_SERVER_URL}/teacher/${this.teacherId}/sessions`)
         .then( res => res.json())
         .then(json=>{
             
@@ -43,7 +43,7 @@ class TeacherDetails extends Component {
     deleteTeacher(){
         var result = window.confirm("Do you really want to delete this teacher?");
         if (result) {
-            fetch("http://192.168.1.5:3001/teacher/"+this.teacherId, {
+            fetch(`${process.env.REACT_APP_SERVER_URL}/teacher/${this.teacherId}`, {
                 method: "DELETE"
             })
             .then(response => response.json())
@@ -82,7 +82,7 @@ class TeacherDetails extends Component {
                 <div className="student-details">
                     <div className='details-row-container1'>
                         <img className ="student-picture student-pic"
-                            src={`http://192.168.1.5:3001/uploads/${picture}`}
+                            src={`${process.env.REACT_APP_SERVER_URL}/uploads/${picture}`}
                             alt={"Student Avatar"}
                             onError={(e)=>{e.target.src=sex?"../default-avatar.png":"../default-avatar-female.png"}}
                         /> 

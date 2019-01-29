@@ -23,13 +23,13 @@ class GroupDetails extends Component {
     groupId = this.props.match.params.id;
 
     componentDidMount(){
-        const group = fetch("http://192.168.1.5:3001/group/"+this.groupId)
+        const group = fetch(`${process.env.REACT_APP_SERVER_URL}/group/${this.groupId}`)
         .then( res => res.json()),
 
-        students = fetch("http://192.168.1.5:3001/group/"+this.groupId+"/students")
+        students = fetch(`${process.env.REACT_APP_SERVER_URL}/group/${this.groupId}/students`)
         .then( res => res.json()),
 
-        sessions = fetch("http://192.168.1.5:3001/group/"+this.groupId+"/sessions")
+        sessions = fetch(`${process.env.REACT_APP_SERVER_URL}/group/${this.groupId}/sessions`)
         .then( res => res.json());
 
         Promise.all([group,students,sessions])
@@ -44,7 +44,7 @@ class GroupDetails extends Component {
     }
 
     updateStudents(){
-        fetch("http://192.168.1.5:3001/group/"+this.groupId+"/students")
+        fetch(`${process.env.REACT_APP_SERVER_URL}/group/${this.groupId}/students`)
         .then( res => res.json())
         .then(students=>{
             this.setState({students:students.students});
@@ -53,7 +53,7 @@ class GroupDetails extends Component {
     }
 
     updateSessions(){
-        fetch("http://192.168.1.5:3001/group/"+this.groupId+"/sessions")
+        fetch(`${process.env.REACT_APP_SERVER_URL}/group/${this.groupId}/sessions`)
         .then( res => res.json())
         .then(sessions=>{
             this.setState({sessions:sessions.sessions});
@@ -79,7 +79,7 @@ class GroupDetails extends Component {
     deleteGroup(){
         var result = window.confirm("Do you really want to delete this group?");
         if (result) {
-            fetch("http://192.168.1.5:3001/group/"+this.groupId, {
+            fetch(`${process.env.REACT_APP_SERVER_URL}/group/${this.groupId}`, {
                 method: "DELETE"
             })
             .then(response => response.json())

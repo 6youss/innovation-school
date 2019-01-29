@@ -20,7 +20,7 @@ class Teacher extends Component {
     }
 
     getTeachers(){
-        fetch("http://192.168.1.5:3001/teacher")
+        fetch(`${process.env.REACT_APP_SERVER_URL}/teacher`)
         .then( res => res.json())
         .then(json=>{
           this.setState({

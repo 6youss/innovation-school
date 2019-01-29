@@ -15,7 +15,7 @@ class TeachersList extends Component {
             <li className="student-list-item justify-center">
                 <img 
                     className ="StudentAvatar"
-                    src={picture?`http://localhost:3001/uploads/${picture}`:"../default-avatar.png"}
+                    src={picture?`localhost/uploads/${picture}`:"../default-avatar.png"}
                     alt={"Teacher Avatar"}
                     onError={(e)=>{e.target.src="../default-avatar.png"}}
                 >

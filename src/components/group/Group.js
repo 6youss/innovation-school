@@ -24,7 +24,7 @@ class Group extends Component {
     }
 
     getGroups(){
-        fetch("http://192.168.1.5:3001/group")
+        fetch(`${process.env.REACT_APP_SERVER_URL}/group`)
         .then( res => res.json())
         .then(json=>{
           this.setState({

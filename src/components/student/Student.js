@@ -28,7 +28,7 @@ class Student extends Component {
     }
 
     getStudents(){
-        fetch("http://192.168.1.5:3001/student")
+        fetch(`${process.env.REACT_APP_SERVER_URL}/student`)
         .then( res => res.json())
         .then(json=>{
           this.setState({
