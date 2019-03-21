@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { 
         BrowserRouter,
         Route,
-        Switch,
-        Redirect
+        Switch
        } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute'
 
@@ -59,8 +58,6 @@ import PaymentDetails from './components/payment/PaymentDetails'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTrashAlt,faEdit,faAddressBook,faSignInAlt,faBirthdayCake,faPhone,faUserTie,faUserPlus,faChalkboardTeacher,faLevelUpAlt,faFlask,faTimes} 
        from '@fortawesome/free-solid-svg-icons'
-import EditStudent from './components/student/EditStudent';
-import StudentDetails from './components/student/StudentDetails';
 
 library.add(faTrashAlt,faEdit,faAddressBook,faSignInAlt,faBirthdayCake,faPhone,faUserTie,faUserPlus,faChalkboardTeacher,faLevelUpAlt,faFlask,faTimes);
 
@@ -79,7 +76,7 @@ class App extends Component {
         }
     })
     .then(response => {
-      if(response.status != 200){
+      if(response.status !== 200){
         localStorage.removeItem('token');
       }
       console.log(response);
